@@ -1,0 +1,593 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D1F8C0E12C35407C0060C30E /* TLMS_learnerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F8C0E02C35407C0060C30E /* TLMS_learnerApp.swift */; };
+		D1F8C0E32C35407C0060C30E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F8C0E22C35407C0060C30E /* ContentView.swift */; };
+		D1F8C0E52C35407D0060C30E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1F8C0E42C35407D0060C30E /* Assets.xcassets */; };
+		D1F8C0E82C35407D0060C30E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1F8C0E72C35407D0060C30E /* Preview Assets.xcassets */; };
+		D1F8C0F22C35407D0060C30E /* TLMS_learnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F8C0F12C35407D0060C30E /* TLMS_learnerTests.swift */; };
+		D1F8C0FC2C35407D0060C30E /* TLMS_learnerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F8C0FB2C35407D0060C30E /* TLMS_learnerUITests.swift */; };
+		D1F8C0FE2C35407D0060C30E /* TLMS_learnerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F8C0FD2C35407D0060C30E /* TLMS_learnerUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D1F8C0EE2C35407D0060C30E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D1F8C0D52C35407C0060C30E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D1F8C0DC2C35407C0060C30E;
+			remoteInfo = "TLMS-learner";
+		};
+		D1F8C0F82C35407D0060C30E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D1F8C0D52C35407C0060C30E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D1F8C0DC2C35407C0060C30E;
+			remoteInfo = "TLMS-learner";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D1F8C0DD2C35407C0060C30E /* TLMS-learner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TLMS-learner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1F8C0E02C35407C0060C30E /* TLMS_learnerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLMS_learnerApp.swift; sourceTree = "<group>"; };
+		D1F8C0E22C35407C0060C30E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D1F8C0E42C35407D0060C30E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D1F8C0E72C35407D0060C30E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D1F8C0ED2C35407D0060C30E /* TLMS-learnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TLMS-learnerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1F8C0F12C35407D0060C30E /* TLMS_learnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLMS_learnerTests.swift; sourceTree = "<group>"; };
+		D1F8C0F72C35407D0060C30E /* TLMS-learnerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TLMS-learnerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1F8C0FB2C35407D0060C30E /* TLMS_learnerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLMS_learnerUITests.swift; sourceTree = "<group>"; };
+		D1F8C0FD2C35407D0060C30E /* TLMS_learnerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLMS_learnerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D1F8C0DA2C35407C0060C30E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1F8C0EA2C35407D0060C30E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1F8C0F42C35407D0060C30E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D1F8C0D42C35407C0060C30E = {
+			isa = PBXGroup;
+			children = (
+				D1F8C0DF2C35407C0060C30E /* TLMS-learner */,
+				D1F8C0F02C35407D0060C30E /* TLMS-learnerTests */,
+				D1F8C0FA2C35407D0060C30E /* TLMS-learnerUITests */,
+				D1F8C0DE2C35407C0060C30E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D1F8C0DE2C35407C0060C30E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D1F8C0DD2C35407C0060C30E /* TLMS-learner.app */,
+				D1F8C0ED2C35407D0060C30E /* TLMS-learnerTests.xctest */,
+				D1F8C0F72C35407D0060C30E /* TLMS-learnerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D1F8C0DF2C35407C0060C30E /* TLMS-learner */ = {
+			isa = PBXGroup;
+			children = (
+				D1F8C0E02C35407C0060C30E /* TLMS_learnerApp.swift */,
+				D1F8C0E22C35407C0060C30E /* ContentView.swift */,
+				D1F8C0E42C35407D0060C30E /* Assets.xcassets */,
+				D1F8C0E62C35407D0060C30E /* Preview Content */,
+			);
+			path = "TLMS-learner";
+			sourceTree = "<group>";
+		};
+		D1F8C0E62C35407D0060C30E /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				D1F8C0E72C35407D0060C30E /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D1F8C0F02C35407D0060C30E /* TLMS-learnerTests */ = {
+			isa = PBXGroup;
+			children = (
+				D1F8C0F12C35407D0060C30E /* TLMS_learnerTests.swift */,
+			);
+			path = "TLMS-learnerTests";
+			sourceTree = "<group>";
+		};
+		D1F8C0FA2C35407D0060C30E /* TLMS-learnerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D1F8C0FB2C35407D0060C30E /* TLMS_learnerUITests.swift */,
+				D1F8C0FD2C35407D0060C30E /* TLMS_learnerUITestsLaunchTests.swift */,
+			);
+			path = "TLMS-learnerUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D1F8C0DC2C35407C0060C30E /* TLMS-learner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1F8C1012C35407D0060C30E /* Build configuration list for PBXNativeTarget "TLMS-learner" */;
+			buildPhases = (
+				D1F8C0D92C35407C0060C30E /* Sources */,
+				D1F8C0DA2C35407C0060C30E /* Frameworks */,
+				D1F8C0DB2C35407C0060C30E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TLMS-learner";
+			productName = "TLMS-learner";
+			productReference = D1F8C0DD2C35407C0060C30E /* TLMS-learner.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D1F8C0EC2C35407D0060C30E /* TLMS-learnerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1F8C1042C35407D0060C30E /* Build configuration list for PBXNativeTarget "TLMS-learnerTests" */;
+			buildPhases = (
+				D1F8C0E92C35407D0060C30E /* Sources */,
+				D1F8C0EA2C35407D0060C30E /* Frameworks */,
+				D1F8C0EB2C35407D0060C30E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D1F8C0EF2C35407D0060C30E /* PBXTargetDependency */,
+			);
+			name = "TLMS-learnerTests";
+			productName = "TLMS-learnerTests";
+			productReference = D1F8C0ED2C35407D0060C30E /* TLMS-learnerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D1F8C0F62C35407D0060C30E /* TLMS-learnerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1F8C1072C35407D0060C30E /* Build configuration list for PBXNativeTarget "TLMS-learnerUITests" */;
+			buildPhases = (
+				D1F8C0F32C35407D0060C30E /* Sources */,
+				D1F8C0F42C35407D0060C30E /* Frameworks */,
+				D1F8C0F52C35407D0060C30E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D1F8C0F92C35407D0060C30E /* PBXTargetDependency */,
+			);
+			name = "TLMS-learnerUITests";
+			productName = "TLMS-learnerUITests";
+			productReference = D1F8C0F72C35407D0060C30E /* TLMS-learnerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D1F8C0D52C35407C0060C30E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					D1F8C0DC2C35407C0060C30E = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					D1F8C0EC2C35407D0060C30E = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = D1F8C0DC2C35407C0060C30E;
+					};
+					D1F8C0F62C35407D0060C30E = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = D1F8C0DC2C35407C0060C30E;
+					};
+				};
+			};
+			buildConfigurationList = D1F8C0D82C35407C0060C30E /* Build configuration list for PBXProject "TLMS-learner" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D1F8C0D42C35407C0060C30E;
+			productRefGroup = D1F8C0DE2C35407C0060C30E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D1F8C0DC2C35407C0060C30E /* TLMS-learner */,
+				D1F8C0EC2C35407D0060C30E /* TLMS-learnerTests */,
+				D1F8C0F62C35407D0060C30E /* TLMS-learnerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D1F8C0DB2C35407C0060C30E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1F8C0E82C35407D0060C30E /* Preview Assets.xcassets in Resources */,
+				D1F8C0E52C35407D0060C30E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1F8C0EB2C35407D0060C30E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1F8C0F52C35407D0060C30E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D1F8C0D92C35407C0060C30E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1F8C0E32C35407C0060C30E /* ContentView.swift in Sources */,
+				D1F8C0E12C35407C0060C30E /* TLMS_learnerApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1F8C0E92C35407D0060C30E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1F8C0F22C35407D0060C30E /* TLMS_learnerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1F8C0F32C35407D0060C30E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1F8C0FE2C35407D0060C30E /* TLMS_learnerUITestsLaunchTests.swift in Sources */,
+				D1F8C0FC2C35407D0060C30E /* TLMS_learnerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D1F8C0EF2C35407D0060C30E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D1F8C0DC2C35407C0060C30E /* TLMS-learner */;
+			targetProxy = D1F8C0EE2C35407D0060C30E /* PBXContainerItemProxy */;
+		};
+		D1F8C0F92C35407D0060C30E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D1F8C0DC2C35407C0060C30E /* TLMS-learner */;
+			targetProxy = D1F8C0F82C35407D0060C30E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		D1F8C0FF2C35407D0060C30E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D1F8C1002C35407D0060C30E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D1F8C1022C35407D0060C30E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TLMS-learner/Preview Content\"";
+				DEVELOPMENT_TEAM = 8SGTXTM2JK;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.TLMS-learner";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D1F8C1032C35407D0060C30E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TLMS-learner/Preview Content\"";
+				DEVELOPMENT_TEAM = 8SGTXTM2JK;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.TLMS-learner";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D1F8C1052C35407D0060C30E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8SGTXTM2JK;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.TLMS-learnerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TLMS-learner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TLMS-learner";
+			};
+			name = Debug;
+		};
+		D1F8C1062C35407D0060C30E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8SGTXTM2JK;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.TLMS-learnerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TLMS-learner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TLMS-learner";
+			};
+			name = Release;
+		};
+		D1F8C1082C35407D0060C30E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8SGTXTM2JK;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.TLMS-learnerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "TLMS-learner";
+			};
+			name = Debug;
+		};
+		D1F8C1092C35407D0060C30E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8SGTXTM2JK;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.TLMS-learnerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "TLMS-learner";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D1F8C0D82C35407C0060C30E /* Build configuration list for PBXProject "TLMS-learner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1F8C0FF2C35407D0060C30E /* Debug */,
+				D1F8C1002C35407D0060C30E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1F8C1012C35407D0060C30E /* Build configuration list for PBXNativeTarget "TLMS-learner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1F8C1022C35407D0060C30E /* Debug */,
+				D1F8C1032C35407D0060C30E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1F8C1042C35407D0060C30E /* Build configuration list for PBXNativeTarget "TLMS-learnerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1F8C1052C35407D0060C30E /* Debug */,
+				D1F8C1062C35407D0060C30E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1F8C1072C35407D0060C30E /* Build configuration list for PBXNativeTarget "TLMS-learnerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1F8C1082C35407D0060C30E /* Debug */,
+				D1F8C1092C35407D0060C30E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D1F8C0D52C35407C0060C30E /* Project object */;
+}
