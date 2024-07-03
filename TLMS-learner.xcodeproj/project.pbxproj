@@ -14,6 +14,7 @@
 		D1F8C0F22C35407D0060C30E /* TLMS_learnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F8C0F12C35407D0060C30E /* TLMS_learnerTests.swift */; };
 		D1F8C0FC2C35407D0060C30E /* TLMS_learnerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F8C0FB2C35407D0060C30E /* TLMS_learnerUITests.swift */; };
 		D1F8C0FE2C35407D0060C30E /* TLMS_learnerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F8C0FD2C35407D0060C30E /* TLMS_learnerUITestsLaunchTests.swift */; };
+		D1F8C10B2C3540D40060C30E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D1F8C10A2C3540D40060C30E /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		D1F8C0F72C35407D0060C30E /* TLMS-learnerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TLMS-learnerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1F8C0FB2C35407D0060C30E /* TLMS_learnerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLMS_learnerUITests.swift; sourceTree = "<group>"; };
 		D1F8C0FD2C35407D0060C30E /* TLMS_learnerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLMS_learnerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D1F8C10A2C3540D40060C30E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 		D1F8C0D42C35407C0060C30E = {
 			isa = PBXGroup;
 			children = (
+				D1F8C10A2C3540D40060C30E /* .gitignore */,
 				D1F8C0DF2C35407C0060C30E /* TLMS-learner */,
 				D1F8C0F02C35407D0060C30E /* TLMS-learnerTests */,
 				D1F8C0FA2C35407D0060C30E /* TLMS-learnerUITests */,
@@ -232,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1F8C0E82C35407D0060C30E /* Preview Assets.xcassets in Resources */,
+				D1F8C10B2C3540D40060C30E /* .gitignore in Resources */,
 				D1F8C0E52C35407D0060C30E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
