@@ -7,11 +7,13 @@
 
 
 import SwiftUI
+import FirebaseAuth
 
 struct ContentView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var showAlert = false
+    @State private var alertMessage = ""
     
     var body: some View {
         NavigationView {
@@ -76,7 +78,7 @@ struct ContentView: View {
                                                 
                         
                         Button(action: {
-                            // Perform login action here
+                            loginUser()
                             showAlert = true
                         }) {
                             Text("Login")
@@ -89,7 +91,7 @@ struct ContentView: View {
                         }
                         .padding(.horizontal)
                         .alert(isPresented: $showAlert) {
-                            Alert(title: Text("Login Action"), message: Text("Perform your login action here."), dismissButton: .default(Text("OK")))
+                            Alert(title: Text("Login Action"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
                         }
                         
                         // Sign Up Option
@@ -132,6 +134,17 @@ struct ContentView: View {
                     .navigationBarHidden(true)
                 }
             }
+        }
+    }
+    
+    func loginUser(){
+        if email.isEmpty || password.isEmpty{
+            alertMessage = "Please enter both email and password"
+            
+        
+        } else {
+            Auth.auth().signIn(withEmail: email, password: password)
+            alertMessage = "You've successfully logged in"
         }
     }
 }
