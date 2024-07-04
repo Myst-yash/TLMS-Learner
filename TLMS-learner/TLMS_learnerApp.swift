@@ -15,7 +15,7 @@ struct TLMS_learnerApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AccountView()
         }
     }
 }
