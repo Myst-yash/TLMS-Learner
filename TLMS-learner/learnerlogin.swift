@@ -99,6 +99,7 @@ struct ContentView: View {
                                 .font(.system(size: 15, weight: .regular, design: .default))
                             NavigationLink(destination: AccountView()) {
                                 Text("Sign up")
+                                    .navigationBarHidden(true)
                                     .font(.system(size: 15, weight: .bold, design: .default))
                                     .fontWeight(.bold)
                             }
