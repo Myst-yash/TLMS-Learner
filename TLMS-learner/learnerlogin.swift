@@ -79,7 +79,6 @@ struct ContentView: View {
                         
                         Button(action: {
                             loginUser()
-                            showAlert = true
                         }) {
                             Text("Login")
                                 .font(.headline)
@@ -138,13 +137,14 @@ struct ContentView: View {
     }
     
     func loginUser(){
-        if email.isEmpty || password.isEmpty{
-            alertMessage = "Please enter both email and password"
-            
-        
-        } else {
-            Auth.auth().signIn(withEmail: email, password: password)
-            alertMessage = "You've successfully logged in"
+        Auth.auth().signIn(withEmail: email, password: password) { firebaseResult, err in
+            if let err = err{
+                alertMessage = err.localizedDescription
+                showAlert = true
+                print("not logged in")
+                return
+            }
+            print("logged in")
         }
     }
 }
