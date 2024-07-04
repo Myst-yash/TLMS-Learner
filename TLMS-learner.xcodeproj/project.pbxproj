@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D1BFEE772C3675B0006492F2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1BFEE762C3675B0006492F2 /* GoogleService-Info.plist */; };
+		042353ED2C368040000DC6DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 042353EC2C368040000DC6DB /* GoogleService-Info.plist */; };
+		042353EE2C368040000DC6DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 042353EC2C368040000DC6DB /* GoogleService-Info.plist */; };
+		042353EF2C368040000DC6DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 042353EC2C368040000DC6DB /* GoogleService-Info.plist */; };
 		D1BFEE7A2C367620006492F2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE792C367620006492F2 /* FirebaseAuth */; };
 		D1BFEE7C2C367620006492F2 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE7B2C367620006492F2 /* FirebaseAuthCombine-Community */; };
 		D1BFEE7E2C367620006492F2 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE7D2C367620006492F2 /* FirebaseDatabase */; };
@@ -43,7 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D1BFEE762C3675B0006492F2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		042353EC2C368040000DC6DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D1F8C0DD2C35407C0060C30E /* TLMS-learner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TLMS-learner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1F8C0E02C35407C0060C30E /* TLMS_learnerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLMS_learnerApp.swift; sourceTree = "<group>"; };
 		D1F8C0E22C35407C0060C30E /* learnerlogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = learnerlogin.swift; sourceTree = "<group>"; };
@@ -92,7 +94,7 @@
 		D1F8C0D42C35407C0060C30E = {
 			isa = PBXGroup;
 			children = (
-				D1BFEE762C3675B0006492F2 /* GoogleService-Info.plist */,
+				042353EC2C368040000DC6DB /* GoogleService-Info.plist */,
 				D1F8C10A2C3540D40060C30E /* .gitignore */,
 				D1F8C0DF2C35407C0060C30E /* TLMS-learner */,
 				D1F8C0F02C35407D0060C30E /* TLMS-learnerTests */,
@@ -264,7 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1F8C0E82C35407D0060C30E /* Preview Assets.xcassets in Resources */,
-				D1BFEE772C3675B0006492F2 /* GoogleService-Info.plist in Resources */,
+				042353ED2C368040000DC6DB /* GoogleService-Info.plist in Resources */,
 				D1F8C10B2C3540D40060C30E /* .gitignore in Resources */,
 				D1F8C0E52C35407D0060C30E /* Assets.xcassets in Resources */,
 			);
@@ -274,6 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				042353EE2C368040000DC6DB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				042353EF2C368040000DC6DB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
