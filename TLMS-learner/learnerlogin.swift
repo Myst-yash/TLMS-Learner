@@ -97,7 +97,7 @@ struct ContentView: View {
                         HStack {
                             Text("Don't have an account?")
                                 .font(.system(size: 15, weight: .regular, design: .default))
-                            NavigationLink(destination: SignupView()) {
+                            NavigationLink(destination: AccountView()) {
                                 Text("Sign up")
                                     .font(.system(size: 15, weight: .bold, design: .default))
                                     .fontWeight(.bold)
@@ -144,6 +144,8 @@ struct ContentView: View {
                 print("not logged in")
                 return
             }
+            alertMessage = "you've logged in"
+            showAlert = true
             print("logged in")
         }
     }
