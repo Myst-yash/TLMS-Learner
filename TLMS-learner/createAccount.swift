@@ -16,6 +16,8 @@ struct AccountView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var name: String = ""
+    @State private var showAlert = false
+    @State private var alertMessage = ""
 
     var body: some View {
         NavigationView {
@@ -84,11 +86,13 @@ struct AccountView: View {
                             }
                             else{
                                 uploadUserDetails()
+                                
                             }
                         }
                         
                     }) {
                         Text("Create Account")
+                        
                             .foregroundColor(.white)
                             .font(.headline)
                             .frame(width: 335, height: 51)
@@ -100,6 +104,7 @@ struct AccountView: View {
                     NavigationLink(destination: ContentView())
                      {
                         Text("Already have an account?")
+                            .navigationBarHidden(true)
                             .foregroundColor(Color(hex: "007AFF"))
                             .font(.system(size: 14, weight: .semibold))
                             .padding(.top, 20)
@@ -140,6 +145,14 @@ struct AccountView: View {
                 }
             }
             .navigationBarHidden(true)
+            .alert(isPresented: $showAlert) {
+                            Alert(
+                                title: Text("Notification"),
+                                message: Text(alertMessage),
+                                dismissButton: .default(Text("OK"))
+                            )
+                        }
+            
         }
     }
     func uploadUserDetails(){
@@ -147,6 +160,14 @@ struct AccountView: View {
         
         let db = Firestore.firestore()
         let ref = db.collection("Learners").addDocument(data: datadic)
+        { error in
+                if let error = error {
+                    alertMessage = "Error: \(error.localizedDescription)"
+                } else {
+                    alertMessage = "Account Created"
+                }
+                showAlert = true
+            }
     }
 }
 
