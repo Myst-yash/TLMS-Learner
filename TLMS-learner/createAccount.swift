@@ -9,6 +9,8 @@
 
 import Foundation
 import SwiftUI
+import FirebaseFirestore
+import FirebaseAuth
 
 struct AccountView: View {
     @State private var email = ""
@@ -76,8 +78,15 @@ struct AccountView: View {
                     .padding(.top, 20)
                     
                     Button(action: {
-                        // Action when button is tapped
-                        // Add your action here
+                        Auth.auth().createUser(withEmail: email, password: password) {
+                            _, error in if let _ = error {
+                                print("error")
+                            }
+                            else{
+                                uploadUserDetails()
+                            }
+                        }
+                        
                     }) {
                         Text("Create Account")
                             .foregroundColor(.white)
@@ -88,10 +97,8 @@ struct AccountView: View {
                             .padding(.top, 20)
                     }
                     
-                    Button(action: {
-                        // Action when "Already have an account" is tapped
-                        // Add your action here
-                    }) {
+                    NavigationLink(destination: ContentView())
+                     {
                         Text("Already have an account?")
                             .foregroundColor(Color(hex: "007AFF"))
                             .font(.system(size: 14, weight: .semibold))
@@ -134,6 +141,12 @@ struct AccountView: View {
             }
             .navigationBarHidden(true)
         }
+    }
+    func uploadUserDetails(){
+        var datadic = ["Name":name, "Email": email, "Password": password]
+        
+        let db = Firestore.firestore()
+        let ref = db.collection("Learners").addDocument(data: datadic)
     }
 }
 
