@@ -8,6 +8,7 @@
 
 import SwiftUI
 import FirebaseAuth
+import FirebaseAuth
 
 struct ContentView: View {
     @State private var email = ""
@@ -18,77 +19,50 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack(alignment:.topLeading) {
-                Color(UIColor(hex: "#FFFFFF")!)
+                Color("#FFFFFF")
                     .edgesIgnoringSafeArea(.all)
-                Image("Waves")
-                    .resizable()
-                    .scaledToFit()
-                    .position(x:197,y:735)// Extend to ignore safe area insets
+           
+                    PNGImageView(imageName: "Waves", width: 394, height: 194)
+                        .position(x:195,y:735)// Extend to ignore safe area insets
                 
-                VStack {
-                    HStack {
-                        
-                    Text("Welcome to Svadhyaya")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .padding()
-                        
-                    Spacer()
-                }
-            
+                
+                VStack(spacing: 20) {
                     
-                    Image("laptop")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 200, height: 150)
-                        .padding(.bottom, 20)
+                        
+                    TitleLabel(text: "Welcome To \n Swadhyay")
+                    .font(.custom("Poppins-Bold", size: 40))
+
+            
+                    PNGImageView(imageName: "laptop", width: 214, height: 166)
+                    
                     
                     // Login Form
                     VStack(spacing: 20) {
-                        TextField("Email", text: $email)
-                            .padding()                                                     .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.gray, lineWidth: 1)
-                            )
-                            .padding(.horizontal)
+                      CustomTextField(placeholder: "Email", text: $email)
                           
                             
-                        
-                        
-                        SecureField("Password", text: $password)
-                            .padding()
-                            .cornerRadius(8)                            .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.gray, lineWidth: 1)
-                            )
 
-                            .padding(.horizontal)
+                        
+                     CustomSecureField(placeholder: "Password", text: $password)
                         
                         HStack {
                                                     Spacer()
-                                                    Button("Forgot Password") {
+                                                    Button("Forgot Password?") {
                                                         // Implement forgot password logic here
                                                     }
                                                     .foregroundColor(.blue)
                                                  
                                                     .padding(.horizontal)
                                                     .font(.system(size: 15, weight: .bold, design: .default))
+                                                    .padding(.trailing ,20)
                             
                                                 }
-                                                
                         
-                        Button(action: {
-                            loginUser()
-                        }) {
-                            Text("Login")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color(UIColor(named: "PrimaryColor")!))
-                                .cornerRadius(8)
+                        CustomButton(label: "Login"){
+                            print("login successfully")
                         }
-                        .padding(.horizontal)
+                       
+                        
                         .alert(isPresented: $showAlert) {
                             Alert(title: Text("Login Action"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
                         }
@@ -98,41 +72,34 @@ struct ContentView: View {
                             Text("Don't have an account?")
                                 .font(.system(size: 15, weight: .regular, design: .default))
                             NavigationLink(destination: AccountView()) {
-                                Text("Sign up")
-                                    .navigationBarHidden(true)
+                                Text("SignUp")
                                     .font(.system(size: 15, weight: .bold, design: .default))
                                     .fontWeight(.bold)
+//                                CustomButton(label: "SignUp", action: {})
                             }
                         }
                         
                         // Social Login Buttons
                         HStack(spacing: 20) {
                             Button(action: {
-                                // Perform Google login action
+                                // Perform Apple login action
                                 print("Google login")
                             }) {
-                                Image("Google")
-                                    .resizable()
-                                    .frame(width: 50, height: 50)
-                                  
-                                    .cornerRadius(100)
+                                PNGImageView(imageName: "Google", width: 50, height: 50)
                             }
                             
                             Button(action: {
                                 // Perform Apple login action
                                 print("Apple login")
                             }) {
-                                Image("Apple")
-                                    .resizable()
-                                    .frame(width: 50, height:50 )
-                                   
-                                    .cornerRadius(100)
+                                PNGImageView(imageName: "Apple", width: 50, height: 50)
                             }
                         }
                         .padding(.bottom, 20)
                     }
                     .navigationBarHidden(true)
                 }
+                .padding(.top, 40)
             }
         }
     }

@@ -23,64 +23,36 @@ struct AccountView: View {
         NavigationView {
             ZStack {
                 Color.white.ignoresSafeArea()
-                Image("Waves").resizable().scaledToFit().position(x: 196 , y: 735)
+                
+                    Image("Waves").resizable().scaledToFit()
+                        .position(x: 196 , y: 700)
                 
                 VStack {
-                    Text("Welcome to Svadhyaya")
-                        .fontWeight(.bold)
-                        .font(.custom("Poppins", size: 40))
-                        .padding(.trailing,95)
-                        .padding(.top, -20)
-                    
-                    Image("laptop")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 214, height: 165)
-                        .padding(.top, 10)
-                    
-                    Text("Create Account")
-                        .fontWeight(.semibold)
-                        .font(.custom("Poppins", size: 24))
-                        .padding(.top, 5)
-                    
-                    VStack(spacing: 20) {
-                        TextField("Full Name", text: $name)
-                            .padding()
-                            .frame(width: 320, height: 38)
-                            .background(Color.white)
-                            .cornerRadius(8)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color(hex: "E0E0E0"), lineWidth: 1)
-                            )
-                            .font(.custom("Poppins-Regular", size: 18)).padding(.top, -10)
-
-                        TextField("Email", text: $email)
-                            .padding()
-                            .frame(width: 320, height: 38)
-                            .background(Color.white)
-                            .cornerRadius(8)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color(hex: "E0E0E0"), lineWidth: 1)
-                            )
-                            .font(.custom("Poppins-Regular", size: 18)).padding(.top, -10)
-
-                        SecureField("Password", text: $password)
-                            .padding()
-                            .frame(width: 320, height: 38)
-                            .background(Color.white)
-                            .cornerRadius(8)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color(hex: "E0E0E0"), lineWidth: 1)
-                            )
-                            .font(.custom("Poppins-Regular", size: 18)).padding(.top, -10)
-                    }
-                    .padding(.top, 20)
-                    
-                    Button(action: {
-                        Auth.auth().createUser(withEmail: email, password: password) {
+                        TitleLabel(text: "Welcome To \nSwadhyay", fontSize: 40)
+                        .lineLimit(0)
+                        .truncationMode(.tail)
+                        .minimumScaleFactor(0.8)
+                        
+                        Spacer()
+                        
+                        PNGImageView(imageName: "laptop", width: 150, height: 150)
+                        
+                        //                    Text("Create Account")
+                        //                        .fontWeight(.semibold)
+                        //
+                        //                        .padding(.top, 5)
+                        
+                        VStack(spacing: 15) {
+                            CustomTextField(placeholder: "FullName", text: $name)
+                            CustomTextField(placeholder: "Email", text: $email)
+                            CustomSecureField(placeholder: "Password", text: $password)
+                            
+                            
+                            
+                        }
+                        .padding(.top, 20)
+                        
+                        CustomButton(label: "Create Account", action:  {                       Auth.auth().createUser(withEmail: email, password: password) {
                             _, error in if let _ = error {
                                 print("error")
                             }
@@ -89,72 +61,50 @@ struct AccountView: View {
                                 
                             }
                         }
-                        
-                    }) {
-                        Text("Create Account")
-                        
-                            .foregroundColor(.white)
-                            .font(.headline)
-                            .frame(width: 335, height: 51)
-                            .background(Color(hex: "6C5DD4"))
-                            .cornerRadius(12)
-                            .padding(.top, 20)
-                    }
-                    
-                    NavigationLink(destination: ContentView())
-                     {
-                        Text("Already have an account?")
-                            .navigationBarHidden(true)
-                            .foregroundColor(Color(hex: "007AFF"))
-                            .font(.system(size: 14, weight: .semibold))
-                            .padding(.top, 20)
-                    }
-                    
-                    HStack(spacing: 30) {
-                        Button(action: {
-                            // Action when the circle button is tapped
-                            // Add your action here
-                        }) {
-                            Image("googles") // Replace with your image name
-                                .resizable()
-                                .frame(width: 26, height: 26)
-                                .foregroundColor(.white) // Adjust the color of the image
-                                .background(
-                                    Circle()
-                                        .fill(Color(hex: "F0EFFB")) // Background color of the circle
-                                        .frame(width: 50, height: 50)
-                                ).padding(.trailing, 20)
+                        }
+                        )
+                        NavigationLink(destination: ContentView())
+                        {
+                            Text("Already have an account?")
+                                .navigationBarHidden(true)
+                                .foregroundColor(Color(hex: "#007AFF"))
+                            
+                            
+                                .padding(.top, 20)
                         }
                         
-                        Button(action: {
-                            // Action when the circle button is tapped
-                            // Add your action here
-                        }) {
-                            Image("apples") // Replace with your image name
-                                .resizable()
-                                .frame(width: 26, height: 26)
-                                .foregroundColor(.white) // Adjust the color of the image
-                                .background(
-                                    Circle()
-                                        .fill(Color(hex: "F0EFFB")) // Background color of the circle
-                                        .frame(width: 50, height: 50)
-                                ).padding(.trailing, -5)
+                        HStack(spacing: 30) {
+                            HStack(spacing: 20) {
+                                Button(action: {
+                                    // Perform Apple login action
+                                    print("Google login")
+                                }) {
+                                    PNGImageView(imageName: "Google", width: 50, height: 50)
+                                }
+                                
+                                Button(action: {
+                                    // Perform Apple login action
+                                    print("Apple login")
+                                }) {
+                                    PNGImageView(imageName: "Apple", width: 50, height: 50)
+                                }
+                            }
+                            .padding(.top, 30)
                         }
                     }
-                    .padding(.top, 30)
+                    .navigationBarHidden(true)
+                    .alert(isPresented: $showAlert) {
+                        Alert(
+                            title: Text("Notification"),
+                            message: Text(alertMessage),
+                            dismissButton: .default(Text("OK"))
+                        )
+                    }
+                    
                 }
             }
-            .navigationBarHidden(true)
-            .alert(isPresented: $showAlert) {
-                            Alert(
-                                title: Text("Notification"),
-                                message: Text(alertMessage),
-                                dismissButton: .default(Text("OK"))
-                            )
-                        }
-            
         }
-    }
+    
     func uploadUserDetails(){
         var datadic = ["Name":name, "Email": email, "Password": password]
         
@@ -175,28 +125,4 @@ struct AccountView: View {
     AccountView()
 }
 
-extension Color {
-    init(hex: String) {
-        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
-        var int: UInt64 = 0
-        Scanner(string: hex).scanHexInt64(&int)
-        let a, r, g, b: UInt64
-        switch hex.count {
-        case 3: // RGB (12-bit)
-            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
-        case 6: // RGB (24-bit)
-            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
-        case 8: // ARGB (32-bit)
-            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
-        default:
-            (a, r, g, b) = (255, 0, 0, 0)
-        }
-        self.init(
-            .sRGB,
-            red: Double(r) / 255,
-            green: Double(g) / 255,
-            blue: Double(b) / 255,
-            opacity: Double(a) / 255
-        )
-    }
-}
+
