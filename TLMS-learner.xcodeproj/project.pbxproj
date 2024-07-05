@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		042353ED2C368040000DC6DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 042353EC2C368040000DC6DB /* GoogleService-Info.plist */; };
-		042353EE2C368040000DC6DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 042353EC2C368040000DC6DB /* GoogleService-Info.plist */; };
-		042353EF2C368040000DC6DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 042353EC2C368040000DC6DB /* GoogleService-Info.plist */; };
 		04570C3B2C36BF7600B5B03F /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04570C3A2C36BF7600B5B03F /* File.swift */; };
 		7ACDE3872C370B0600AFAAE7 /* createAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACDE3862C370B0600AFAAE7 /* createAccount.swift */; };
+		D150304D2C37AF59002B4B12 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D150304C2C37AF59002B4B12 /* GoogleService-Info.plist */; };
+		D150304E2C37AF59002B4B12 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D150304C2C37AF59002B4B12 /* GoogleService-Info.plist */; };
+		D150304F2C37AF59002B4B12 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D150304C2C37AF59002B4B12 /* GoogleService-Info.plist */; };
 		D1BFEE7A2C367620006492F2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE792C367620006492F2 /* FirebaseAuth */; };
 		D1BFEE7C2C367620006492F2 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE7B2C367620006492F2 /* FirebaseAuthCombine-Community */; };
 		D1BFEE7E2C367620006492F2 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE7D2C367620006492F2 /* FirebaseDatabase */; };
@@ -47,9 +47,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		042353EC2C368040000DC6DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04570C3A2C36BF7600B5B03F /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		7ACDE3862C370B0600AFAAE7 /* createAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createAccount.swift; sourceTree = "<group>"; };
+		D150304C2C37AF59002B4B12 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D1F8C0DD2C35407C0060C30E /* TLMS-learner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TLMS-learner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1F8C0E02C35407C0060C30E /* TLMS_learnerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLMS_learnerApp.swift; sourceTree = "<group>"; };
 		D1F8C0E22C35407C0060C30E /* learnerlogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = learnerlogin.swift; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		D1F8C0D42C35407C0060C30E = {
 			isa = PBXGroup;
 			children = (
-				042353EC2C368040000DC6DB /* GoogleService-Info.plist */,
+				D150304C2C37AF59002B4B12 /* GoogleService-Info.plist */,
 				D1F8C10A2C3540D40060C30E /* .gitignore */,
 				D1F8C0DF2C35407C0060C30E /* TLMS-learner */,
 				D1F8C0F02C35407D0060C30E /* TLMS-learnerTests */,
@@ -272,7 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1F8C0E82C35407D0060C30E /* Preview Assets.xcassets in Resources */,
-				042353ED2C368040000DC6DB /* GoogleService-Info.plist in Resources */,
+				D150304D2C37AF59002B4B12 /* GoogleService-Info.plist in Resources */,
 				D1F8C10B2C3540D40060C30E /* .gitignore in Resources */,
 				D1F8C0E52C35407D0060C30E /* Assets.xcassets in Resources */,
 			);
@@ -282,7 +282,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				042353EE2C368040000DC6DB /* GoogleService-Info.plist in Resources */,
+				D150304E2C37AF59002B4B12 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,7 +290,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				042353EF2C368040000DC6DB /* GoogleService-Info.plist in Resources */,
+				D150304F2C37AF59002B4B12 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,7 +482,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.TLMS-Infy-Educatorr";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.TLMS-Infy-Educator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -512,7 +512,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.TLMS-Infy-Educatorr";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.TLMS-Infy-Educator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
