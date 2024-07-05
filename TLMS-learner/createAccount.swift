@@ -66,7 +66,7 @@ struct AccountView: View {
                             )
                             .font(.custom("Poppins-Regular", size: 18)).padding(.top, -10)
 
-                        TextField("Password", text: $password)
+                        SecureField("Password", text: $password)
                             .padding()
                             .frame(width: 320, height: 38)
                             .background(Color.white)
