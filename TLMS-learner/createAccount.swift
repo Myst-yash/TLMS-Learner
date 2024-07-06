@@ -108,10 +108,10 @@ struct AccountView: View {
         }
     
     func uploadUserDetails(){
-        var datadic = ["Name":name, "Email": email, "Password": password]
+        let datadic = ["Name":name, "Email": email, "Password": password]
         
         let db = Firestore.firestore()
-        let ref = db.collection("Learners").addDocument(data: datadic)
+        _ = db.collection("Learners").addDocument(data: datadic)
         { error in
                 if let error = error {
                     alertMessage = "Error: \(error.localizedDescription)"

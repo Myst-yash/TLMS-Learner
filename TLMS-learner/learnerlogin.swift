@@ -61,7 +61,7 @@ struct ContentView: View {
                         
                         VStack{
                             CustomButton(label: "Login",action: {loginUser()})
-                            NavigationLink(destination: SignupView(), isActive: $login) {
+                            NavigationLink(destination: CourseCategoriesView(), isActive: $login) {
                                 EmptyView()
                             }
                         }
