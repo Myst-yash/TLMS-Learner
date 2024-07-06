@@ -53,6 +53,8 @@
 		D1F8C0FC2C35407D0060C30E /* TLMS_learnerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F8C0FB2C35407D0060C30E /* TLMS_learnerUITests.swift */; };
 		D1F8C0FE2C35407D0060C30E /* TLMS_learnerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F8C0FD2C35407D0060C30E /* TLMS_learnerUITestsLaunchTests.swift */; };
 		D1F8C10B2C3540D40060C30E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D1F8C10A2C3540D40060C30E /* .gitignore */; };
+		EF2EB61D2C397D93007A56B4 /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2EB61C2C397D93007A56B4 /* CourseModel.swift */; };
+		EF2EB61F2C397DC7007A56B4 /* LearnerHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2EB61E2C397DC7007A56B4 /* LearnerHome.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +102,8 @@
 		D1F8C0FB2C35407D0060C30E /* TLMS_learnerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLMS_learnerUITests.swift; sourceTree = "<group>"; };
 		D1F8C0FD2C35407D0060C30E /* TLMS_learnerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLMS_learnerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D1F8C10A2C3540D40060C30E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		EF2EB61C2C397D93007A56B4 /* CourseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseModel.swift; sourceTree = "<group>"; };
+		EF2EB61E2C397DC7007A56B4 /* LearnerHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnerHome.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +193,8 @@
 				04A385822C37B4C700832DDC /* Fonts */,
 				D1F8C0E02C35407C0060C30E /* TLMS_learnerApp.swift */,
 				D1F8C0E22C35407C0060C30E /* learnerlogin.swift */,
+				EF2EB61E2C397DC7007A56B4 /* LearnerHome.swift */,
+				EF2EB61C2C397D93007A56B4 /* CourseModel.swift */,
 				D1EF763B2C3969FF00C8B8A9 /* courseCategories.swift */,
 				D1EF763F2C396ABB00C8B8A9 /* CourseCategoriesModel.swift */,
 				7ACDE3862C370B0600AFAAE7 /* createAccount.swift */,
@@ -371,11 +377,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF2EB61D2C397D93007A56B4 /* CourseModel.swift in Sources */,
 				04A385952C37BFD600832DDC /* PasswordField.swift in Sources */,
 				D1F8C0E32C35407C0060C30E /* learnerlogin.swift in Sources */,
 				D1EF76402C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */,
 				04570C3B2C36BF7600B5B03F /* ColorsFile.swift in Sources */,
 				04A385A12C37BFD700832DDC /* MainButton.swift in Sources */,
+				EF2EB61F2C397DC7007A56B4 /* LearnerHome.swift in Sources */,
 				D1F8C0E12C35407C0060C30E /* TLMS_learnerApp.swift in Sources */,
 				04A3859B2C37BFD700832DDC /* TitleLable.swift in Sources */,
 				D1EF763C2C3969FF00C8B8A9 /* courseCategories.swift in Sources */,

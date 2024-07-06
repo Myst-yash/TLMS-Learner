@@ -22,48 +22,48 @@ struct ContentView: View {
             ZStack(alignment:.topLeading) {
                 Color("#FFFFFF")
                     .edgesIgnoringSafeArea(.all)
-           
-                    PNGImageView(imageName: "Waves", width: 394, height: 194)
-                        .position(x:195,y:735)// Extend to ignore safe area insets
+                
+                PNGImageView(imageName: "Waves", width: 394, height: 194)
+                    .position(x:195,y:735)// Extend to ignore safe area insets
                 
                 
                 VStack(spacing: 20) {
                     
-                        
+                    
                     TitleLabel(text: "Welcome To \n Svadhyay", fontSize: 20)
                     
-
-            
+                    
+                    
                     PNGImageView(imageName: "laptop", width: 214, height: 166)
                     
                     
                     // Login Form
                     VStack(spacing: 20) {
-                      CustomTextField(placeholder: "Email", text: $email)
-                          
-                            
-
+                        CustomTextField(placeholder: "Email", text: $email)
                         
-                     CustomSecureField(placeholder: "Password", text: $password)
+                        
+                        
+                        
+                        CustomSecureField(placeholder: "Password", text: $password)
                         
                         HStack {
-                                                    Spacer()
-                                                    Button("Forgot Password?") {
-                                                        // Implement forgot password logic here
-                                                    }
-                                                    .foregroundColor(.blue)
-                                                 
-                                                    .padding(.horizontal)
-                                                    .font(.system(size: 15, weight: .bold, design: .default))
-                                                    .padding(.trailing ,20)
+                            Spacer()
+                            Button("Forgot Password?") {
+                                // Implement forgot password logic here
+                            }
+                            .foregroundColor(.blue)
                             
-                                                }
+                            .padding(.horizontal)
+                            .font(.system(size: 15, weight: .bold, design: .default))
+                            .padding(.trailing ,20)
+                            
+                        }
                         
                         VStack{
                             CustomButton(label: "Login",action: {loginUser()})
-                            NavigationLink(destination: CourseCategoriesView(), isActive: $login) {
-                                EmptyView()
-                            }
+                                                        NavigationLink(destination: CourseCategoriesView(), isActive: $login) {
+                                                            EmptyView()
+                                                        }
                         }
                         
                         .alert(isPresented: $showAlert) {
@@ -78,7 +78,7 @@ struct ContentView: View {
                                 Text("SignUp")
                                     .font(.system(size: 15, weight: .bold, design: .default))
                                     .fontWeight(.bold)
-//                                CustomButton(label: "SignUp", action: {})
+                                //                                CustomButton(label: "SignUp", action: {})
                             }
                         }
                         
@@ -120,19 +120,20 @@ struct ContentView: View {
             showAlert = false
             login = true
             print("logged in")
+//
         }
     }
-}
-
-struct SignupView: View {
-    var body: some View {
-        Text("Signup View")
-            .navigationBarHidden(true)
+    
+    struct SignupView: View {
+        var body: some View {
+            Text("Signup View")
+                .navigationBarHidden(true)
+        }
     }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            ContentView()
+        }
     }
 }
