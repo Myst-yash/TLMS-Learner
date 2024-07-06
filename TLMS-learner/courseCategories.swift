@@ -1,7 +1,8 @@
 import SwiftUI
+
 struct CourseCategoriesView: View {
     @State private var selectedCategories = Set<UUID>()
-    @State private var navigateNext = false
+    @State private var readyToNavigate = false
     
     let columns = [
         GridItem(.flexible()),
@@ -9,15 +10,13 @@ struct CourseCategoriesView: View {
     ]
     
     var body: some View {
-        
+        NavigationStack {
             VStack(alignment: .leading, spacing: 20) {
-                HeadingLabel(text: "Select Your Goal!",fontSize: 30)
+                HeadingLabel(text: "Select Your Goal!", fontSize: 30)
                 
                 Text("Select your area of interest you want to learn")
                     .font(.subheadline)
                     .foregroundColor(.gray)
-                
-                
                 
                 LazyVGrid(columns: columns, spacing: 15) {
                     ForEach(CourseCategory.courseCategories) { category in
@@ -61,29 +60,26 @@ struct CourseCategoriesView: View {
                     }
                 }
                 
-                
-                    CustomButton(label: "Continue",action: {
-                        navigateNext = true
-                    })
-                // here the SignupView() will be replaced by HomeView()
-                // placed as it was blocking the preview #sumit-prd
-                NavigationLink(destination: SignupView(), isActive: $navigateNext) {
-                               EmptyView()
-                           }
-                
+                CustomButton(label: "Continue", action: {
+                    readyToNavigate = true
+                })
             }
-        
             .padding()
             .navigationBarBackButtonHidden()
+            .navigationDestination(isPresented: $readyToNavigate) {
+                HomeView() // Replace with HomeView() as needed
+            }
         }
+        .navigationBarBackButtonHidden()
     }
-
+}
 
 struct CourseCategoriesView_Previews: PreviewProvider {
     static var previews: some View {
         CourseCategoriesView()
     }
 }
+
 struct SignupView: View {
     var body: some View {
         Text("Signup View")
@@ -91,8 +87,33 @@ struct SignupView: View {
     }
 }
 
+struct HeadingLabel1: View {
+    var text: String
+    var fontSize: CGFloat
+    
+    var body: some View {
+        Text(text)
+            .font(.system(size: fontSize))
+            .fontWeight(.bold)
+    }
+}
 
+struct CustomButton1: View {
+    var label: String
+    var action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            Text(label)
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.blue)
+                .cornerRadius(8)
+        }
+    }
+}
 
-func updateGoal(){
+func updateGoal() {
     // the updation of the goal of the a particular user will be done here
 }
