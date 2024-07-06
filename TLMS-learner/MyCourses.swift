@@ -1,9 +1,3 @@
-//
-//  MyCourses.swift
-//  TLMS-learner
-//
-//  Created by Sumit Prasad on 06/07/24.
-//
 import SwiftUI
 
 struct Video: Identifiable {
@@ -23,21 +17,25 @@ let videosArray2: [Video] = [
     // Add more videos
 ]
 
-
 struct MyCourses: View {
+    @Environment(\.presentationMode) var presentationMode // Correct usage here
     @State private var selectedSegment = 0
     let segments = ["Ongoing", "Completed"]
     
-    
     init() {
-    // Sets the background color of the Picker
-       UISegmentedControl.appearance().backgroundColor = .purple.withAlphaComponent(0.15)
-    // Disappears the divider
-       UISegmentedControl.appearance().setDividerImage(UIImage(), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
-    // Changes the color for the selected item
-       UISegmentedControl.appearance().selectedSegmentTintColor = .purple
-    // Changes the text color for the selected item
-       UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
+        // Sets the background color of the Picker
+        UISegmentedControl.appearance().backgroundColor = .purple.withAlphaComponent(0.15)
+        // Disappears the divider
+        UISegmentedControl.appearance().setDividerImage(UIImage(), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
+        // Changes the color for the selected item
+        UISegmentedControl.appearance().selectedSegmentTintColor = .purple
+        // Changes the text color for the selected item
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
+        
+        // Customize the navigation bar appearance
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.black]
     }
     
     var body: some View {
@@ -50,7 +48,6 @@ struct MyCourses: View {
             }
             .pickerStyle(SegmentedPickerStyle())
             .padding()
-            
             
             // the listing of the courses according to the selected segment
             List {
@@ -78,9 +75,22 @@ struct MyCourses: View {
             }
             .background(Color.gray.opacity(0.1))
         }
+        .navigationTitle("My Courses")
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: Button(action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }) {
+            HStack {
+                Image(systemName: "chevron.left")
+                Text("Home")
+            }
+        })
     }
 }
 
-#Preview {
-    MyCourses()
+struct MyCourses_Previews: PreviewProvider {
+    static var previews: some View {
+        MyCourses()
+    }
 }

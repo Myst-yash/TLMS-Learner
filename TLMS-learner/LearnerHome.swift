@@ -1,15 +1,8 @@
-//
-//  LearnerHome.swift
-//  TLMS-learner
-//
-//  Created by Abcom on 06/07/24.
-//
-
 import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-//        NavigationView {
+        NavigationStack {
             ScrollView {
                 VStack(alignment: .leading) {
                     Text("Hi, Abid 👋")
@@ -23,20 +16,37 @@ struct HomeView: View {
                     SearchBar()
                         .padding(.vertical, 10)
                     
-                    Text("Continue Watching")
-                        .font(.headline)
-                        .padding(.vertical, 5)
+                    HStack {
+                        Text("Continue Watching")
+                            .font(.headline)
+                        Spacer()
+                        NavigationLink(destination: MyCourses()) {
+                            Text("See All")
+                                .font(.subheadline)
+                                .foregroundColor(.blue)
+                        }
+                    }
+                    .padding(.vertical, 5)
                     
-                    // Example of Continue Watching
                     Image("swift")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 150)
                         .cornerRadius(10)
                     
-                    Text("Popular Courses")
-                        .font(.headline)
-                        .padding(.vertical, 5)
+                    HStack {
+                        Text("Popular Courses")
+                            .font(.headline)
+                        Spacer()
+                        Button(action: {
+                            // Action for "See All"
+                        }) {
+                            Text("See All")
+                                .font(.subheadline)
+                                .foregroundColor(.blue)
+                        }
+                    }
+                    .padding(.vertical, 5)
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 15) {
@@ -47,9 +57,19 @@ struct HomeView: View {
                         .padding(.horizontal, 10)
                     }
                     
-                    Text("For you")
-                        .font(.headline)
-                        .padding(.vertical, 5)
+                    HStack {
+                        Text("For you")
+                            .font(.headline)
+                        Spacer()
+                        Button(action: {
+                            // Action for "See All"
+                        }) {
+                            Text("See All")
+                                .font(.subheadline)
+                                .foregroundColor(.blue)
+                        }
+                    }
+                    .padding(.vertical, 5)
                     
                     VStack(spacing: 15) {
                         ForEach(recommendedCourses) { course in
@@ -63,7 +83,7 @@ struct HomeView: View {
             .navigationBarBackButtonHidden()
         }
     }
-//}
+}
 
 struct SearchBar: View {
     @State private var searchText = ""
@@ -123,5 +143,3 @@ struct HomeView_Previews: PreviewProvider {
         HomeView()
     }
 }
-
-
