@@ -25,17 +25,17 @@ struct AccountView: View {
                 Color.white.ignoresSafeArea()
                 
                     Image("Waves").resizable().scaledToFit()
-                        .position(x: 196 , y: 700)
+                        .position(x: 196 , y: 735)
                 
                 VStack {
-                        TitleLabel(text: "Welcome To \nSwadhyay", fontSize: 40)
+                        TitleLabel(text: "Welcome To \nSvadhyay", fontSize: 40)
                         .lineLimit(0)
                         .truncationMode(.tail)
                         .minimumScaleFactor(0.8)
                         
                         Spacer()
                         
-                        PNGImageView(imageName: "laptop", width: 150, height: 150)
+                        PNGImageView(imageName: "laptop", width: 200, height: 200)
                         
                         //                    Text("Create Account")
                         //                        .fontWeight(.semibold)
@@ -52,7 +52,8 @@ struct AccountView: View {
                         }
                         .padding(.top, 20)
                         
-                        CustomButton(label: "Create Account", action:  {                       Auth.auth().createUser(withEmail: email, password: password) {
+                        CustomButton(label: "Create Account", action:  {                       
+                            Auth.auth().createUser(withEmail: email, password: password) {
                             _, error in if let _ = error {
                                 print("error")
                             }
@@ -70,7 +71,7 @@ struct AccountView: View {
                                 .foregroundColor(Color(hex: "#007AFF"))
                             
                             
-                                .padding(.top, 20)
+                                .padding(.top, 2)
                         }
                         
                         HStack(spacing: 30) {
@@ -89,7 +90,7 @@ struct AccountView: View {
                                     PNGImageView(imageName: "Apple", width: 50, height: 50)
                                 }
                             }
-                            .padding(.top, 30)
+                            .padding(.bottom, 40)
                         }
                     }
                     .navigationBarHidden(true)
@@ -103,6 +104,7 @@ struct AccountView: View {
                     
                 }
             }
+        .navigationBarBackButtonHidden()
         }
     
     func uploadUserDetails(){

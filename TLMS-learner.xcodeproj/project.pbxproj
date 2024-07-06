@@ -27,11 +27,8 @@
 		04A385A42C37BFD700832DDC /* HeadingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A385942C37BFD600832DDC /* HeadingLabel.swift */; };
 		04A385A52C37BFD700832DDC /* HeadingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A385942C37BFD600832DDC /* HeadingLabel.swift */; };
 		04A385A62C37BFD700832DDC /* HeadingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A385942C37BFD600832DDC /* HeadingLabel.swift */; };
-		04A385A72C37C18800832DDC /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A385832C37B4DC00832DDC /* Poppins-Bold.ttf */; };
+		04A385A72C37C18800832DDC /* Poppins_Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A385832C37B4DC00832DDC /* Poppins_Bold.ttf */; };
 		7ACDE3872C370B0600AFAAE7 /* createAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACDE3862C370B0600AFAAE7 /* createAccount.swift */; };
-		7ACDE38B2C37B65300AFAAE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7ACDE38A2C37B65300AFAAE7 /* GoogleService-Info.plist */; };
-		7ACDE38C2C37B65300AFAAE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7ACDE38A2C37B65300AFAAE7 /* GoogleService-Info.plist */; };
-		7ACDE38D2C37B65300AFAAE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7ACDE38A2C37B65300AFAAE7 /* GoogleService-Info.plist */; };
 		D1BFEE7A2C367620006492F2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE792C367620006492F2 /* FirebaseAuth */; };
 		D1BFEE7C2C367620006492F2 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE7B2C367620006492F2 /* FirebaseAuthCombine-Community */; };
 		D1BFEE7E2C367620006492F2 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE7D2C367620006492F2 /* FirebaseDatabase */; };
@@ -39,6 +36,9 @@
 		D1BFEE822C367620006492F2 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE812C367620006492F2 /* FirebaseFirestore */; };
 		D1BFEE842C367620006492F2 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE832C367620006492F2 /* FirebaseFirestoreSwift */; };
 		D1BFEE862C367620006492F2 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE852C367620006492F2 /* FirebaseStorage */; };
+		D1EF76382C39420200C8B8A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */; };
+		D1EF76392C39420200C8B8A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */; };
+		D1EF763A2C39420200C8B8A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */; };
 		D1F8C0E12C35407C0060C30E /* TLMS_learnerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F8C0E02C35407C0060C30E /* TLMS_learnerApp.swift */; };
 		D1F8C0E32C35407C0060C30E /* learnerlogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F8C0E22C35407C0060C30E /* learnerlogin.swift */; };
 		D1F8C0E52C35407D0060C30E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1F8C0E42C35407D0060C30E /* Assets.xcassets */; };
@@ -68,7 +68,7 @@
 
 /* Begin PBXFileReference section */
 		04570C3A2C36BF7600B5B03F /* ColorsFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsFile.swift; sourceTree = "<group>"; };
-		04A385832C37B4DC00832DDC /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		04A385832C37B4DC00832DDC /* Poppins_Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Poppins_Bold.ttf; sourceTree = "<group>"; };
 		04A385852C37B4E500832DDC /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		04A385872C37B4EC00832DDC /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		04A385892C37B53300832DDC /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 		04A385932C37BFD600832DDC /* MainButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		04A385942C37BFD600832DDC /* HeadingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadingLabel.swift; sourceTree = "<group>"; };
 		7ACDE3862C370B0600AFAAE7 /* createAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createAccount.swift; sourceTree = "<group>"; };
-		7ACDE38A2C37B65300AFAAE7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D1F8C0DD2C35407C0060C30E /* TLMS-learner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TLMS-learner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1F8C0E02C35407C0060C30E /* TLMS_learnerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLMS_learnerApp.swift; sourceTree = "<group>"; };
 		D1F8C0E22C35407C0060C30E /* learnerlogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = learnerlogin.swift; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 		04A385822C37B4C700832DDC /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				04A385832C37B4DC00832DDC /* Poppins-Bold.ttf */,
+				04A385832C37B4DC00832DDC /* Poppins_Bold.ttf */,
 				04A385852C37B4E500832DDC /* Poppins-Medium.ttf */,
 				04A385872C37B4EC00832DDC /* Poppins-SemiBold.ttf */,
 				04A385892C37B53300832DDC /* Poppins-Regular.ttf */,
@@ -153,7 +153,6 @@
 		D1F8C0D42C35407C0060C30E = {
 			isa = PBXGroup;
 			children = (
-				7ACDE38A2C37B65300AFAAE7 /* GoogleService-Info.plist */,
 				D1F8C10A2C3540D40060C30E /* .gitignore */,
 				D1F8C0DF2C35407C0060C30E /* TLMS-learner */,
 				D1F8C0F02C35407D0060C30E /* TLMS-learnerTests */,
@@ -175,6 +174,7 @@
 		D1F8C0DF2C35407C0060C30E /* TLMS-learner */ = {
 			isa = PBXGroup;
 			children = (
+				D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */,
 				04570C3A2C36BF7600B5B03F /* ColorsFile.swift */,
 				04A3858E2C37BFC000832DDC /* Elements */,
 				04A3858B2C37B6B100832DDC /* Info.plist */,
@@ -330,11 +330,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1F8C0E82C35407D0060C30E /* Preview Assets.xcassets in Resources */,
-				04A385A72C37C18800832DDC /* Poppins-Bold.ttf in Resources */,
-				7ACDE38B2C37B65300AFAAE7 /* GoogleService-Info.plist in Resources */,
+				04A385A72C37C18800832DDC /* Poppins_Bold.ttf in Resources */,
 				D1F8C10B2C3540D40060C30E /* .gitignore in Resources */,
 				D1F8C0E52C35407D0060C30E /* Assets.xcassets in Resources */,
 				04A3858A2C37B53300832DDC /* Poppins-Regular.ttf in Resources */,
+				D1EF76382C39420200C8B8A9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,7 +342,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7ACDE38C2C37B65300AFAAE7 /* GoogleService-Info.plist in Resources */,
+				D1EF76392C39420200C8B8A9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,7 +350,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7ACDE38D2C37B65300AFAAE7 /* GoogleService-Info.plist in Resources */,
+				D1EF763A2C39420200C8B8A9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,6 +15,7 @@ struct ContentView: View {
     @State private var password = ""
     @State private var showAlert = false
     @State private var alertMessage = ""
+    @State private var login = false
     
     var body: some View {
         NavigationView {
@@ -29,8 +30,8 @@ struct ContentView: View {
                 VStack(spacing: 20) {
                     
                         
-                    TitleLabel(text: "Welcome To \n Swadhyay")
-                    .font(.custom("Poppins-Bold", size: 40))
+                    TitleLabel(text: "Welcome To \n Svadhyay", fontSize: 20)
+                    
 
             
                     PNGImageView(imageName: "laptop", width: 214, height: 166)
@@ -58,10 +59,12 @@ struct ContentView: View {
                             
                                                 }
                         
-                        CustomButton(label: "Login"){
-                            print("login successfully")
+                        VStack{
+                            CustomButton(label: "Login",action: {loginUser()})
+                            NavigationLink(destination: SignupView(), isActive: $login) {
+                                EmptyView()
+                            }
                         }
-                       
                         
                         .alert(isPresented: $showAlert) {
                             Alert(title: Text("Login Action"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
@@ -102,6 +105,7 @@ struct ContentView: View {
                 .padding(.top, 40)
             }
         }
+        .navigationBarBackButtonHidden()
     }
     
     func loginUser(){
@@ -113,7 +117,8 @@ struct ContentView: View {
                 return
             }
             alertMessage = "you've logged in"
-            showAlert = true
+            showAlert = false
+            login = true
             print("logged in")
         }
     }
@@ -122,6 +127,7 @@ struct ContentView: View {
 struct SignupView: View {
     var body: some View {
         Text("Signup View")
+            .navigationBarHidden(true)
     }
 }
 

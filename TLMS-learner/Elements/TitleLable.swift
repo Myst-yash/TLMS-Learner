@@ -10,7 +10,7 @@ struct TitleLabel: View {
         Text(text)
             .padding(.bottom, 2)
             .padding(.trailing, 10)
-            .font(.custom("Poppins-Bold", size: 40))
+            .font(.custom("Poppins_Bold", size: 40))
             .foregroundColor(.black)
             .frame(maxWidth: 350, alignment: .leading) // Optional: Full width alignment
             .background(Color.clear) // Optional: Background color
