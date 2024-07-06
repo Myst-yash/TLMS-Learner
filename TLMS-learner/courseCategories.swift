@@ -65,8 +65,9 @@ struct CourseCategoriesView: View {
                     CustomButton(label: "Continue",action: {
                         navigateNext = true
                     })
-                
-                NavigationLink(destination: HomeView(), isActive: $navigateNext) {
+                // here the SignupView() will be replaced by HomeView()
+                // placed as it was blocking the preview #sumit-prd
+                NavigationLink(destination: SignupView(), isActive: $navigateNext) {
                                EmptyView()
                            }
                 
@@ -83,6 +84,15 @@ struct CourseCategoriesView_Previews: PreviewProvider {
         CourseCategoriesView()
     }
 }
+struct SignupView: View {
+    var body: some View {
+        Text("Signup View")
+            .navigationBarHidden(true)
+    }
+}
 
-    
 
+
+func updateGoal(){
+    // the updation of the goal of the a particular user will be done here
+}

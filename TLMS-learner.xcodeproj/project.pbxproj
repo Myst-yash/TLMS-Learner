@@ -36,6 +36,8 @@
 		D1BFEE822C367620006492F2 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE812C367620006492F2 /* FirebaseFirestore */; };
 		D1BFEE842C367620006492F2 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE832C367620006492F2 /* FirebaseFirestoreSwift */; };
 		D1BFEE862C367620006492F2 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE852C367620006492F2 /* FirebaseStorage */; };
+		D1C146132C39C34D00F6E43F /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2EB61C2C397D93007A56B4 /* CourseModel.swift */; };
+		D1C146142C39C34D00F6E43F /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2EB61C2C397D93007A56B4 /* CourseModel.swift */; };
 		D1EF76382C39420200C8B8A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */; };
 		D1EF76392C39420200C8B8A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */; };
 		D1EF763A2C39420200C8B8A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */; };
@@ -45,6 +47,9 @@
 		D1EF76402C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF763F2C396ABB00C8B8A9 /* CourseCategoriesModel.swift */; };
 		D1EF76412C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF763F2C396ABB00C8B8A9 /* CourseCategoriesModel.swift */; };
 		D1EF76422C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF763F2C396ABB00C8B8A9 /* CourseCategoriesModel.swift */; };
+		D1EF76442C39B55600C8B8A9 /* MyCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF76432C39B55500C8B8A9 /* MyCourses.swift */; };
+		D1EF76452C39B55600C8B8A9 /* MyCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF76432C39B55500C8B8A9 /* MyCourses.swift */; };
+		D1EF76462C39B55600C8B8A9 /* MyCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF76432C39B55500C8B8A9 /* MyCourses.swift */; };
 		D1F8C0E12C35407C0060C30E /* TLMS_learnerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F8C0E02C35407C0060C30E /* TLMS_learnerApp.swift */; };
 		D1F8C0E32C35407C0060C30E /* learnerlogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F8C0E22C35407C0060C30E /* learnerlogin.swift */; };
 		D1F8C0E52C35407D0060C30E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1F8C0E42C35407D0060C30E /* Assets.xcassets */; };
@@ -91,6 +96,7 @@
 		D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D1EF763B2C3969FF00C8B8A9 /* courseCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = courseCategories.swift; sourceTree = "<group>"; };
 		D1EF763F2C396ABB00C8B8A9 /* CourseCategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCategoriesModel.swift; sourceTree = "<group>"; };
+		D1EF76432C39B55500C8B8A9 /* MyCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCourses.swift; sourceTree = "<group>"; };
 		D1F8C0DD2C35407C0060C30E /* TLMS-learner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TLMS-learner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1F8C0E02C35407C0060C30E /* TLMS_learnerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLMS_learnerApp.swift; sourceTree = "<group>"; };
 		D1F8C0E22C35407C0060C30E /* learnerlogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = learnerlogin.swift; sourceTree = "<group>"; };
@@ -162,6 +168,24 @@
 			path = Elements;
 			sourceTree = "<group>";
 		};
+		D1C146112C39C1A400F6E43F /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				7ACDE3862C370B0600AFAAE7 /* createAccount.swift */,
+				D1F8C0E22C35407C0060C30E /* learnerlogin.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		D1C146122C39C31F00F6E43F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D1EF763F2C396ABB00C8B8A9 /* CourseCategoriesModel.swift */,
+				EF2EB61C2C397D93007A56B4 /* CourseModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D1F8C0D42C35407C0060C30E = {
 			isa = PBXGroup;
 			children = (
@@ -186,18 +210,17 @@
 		D1F8C0DF2C35407C0060C30E /* TLMS-learner */ = {
 			isa = PBXGroup;
 			children = (
+				D1C146122C39C31F00F6E43F /* Model */,
+				D1C146112C39C1A400F6E43F /* Auth */,
 				D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */,
 				04570C3A2C36BF7600B5B03F /* ColorsFile.swift */,
 				04A3858E2C37BFC000832DDC /* Elements */,
 				04A3858B2C37B6B100832DDC /* Info.plist */,
 				04A385822C37B4C700832DDC /* Fonts */,
 				D1F8C0E02C35407C0060C30E /* TLMS_learnerApp.swift */,
-				D1F8C0E22C35407C0060C30E /* learnerlogin.swift */,
 				EF2EB61E2C397DC7007A56B4 /* LearnerHome.swift */,
-				EF2EB61C2C397D93007A56B4 /* CourseModel.swift */,
 				D1EF763B2C3969FF00C8B8A9 /* courseCategories.swift */,
-				D1EF763F2C396ABB00C8B8A9 /* CourseCategoriesModel.swift */,
-				7ACDE3862C370B0600AFAAE7 /* createAccount.swift */,
+				D1EF76432C39B55500C8B8A9 /* MyCourses.swift */,
 				D1F8C0E42C35407D0060C30E /* Assets.xcassets */,
 				D1F8C0E62C35407D0060C30E /* Preview Content */,
 			);
@@ -380,6 +403,7 @@
 				EF2EB61D2C397D93007A56B4 /* CourseModel.swift in Sources */,
 				04A385952C37BFD600832DDC /* PasswordField.swift in Sources */,
 				D1F8C0E32C35407C0060C30E /* learnerlogin.swift in Sources */,
+				D1EF76442C39B55600C8B8A9 /* MyCourses.swift in Sources */,
 				D1EF76402C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */,
 				04570C3B2C36BF7600B5B03F /* ColorsFile.swift in Sources */,
 				04A385A12C37BFD700832DDC /* MainButton.swift in Sources */,
@@ -398,6 +422,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1C146132C39C34D00F6E43F /* CourseModel.swift in Sources */,
 				D1EF763D2C3969FF00C8B8A9 /* courseCategories.swift in Sources */,
 				04A3859F2C37BFD700832DDC /* TextLabel.swift in Sources */,
 				04A385992C37BFD700832DDC /* ImageView.swift in Sources */,
@@ -406,6 +431,7 @@
 				D1F8C0F22C35407D0060C30E /* TLMS_learnerTests.swift in Sources */,
 				04A385962C37BFD700832DDC /* PasswordField.swift in Sources */,
 				04A385A52C37BFD700832DDC /* HeadingLabel.swift in Sources */,
+				D1EF76452C39B55600C8B8A9 /* MyCourses.swift in Sources */,
 				D1EF76412C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,9 +442,11 @@
 			files = (
 				04A3859D2C37BFD700832DDC /* TitleLable.swift in Sources */,
 				04A3859A2C37BFD700832DDC /* ImageView.swift in Sources */,
+				D1EF76462C39B55600C8B8A9 /* MyCourses.swift in Sources */,
 				04A385A32C37BFD700832DDC /* MainButton.swift in Sources */,
 				D1F8C0FE2C35407D0060C30E /* TLMS_learnerUITestsLaunchTests.swift in Sources */,
 				D1EF763E2C3969FF00C8B8A9 /* courseCategories.swift in Sources */,
+				D1C146142C39C34D00F6E43F /* CourseModel.swift in Sources */,
 				04A385A02C37BFD700832DDC /* TextLabel.swift in Sources */,
 				D1EF76422C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */,
 				04A385A62C37BFD700832DDC /* HeadingLabel.swift in Sources */,
