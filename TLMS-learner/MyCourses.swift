@@ -5,21 +5,6 @@ struct MyCourses: View {
     @State private var selectedSegment = 0
     let segments = ["Ongoing", "Completed"]
     
-    init() {
-        // Sets the background color of the Picker
-        UISegmentedControl.appearance().backgroundColor = UIColor.purple.withAlphaComponent(0.15)
-        // Disappears the divider
-        UISegmentedControl.appearance().setDividerImage(UIImage(), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
-        // Changes the color for the selected item
-        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor.purple
-        // Changes the text color for the selected item
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
-        
-        // Customize the navigation bar appearance
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.black]
-    }
     
     var body: some View {
         VStack {
@@ -29,6 +14,7 @@ struct MyCourses: View {
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
+            
             .padding()
             
             List(selectedSegment == 0 ? popularCourses : recommendedCourses) { course in

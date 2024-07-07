@@ -31,7 +31,8 @@ struct CourseCategoriesView: View {
                             HStack {
                                 ZStack {
                                     Circle()
-                                        .fill(selectedCategories.contains(category.id) ? Color.purple : Color.white)
+                                        .fill((selectedCategories.contains(category.id) ? Color(hex: "#6C5DD4") : Color.white) ?? Color.purple)
+
                                         .frame(width: 20, height: 20)
                                         .overlay(
                                             Circle()
@@ -67,7 +68,9 @@ struct CourseCategoriesView: View {
             .padding()
             .navigationBarBackButtonHidden()
             .navigationDestination(isPresented: $readyToNavigate) {
-                ContentView1() // Replace with HomeView() as needed
+                ContentView1()
+//                ProgressView1()
+                
             }
         }
         .navigationBarBackButtonHidden()
@@ -116,4 +119,11 @@ struct CustomButton1: View {
 
 func updateGoal() {
     // the updation of the goal of the a particular user will be done here
+}
+
+
+struct ProgressView1: View {
+    var body: some View {
+        Text("Progress View")
+    }
 }
