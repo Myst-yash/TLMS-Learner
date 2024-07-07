@@ -67,7 +67,7 @@ struct CourseCategoriesView: View {
             .padding()
             .navigationBarBackButtonHidden()
             .navigationDestination(isPresented: $readyToNavigate) {
-                HomeView() // Replace with HomeView() as needed
+                ContentView1() // Replace with HomeView() as needed
             }
         }
         .navigationBarBackButtonHidden()
