@@ -80,8 +80,9 @@ struct HomeView: View {
                 }
                 .padding(.horizontal)
             }
-            .navigationBarBackButtonHidden()
+            
         }
+        .navigationBarBackButtonHidden()
     }
 }
 
@@ -138,8 +139,14 @@ struct CourseCard: View {
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
+struct ProgressView: View {
+    var body: some View {
+        Text("Progress View")
+    }
+}
+
+struct ProfileView: View {
+    var body: some View {
+        Text("Profile View")
     }
 }

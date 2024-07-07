@@ -60,6 +60,7 @@
 		D1F8C10B2C3540D40060C30E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D1F8C10A2C3540D40060C30E /* .gitignore */; };
 		EF2EB61D2C397D93007A56B4 /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2EB61C2C397D93007A56B4 /* CourseModel.swift */; };
 		EF2EB61F2C397DC7007A56B4 /* LearnerHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2EB61E2C397DC7007A56B4 /* LearnerHome.swift */; };
+		EFF683CD2C3AAC3C00162D7F /* Tabbarview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF683CC2C3AAC3C00162D7F /* Tabbarview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		D1F8C10A2C3540D40060C30E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		EF2EB61C2C397D93007A56B4 /* CourseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseModel.swift; sourceTree = "<group>"; };
 		EF2EB61E2C397DC7007A56B4 /* LearnerHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnerHome.swift; sourceTree = "<group>"; };
+		EFF683CC2C3AAC3C00162D7F /* Tabbarview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabbarview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +221,7 @@
 				04A385822C37B4C700832DDC /* Fonts */,
 				D1F8C0E02C35407C0060C30E /* TLMS_learnerApp.swift */,
 				EF2EB61E2C397DC7007A56B4 /* LearnerHome.swift */,
+				EFF683CC2C3AAC3C00162D7F /* Tabbarview.swift */,
 				D1EF763B2C3969FF00C8B8A9 /* courseCategories.swift */,
 				D1EF76432C39B55500C8B8A9 /* MyCourses.swift */,
 				D1F8C0E42C35407D0060C30E /* Assets.xcassets */,
@@ -402,6 +405,7 @@
 			files = (
 				EF2EB61D2C397D93007A56B4 /* CourseModel.swift in Sources */,
 				04A385952C37BFD600832DDC /* PasswordField.swift in Sources */,
+				EFF683CD2C3AAC3C00162D7F /* Tabbarview.swift in Sources */,
 				D1F8C0E32C35407C0060C30E /* learnerlogin.swift in Sources */,
 				D1EF76442C39B55600C8B8A9 /* MyCourses.swift in Sources */,
 				D1EF76402C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */,
