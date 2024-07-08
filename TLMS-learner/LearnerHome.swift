@@ -71,12 +71,15 @@ struct HomeView: View {
                     }
                     .padding(.vertical, 5)
                     
-                    VStack(spacing: 15) {
-                        ForEach(recommendedCourses) { course in
-                            CourseCard(course: course)
+                    ScrollView(.horizontal, showsIndicators: false){
+                        
+                        HStack(spacing: 15) {
+                            ForEach(recommendedCourses) { course in
+                                CourseCard(course: course)
+                            }
                         }
+                        .padding(.horizontal, 10)
                     }
-                    .padding(.horizontal, 10)
                 }
                 .padding(.horizontal)
             }
@@ -126,14 +129,16 @@ struct CourseCard: View {
                 .clipped()
                 .cornerRadius(10)
             
-            Text(course.title)
-                .font(.headline)
-                .lineLimit(1)
+                
+                Text(course.title)
+                    .font(.headline)
+                    .lineLimit(2)
+                
+                Text("by \(course.instructor)")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+                    .lineLimit(2)
             
-            Text("by \(course.instructor)")
-                .font(.subheadline)
-                .foregroundColor(.gray)
-                .lineLimit(1)
         }
         .frame(width: 150)
     }
