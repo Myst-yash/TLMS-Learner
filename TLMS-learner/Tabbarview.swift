@@ -23,10 +23,10 @@ struct ContentView1: View {
                     }
                     .tag(1) // Tag for CoursesView
 
-                ProfileView()
+                ProfileViews(user: user)
                     .tabItem {
                         Image(systemName: "person.fill")
-                        Text("Educators")
+                        Text("Profile")
                     }
                     .tag(2) // Tag for ProfileView
             }
@@ -83,8 +83,8 @@ struct CustomTabBarAppearance: UIViewControllerRepresentable {
 
         // Customize tab bar item colors
         let itemAppearance = UITabBarItemAppearance()
-        let selectedColor = UIColor(hex: "#6C5DD4")!
-        let normalColor = UIColor(hex: "#6C5DD4")!.withAlphaComponent(0.5)
+        let selectedColor = UIColor(Color(hex: "#6C5DD4")!)
+        let normalColor = UIColor(Color(hex: "#6C5DD4")!).withAlphaComponent(0.5)
 
         itemAppearance.normal.iconColor = normalColor
         itemAppearance.normal.titleTextAttributes = [.foregroundColor: normalColor]
