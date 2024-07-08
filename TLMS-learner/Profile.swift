@@ -2,33 +2,42 @@
 //  Profile.swift
 //  TLMS-learner
 //
-//  Created by Abid Ali    on 08/07/24.
+//  Created by Abid Ali on 08/07/24.
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct ProfileViews: View {
     @State private var user: User
     @State private var showSettings = false
+    @State private var isSignedOut = false
 
     init(user: User) {
         _user = State(initialValue: user)
     }
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
-                ProfileHeader(user: user, showSettings: $showSettings)
-                DashboardView(enrolledCourses: user.enrolledCourses, completedCourses: user.completedCourses)
-                CourseActionsView()
-                LikedCoursesView(likedCourses: user.likedCourses)
+        NavigationView {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    ProfileHeader(user: user, showSettings: $showSettings)
+                    DashboardView(enrolledCourses: user.enrolledCourses, completedCourses: user.completedCourses)
+                    CourseActionsView()
+                    LikedCoursesView(likedCourses: user.likedCourses)
+                }
+                .padding()
             }
-            .padding()
+            .background(Color(UIColor.white))
+            .sheet(isPresented: $showSettings) {
+                SettingsView(isSignedOut: $isSignedOut)
+            }
         }
-        .background(Color(UIColor.white))
-        .sheet(isPresented: $showSettings) {
-            SettingsView()
-        }
+        .background(
+            NavigationLink(destination: ContentView(), isActive: $isSignedOut) {
+                EmptyView()
+            }
+        )
     }
 }
 
@@ -47,13 +56,13 @@ struct ProfileHeader: View {
                     .foregroundColor(.blue)
             }
         }
-        
-        VStack(alignment: .leading){
+
+        VStack(alignment: .leading) {
             Image(systemName: "person.circle.fill")
                 .resizable()
                 .frame(width: 60, height: 60)
                 .foregroundColor(.purple).padding(.leading, 150)
-            
+
             Text(user.name)
                 .font(.title2)
                 .fontWeight(.semibold).padding(.leading, 130)
@@ -62,9 +71,7 @@ struct ProfileHeader: View {
                 .foregroundColor(.secondary).padding(.leading, 110)
             Text("Student")
                 .font(.caption)
-            
                 .foregroundColor(.secondary).padding(.leading, 160)
-            
         }
     }
 }
@@ -77,11 +84,11 @@ struct DashboardView: View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Dashboard")
                 .font(.headline)
-            
+
             HStack {
                 PieChartView(completedPercentage: Float(completedCourses) / Float(enrolledCourses))
                     .frame(width: 100, height: 100)
-                
+
                 VStack(alignment: .leading) {
                     HStack {
                         Text("Enrolled Courses")
@@ -116,7 +123,7 @@ struct PieChartView: View {
                 .stroke(lineWidth: 20)
                 .opacity(0.3)
                 .foregroundColor(.purple)
-            
+
             Circle()
                 .trim(from: 0.0, to: CGFloat(min(self.completedPercentage, 1.0)))
                 .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
@@ -131,7 +138,7 @@ struct CourseActionsView: View {
     var body: some View {
         HStack {
             Button(action: {}) {
-                
+
                 VStack {
                     Image(systemName: "play.circle.fill")
                         .resizable()
@@ -146,7 +153,7 @@ struct CourseActionsView: View {
             .cornerRadius(25).overlay(
                 RoundedRectangle(cornerRadius: 25)
                     .stroke(Color(hex: "#E0E0E0")!, lineWidth: 1)
-                )
+            )
             Button(action: {}) {
                 VStack {
                     Image(systemName: "star.circle.fill")
@@ -162,7 +169,7 @@ struct CourseActionsView: View {
             .cornerRadius(25).overlay(
                 RoundedRectangle(cornerRadius: 25)
                     .stroke(Color(hex: "#E0E0E0")!, lineWidth: 1)
-                )
+            )
         }
     }
 }
@@ -179,7 +186,7 @@ struct LikedCoursesView: View {
                 Button("See All") {}
                     .foregroundColor(.blue)
             }
-            
+
             ForEach(likedCourses) { course in
                 Button(action: {}) {
                     HStack {
@@ -209,8 +216,27 @@ struct LikedCoursesView: View {
 }
 
 struct SettingsView: View {
+    @Binding var isSignedOut: Bool
+
     var body: some View {
-        Text("Settings")
+        VStack {
+            Text("Settings")
+            Button(action: {
+                signOut()
+            }) {
+                Text("Sign Out")
+                    .foregroundColor(.blue)
+            }
+        }
+    }
+
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+            isSignedOut = true
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
     }
 }
 
@@ -244,6 +270,7 @@ struct ContentViews_Previews: PreviewProvider {
         ))
     }
 }
+
 let user = User(
     name: "Syed Abid",
     joinedDate: "June 20, 2024",
