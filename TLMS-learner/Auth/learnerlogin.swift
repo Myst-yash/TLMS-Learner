@@ -34,12 +34,23 @@ struct ContentView: View {
                                     CustomTextField(placeholder: "Email", text: $email)
                                     CustomSecureField(placeholder: "Enter password", text: $password, placeholderOpacity: 0.3)
                                 }
+                            
 
                             CustomButton(label: "Login" , action: {loginUser()})
                             NavigationLink(destination: CourseCategoriesView(), isActive: $login) {
                                 EmptyView()
                             
                             }
+                            HStack {
+                                Text("Don't have an account?")
+                                    .font(.system(size: 15, weight: .regular, design: .default))
+                                NavigationLink(destination: AccountView()) {
+                                    Text("SignUp")
+                                        .font(.system(size: 15, weight: .bold, design: .default))
+                                        .fontWeight(.bold)
+                                    //                                CustomButton(label: "SignUp", action: {})
+                                }
+                            }.padding(.top , -10)
                                 
                                Spacer()
                         }.padding(20)
@@ -48,10 +59,12 @@ struct ContentView: View {
                             .alert(isPresented: $showAlert) {
                                 Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
                             }
+                
                         
                     }
                     .ignoresSafeArea()
         }
+        .navigationBarBackButtonHidden()
     }
     
     func loginUser(){

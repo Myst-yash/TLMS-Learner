@@ -27,7 +27,7 @@
 		04A385A42C37BFD700832DDC /* HeadingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A385942C37BFD600832DDC /* HeadingLabel.swift */; };
 		04A385A52C37BFD700832DDC /* HeadingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A385942C37BFD600832DDC /* HeadingLabel.swift */; };
 		04A385A62C37BFD700832DDC /* HeadingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A385942C37BFD600832DDC /* HeadingLabel.swift */; };
-		04A385A72C37C18800832DDC /* Poppins_Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A385832C37B4DC00832DDC /* Poppins_Bold.ttf */; };
+		04A385A72C37C18800832DDC /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A385832C37B4DC00832DDC /* Poppins-Bold.ttf */; };
 		7ACDE3872C370B0600AFAAE7 /* createAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACDE3862C370B0600AFAAE7 /* createAccount.swift */; };
 		D1BFEE7A2C367620006492F2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE792C367620006492F2 /* FirebaseAuth */; };
 		D1BFEE7C2C367620006492F2 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE7B2C367620006492F2 /* FirebaseAuthCombine-Community */; };
@@ -79,7 +79,7 @@
 
 /* Begin PBXFileReference section */
 		04570C3A2C36BF7600B5B03F /* ColorsFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsFile.swift; sourceTree = "<group>"; };
-		04A385832C37B4DC00832DDC /* Poppins_Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Poppins_Bold.ttf; sourceTree = "<group>"; };
+		04A385832C37B4DC00832DDC /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		04A385852C37B4E500832DDC /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		04A385872C37B4EC00832DDC /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		04A385892C37B53300832DDC /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 		04A385822C37B4C700832DDC /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				04A385832C37B4DC00832DDC /* Poppins_Bold.ttf */,
+				04A385832C37B4DC00832DDC /* Poppins-Bold.ttf */,
 				04A385852C37B4E500832DDC /* Poppins-Medium.ttf */,
 				04A385872C37B4EC00832DDC /* Poppins-SemiBold.ttf */,
 				04A385892C37B53300832DDC /* Poppins-Regular.ttf */,
@@ -347,7 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1F8C0E82C35407D0060C30E /* Preview Assets.xcassets in Resources */,
-				04A385A72C37C18800832DDC /* Poppins_Bold.ttf in Resources */,
+				04A385A72C37C18800832DDC /* Poppins-Bold.ttf in Resources */,
 				D1F8C10B2C3540D40060C30E /* .gitignore in Resources */,
 				D1F8C0E52C35407D0060C30E /* Assets.xcassets in Resources */,
 				04A3858A2C37B53300832DDC /* Poppins-Regular.ttf in Resources */,

@@ -8,15 +8,18 @@ struct TitleLabel: View {
     var body: some View {
         
         Text(text)
-            .padding(.bottom, 2)
-            .padding(.trailing, 10)
-            .font(.custom("Poppins_Bold", size: 40))
+//            .padding(.bottom, 2)
+//            .padding(.trailing, 10)
+            .font(.custom("Poppins_Bold", size: 34))
             .foregroundColor(.black)
-            .frame(maxWidth: 350, alignment: .leading) // Optional: Full width alignment
+            .frame(maxWidth: 400, alignment: .leading) // Optional: Full width alignment
             .background(Color.clear) // Optional: Background color
-            .padding(.leading, 0)
+//            .padding(.leading, 0)
 //            .padding(.top, 20)
             .lineLimit(nil)
             .multilineTextAlignment(.leading)
+            .frame(alignment: .leading)
+            .ignoresSafeArea()
+
     }
 }
