@@ -25,7 +25,7 @@ struct ContentView1: View {
 
                 ProfileView()
                     .tabItem {
-                        Image(systemName: "person.3.fill")
+                        Image(systemName: "person.fill")
                         Text("Educators")
                     }
                     .tag(2) // Tag for ProfileView
