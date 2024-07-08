@@ -51,7 +51,7 @@ struct HomeView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 15) {
                             ForEach(popularCourses) { course in
-                                CourseCard(course: course)
+                                PopularCourseCard(course: course)
                             }
                         }
                         .padding(.horizontal, 10)
@@ -116,6 +116,37 @@ struct SearchBar: View {
         }
     }
 }
+
+struct PopularCourseCard: View {
+    let course: Course
+    var body: some View {
+        VStack(alignment: .leading) {
+            Image(course.imageName)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 265, height: 110)
+                .cornerRadius(15)
+            
+            Text(course.title)
+                .font(.headline)
+                .padding(.top, -5)
+                .padding(.leading, 6 )
+            
+            Text("by \(course.instructor)")
+                .font(.subheadline)
+                .foregroundColor(.gray)
+                .padding(.leading, 6 )
+                .padding(.top, 0)
+        }
+        .frame(width: 250, height: 150)
+        .padding()
+        .background(Color(hex:"#F7F7FC"))
+        .cornerRadius(15)
+        .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.black, lineWidth: 0.1)).shadow(radius: 5)
+        .padding(.bottom , 10).padding(.top, 10)
+    }
+}
+
 
 struct CourseCard: View {
     let course: Course

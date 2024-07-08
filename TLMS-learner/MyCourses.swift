@@ -5,78 +5,95 @@ struct MyCourses: View {
     @State private var selectedSegment = 0
     let segments = ["Ongoing", "Completed"]
     
-    /*
     init() {
-        // Sets the background color of the Picker
-        UISegmentedControl.appearance().backgroundColor = UIColor.purple.withAlphaComponent(0.15)
-        // Disappears the divider
-        UISegmentedControl.appearance().setDividerImage(UIImage(), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
-        // Changes the color for the selected item
-        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor.purple
-        // Changes the text color for the selected item
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
-        
-        // Customize the navigation bar appearance
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.black]
+       
+        //      Sets the background color of the Picker
+             UISegmentedControl.appearance().backgroundColor = UIColor(hex: "#FAFAFA")
+        //      Disappears the divider
+             UISegmentedControl.appearance().setDividerImage(UIImage(), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
+        //      Changes the color for the selected item
+                 UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(hex: "#6C5DD4")
+        //      Changes the text color for the selected item
+             UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
+             
+        //      Customize the navigation bar appearance
+             UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+             UINavigationBar.appearance().shadowImage = UIImage()
+             UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.black]
     }
-    */
     
     var body: some View {
-        VStack {
-            Picker("Segments", selection: $selectedSegment) {
-                ForEach(0..<segments.count, id: \.self) { index in
-                    Text(segments[index]).tag(index)
-                }
-            }
-            .pickerStyle(SegmentedPickerStyle())
+        VStack(spacing: 0) {
+            segmentControl
+                .padding(.top, 10)
+                .padding(.horizontal)
+                .background(Color.white)
             
-            .padding()
-            
-            List(selectedSegment == 0 ? popularCourses : recommendedCourses) { course in
-                ZStack(alignment: .center){
-                    PNGImageView(imageName: course.imageName, width: 354, height: 150)
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill( LinearGradient(
-                            gradient: Gradient(colors: [.red, .purple]), startPoint: .top, endPoint: .bottom))
-                        .opacity(0.1)
-                    
+            ScrollView {
+                VStack {
+                    ForEach(0..<4) { _ in
+                        ForYouCourseCard()
+                    }
                 }
-//                HStack {
-//                    Image(course.imageName)
-//                        .resizable()
-//                        .frame(width: 50, height: 50)
-//                        .cornerRadius(8)
-//                    Spacer()
-//                    VStack(alignment: .leading) {
-//                        Text(course.title)
-//                            .font(.headline)
-//                        Text("by \(course.instructor)")
-//                            .font(.subheadline)
-//                    }
-//                }
-//                .padding()
-//                .background(Color.white)
-//                .cornerRadius(12)
-//                .shadow(radius: 2)
+                .padding(.top, 20)
             }
-            .background(Color.gray.opacity(0.1))
         }
         .navigationTitle("My Courses")
         .navigationBarTitleDisplayMode(.inline)
-//        .navigationBarBackButtonHidden(true)
-//        .navigationBarItems(leading: Button(action: {
-//            self.presentationMode.wrappedValue.dismiss()
-//        }) {
-//            HStack {
-//                Image(systemName: "chevron.left")
-//                Text("Home")
-//            }
-//        })
+    }
+    
+    var segmentControl: some View {
+        Picker("Segments", selection: $selectedSegment) {
+            ForEach(0..<segments.count, id: \.self) { index in
+                Text(segments[index]).tag(index)
+            }
+        }
+        .pickerStyle(SegmentedPickerStyle())
     }
 }
 
+
+struct ForYouCourseCard: View {
+    var body: some View {
+        Button(action: {}){
+            HStack {
+                Image("nodejs").resizable().frame(width: 149, height: 86).cornerRadius(8).padding(.leading, 6)
+                
+                VStack(alignment: .leading) {
+                    Text("Django se Panga")
+                        .font(.headline).foregroundStyle(Color.black)
+                    Text("by Batman")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                    ProgressBar(value: 0.8).frame(height: 5)
+                }
+                Spacer()
+            }.frame(width: 359, height: 100).background(Color(hex:"F7F7FC"))
+                .cornerRadius(10)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.black.opacity(100), lineWidth: 0.1))
+                
+        }
+    }
+}
+struct ProgressBar: View {
+    var value: Double
+
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack(alignment: .leading) {
+                Rectangle().frame(width: geometry.size.width, height: geometry.size.height)
+                    .opacity(0.3)
+                    .foregroundColor(Color(hex: "#A9A2A2"))
+
+                Rectangle().frame(width: min(CGFloat(self.value)*geometry.size.width, geometry.size.width), height: geometry.size.height)
+                    .foregroundColor(Color(hex: "#6C5DD4"))
+            }
+            .cornerRadius(45.0)
+        }
+    }
+}
 struct MyCourses_Previews: PreviewProvider {
     static var previews: some View {
         MyCourses()
