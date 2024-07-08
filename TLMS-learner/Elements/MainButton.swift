@@ -15,7 +15,6 @@ struct CustomButton: View {
             Text(label)
                 .frame(width: 354, height: 51)
                 .background(Color(hex: "#6C5DD4")) // You can change the color as needed
-//                .background(Color(.blue))
                 .foregroundColor(.white) // Text color
                 .cornerRadius(10) // Optional: to make corners rounded
                 .font(.custom("Poppins-Medium", size: 17.0))
