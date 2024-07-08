@@ -14,6 +14,7 @@ struct ContentView: View {
     @State private var showAlert = false
     @State private var alertMessage = ""
     @State private var login = false
+    @State private var isEmailValid:Bool = true
     
     var body: some View {
         NavigationView{
@@ -27,8 +28,35 @@ struct ContentView: View {
                     // Login Form
                     VStack(spacing: 10) {
                         CustomTextField(placeholder: "Email", text: $email)
-                        CustomSecureField(placeholder: "Password", text: $password)
+                            .keyboardType(.emailAddress)
+                            .onChange(of:email){
+                                newValue in isEmailValid = AuthValidation.shared.validateEmail(email: newValue)
+                                
+                            }
+                        HStack{
+                            Spacer()
+                            if !isEmailValid{
+                                Text("Invalid Email address")
+                                    .foregroundColor(.red)
+                                    .font(.caption)
+                                    .padding(.trailing,15)
+                            }
+                            else{
+                                Text("Invalid Email address")
+                                    .foregroundColor(.white)
+                                    .font(.caption)
+                                    .padding(.trailing,15)
+                                    .opacity(0)
+                            }
+                        }
+                        
                     }
+                    
+                    CustomSecureField(placeholder: "Password", text: $password)
+                    HStack{
+                        Spacer()
+                    }
+                    
                     HStack {
                         Spacer()
                         Button("Forgot Password?") {
@@ -99,6 +127,11 @@ struct ContentView: View {
         }
     }
     
+    func validateEmail(email: String) -> Bool {
+                let emailRegex = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}$"
+                let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+                return emailPredicate.evaluate(with: email)
+    }
     struct SignupView: View {
         var body: some View {
             Text("Signup View")

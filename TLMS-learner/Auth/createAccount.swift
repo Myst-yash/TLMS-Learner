@@ -11,6 +11,10 @@ struct AccountView: View {
     @State private var showAlert = false
     @State private var alertMessage = ""
     @State private var create = false
+    @State private var isFirstNameValid: Bool = true
+    @State private var isLastNameValid: Bool = true
+    @State private var isEmailValid: Bool = true
+    @State private var isPasswordValid: Bool = true
 
     var body: some View {
         NavigationView {
@@ -38,6 +42,11 @@ struct AccountView: View {
                                     RoundedRectangle(cornerRadius: 12)
                                         .stroke(Color.gray, lineWidth: 1) // Border
                                 )
+                                .onChange(of: firstname) { newValue in
+                                    isFirstNameValid = AuthValidation.shared.validateName(name: newValue)
+                                }
+                            
+                            
                             
                             TextField("Last Name", text: $lastname).padding()
                                 .background(Color("#FFFFFF")) // Background color
@@ -46,12 +55,53 @@ struct AccountView: View {
                                     RoundedRectangle(cornerRadius: 12)
                                         .stroke(Color.gray, lineWidth: 1) // Border
                                 )
+                                .onChange(of: lastname) { newValue in
+                                    isLastNameValid = AuthValidation.shared.validateName(name: newValue)
+                                }
                         }
                         .padding(.leading, 30)
                         .padding(.trailing, 30)
                         
+                            if !isFirstNameValid {
+                                Text("First name should be 2-20 alphabetic characters.")
+                                    .foregroundColor(.red)
+                                    .font(.caption)
+                                    .padding(.trailing,15)
+                            }
+                            
+                        if !isLastNameValid {
+                            Text("Last name should be 2-20 alphabetic characters.")
+                                .foregroundColor(.red)
+                                .font(.caption)
+                                .padding(.trailing,15)
+                        }
+                        
                         CustomTextField(placeholder: "Email", text: $email)
+                            .keyboardType(.emailAddress)
+                            .onChange(of:email){
+                                newValue in isEmailValid = AuthValidation.shared.validateEmail(email: newValue)
+                            }
+                        
+                            if !isEmailValid {
+                                Text("invalid email")
+                                    .foregroundColor(.red)
+                                    .font(.caption)
+                                    .padding(.trailing,15)
+                            }
+                           
+                        
                         CustomSecureField(placeholder: "Password", text: $password)
+                            .onChange(of:password){
+                                newValue in isPasswordValid = AuthValidation.shared.validatePassword(password: password)
+                            }
+                        
+                            if !isPasswordValid{
+                                Text("Invalid Password")
+                                    .foregroundColor(.red)
+                                    .font(.caption)
+                                    .padding(.trailing,15)
+                            }
+                            
                     }
                     .padding(.top, 20)
                     
@@ -123,6 +173,10 @@ struct AccountView: View {
             showAlert = false
             create = true
         }
+    }
+    
+    func createAccount(){
+        
     }
 }
 
