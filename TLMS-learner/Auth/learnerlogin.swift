@@ -30,7 +30,7 @@ struct ContentView: View {
                                 PNGImageView(imageName: "laptop", width: 139, height: 107)
 
                                 VStack(spacing: 20) {
-                                    HeadingLabel(text: "Sign to your Admin Account")
+                                    HeadingLabel(text: "Sign to your Account")
                                     CustomTextField(placeholder: "Email", text: $email)
                                     CustomSecureField(placeholder: "Enter password", text: $password, placeholderOpacity: 0.3)
                                 }

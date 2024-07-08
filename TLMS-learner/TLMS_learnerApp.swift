@@ -22,7 +22,7 @@ struct TLMS_learnerApp: App {
     }
     var body: some Scene {
         WindowGroup {
-           ContentView1()
+            ContentView()
         }
     }
 }

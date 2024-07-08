@@ -32,8 +32,9 @@ struct AccountView: View {
                         .lineLimit(0)
                         .truncationMode(.tail)
                         .minimumScaleFactor(0.8)
+                        .padding(.leading, 20)
                         
-                        Spacer()
+//                        Spacer()
                         
                         PNGImageView(imageName: "laptop", width: 200, height: 200)
                         

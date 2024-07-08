@@ -13,11 +13,8 @@ struct CourseCategoriesView: View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 20) {
                 TitleLabel(text: "Select Your Goal!")
-                    .padding(.top, 80)
-                
-                HeadingLabel(text: "Select your area of interest you want to learn")
-//                    .font(.subheadline)
-//                    .foregroundColor(.gray)
+                    .padding(.top, 10)
+            
                 
                 LazyVGrid(columns: columns, spacing: 15) {
                     ForEach(CourseCategory.courseCategories) { category in
