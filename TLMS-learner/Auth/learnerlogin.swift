@@ -15,6 +15,7 @@ struct ContentView: View {
     @State private var alertMessage = ""
     @State private var login = false
     @State private var isEmailValid:Bool = true
+    @State private var navigateToForgotPassword = false
     
     var body: some View {
         NavigationView{
@@ -60,6 +61,7 @@ struct ContentView: View {
                     HStack {
                         Spacer()
                         Button("Forgot Password?") {
+                            navigateToForgotPassword = true
                             // Implement forgot password logic here
                         }
                         .foregroundColor(.blue)

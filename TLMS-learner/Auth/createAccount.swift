@@ -37,7 +37,8 @@ struct AccountView: View {
                         HStack{
                             TextField("First Name", text: $firstname).padding()
                                 .background(Color("#FFFFFF")) // Background color
-                                .cornerRadius(12) // Rounded corners
+                                .cornerRadius(12)
+                                .keyboardType(.default)// Rounded corners
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 12)
                                         .stroke(Color.gray, lineWidth: 1) // Border
