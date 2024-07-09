@@ -87,6 +87,9 @@ struct ContentView: View {
                                 .foregroundColor(Color(hex: "#6C5DD4"))
                         }
                     }
+                    NavigationLink(destination : ForgotPasswordView(), isActive: $navigateToForgotPassword) {
+                        EmptyView()
+                    }
                     // Social Login Buttons
                     HStack(spacing: 20) {
                         Button(action: {
