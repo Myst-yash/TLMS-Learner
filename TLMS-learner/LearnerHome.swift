@@ -1,91 +1,167 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var selectedGoal: String = "GD, PI & WAT for CAT & OMETs"
+    @State private var showDropdown: Bool = false
+    @State private var goals: [String] = [
+        "GD, PI & WAT for CAT & OMETs",
+        "CAT & Other MBA Entrance Tests",
+        "UPSC CSE - GS",
+        "IIT JEE",
+        "GATE - CSIT, DSAI & Interview Preparation"
+    ]
+    
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    Text("Hi, Abid 👋")
-                        .font(.largeTitle)
-                        .padding(.top, 20)
-                    
-                    Text("Start learning!")
-                        .font(.headline)
-                        .foregroundColor(.gray)
-                    
-                    SearchBar()
-                        .padding(.vertical, 10)
-                    
+            VStack {
+                
                     HStack {
-                        Text("Continue Watching")
+                        Text(selectedGoal)
                             .font(.headline)
-                        Spacer()
-                        NavigationLink(destination: MyCourses()) {
-                            Text("See All")
-                                .font(.subheadline)
-                                .foregroundColor(.blue)
-                        }
-                    }
-                    .padding(.vertical, 5)
-                    
-                    Image("swift")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 150)
-                        .cornerRadius(10)
-                    
-                    HStack {
-                        Text("Popular Courses")
-                            .font(.headline)
-                        Spacer()
+                            .frame(width: 150)
+                            .fontWeight(.bold)
                         Button(action: {
-                            // Action for "See All"
+                            showDropdown.toggle()
                         }) {
-                            Text("See All")
-                                .font(.subheadline)
-                                .foregroundColor(.blue)
+                            Image(systemName: "chevron.down")
+                                .foregroundColor(.gray)
                         }
-                    }
-                    .padding(.vertical, 5)
-                    
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 15) {
-                            ForEach(popularCourses) { course in
-                                PopularCourseCard(course: course)
-                            }
-                        }
-                        .padding(.horizontal, 10)
-                    }
-                    
-                    HStack {
-                        Text("For you")
-                            .font(.headline)
                         Spacer()
-                        Button(action: {
-                            // Action for "See All"
-                        }) {
-                            Text("See All")
-                                .font(.subheadline)
-                                .foregroundColor(.blue)
-                        }
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.gray)
                     }
-                    .padding(.vertical, 5)
-                    
-                    ScrollView(.horizontal, showsIndicators: false){
+                    .background(Color(.white))
+                    .cornerRadius(8)
+                    .lineLimit(1)
+
+                
+                
+                ScrollView {
+                    VStack(alignment: .leading) {
                         
-                        HStack(spacing: 15) {
-                            ForEach(recommendedCourses) { course in
-                                CourseCard(course: course)
+                        HStack {
+                            Text("Continue Learning")
+                                .font(.headline)
+                            Spacer()
+                            NavigationLink(destination: MyCourses()) {
+                                Text("See All")
+                                    .font(.subheadline)
+                                    .foregroundColor(.blue)
                             }
                         }
-                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
+                        ScrollView(.horizontal, showsIndicators: false){
+                            HStack{
+                                Image("swift")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: 150)
+                                    .cornerRadius(10)
+                                Image("swift")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: 150)
+                                    .cornerRadius(10)
+                            }
+                            
+                        }
+                        
+                        
+                        HStack {
+                            Text("Popular Courses")
+                                .font(.headline)
+                            Spacer()
+                            Button(action: {
+                                // Action for "See All"
+                            }) {
+                                Text("See All")
+                                    .font(.subheadline)
+                                    .foregroundColor(.blue)
+                            }
+                        }
+                        .padding(.vertical, 5)
+                        
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 15) {
+                                ForEach(popularCourses) { course in
+                                    PopularCourseCard(course: course)
+                                }
+                            }
+                            .padding(.horizontal, 10)
+                        }
+                        
+                        HStack {
+                            Text("For you")
+                                .font(.headline)
+                            Spacer()
+                            Button(action: {
+                                // Action for "See All"
+                            }) {
+                                Text("See All")
+                                    .font(.subheadline)
+                                    .foregroundColor(.blue)
+                            }
+                        }
+                        .padding(.vertical, 5)
+                        
+                        ScrollView(.horizontal, showsIndicators: false){
+                            HStack(spacing: 15) {
+                                ForEach(recommendedCourses) { course in
+                                    CourseCard(course: course)
+                                }
+                            }
+                            .padding(.horizontal, 10)
+                        }
                     }
                 }
-                .padding(.horizontal)
             }
-            
+            .padding(20)
+            .navigationBarBackButtonHidden()
+            .sheet(isPresented: $showDropdown) {
+                VStack {
+                    Text("My goals")
+                        .font(.headline)
+                        .padding()
+                    
+                    Divider()
+                    
+                    ForEach(goals, id: \.self) { goal in
+                        Button(action: {
+                            selectedGoal = goal
+                            showDropdown = false
+                        }) {
+                            HStack {
+                                Text(goal)
+                                Spacer()
+                                if goal == selectedGoal {
+                                    Image(systemName: "checkmark")
+                                        .foregroundColor(Color(hex: "#6C5DD4"))
+                                }
+                            }
+                            .padding()
+                        }
+                        .foregroundColor(.primary)
+                    }
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        showDropdown = false
+                    }) {
+                        Text("Close")
+                            .font(.headline)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color(hex: "#6C5DD4"))
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                    .padding()
+                }
+                .background(Color(.systemGray6))
+                
+            }
         }
-        .navigationBarBackButtonHidden()
     }
 }
 
@@ -147,7 +223,6 @@ struct PopularCourseCard: View {
     }
 }
 
-
 struct CourseCard: View {
     let course: Course
 
@@ -160,16 +235,14 @@ struct CourseCard: View {
                 .clipped()
                 .cornerRadius(10)
             
-                
-                Text(course.title)
-                    .font(.headline)
-                    .lineLimit(2)
-                
-                Text("by \(course.instructor)")
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-                    .lineLimit(2)
+            Text(course.title)
+                .font(.headline)
+                .lineLimit(2)
             
+            Text("by \(course.instructor)")
+                .font(.subheadline)
+                .foregroundColor(.gray)
+                .lineLimit(2)
         }
         .frame(width: 150)
     }
@@ -186,3 +259,4 @@ struct ProfileView: View {
         Text("Profile View")
     }
 }
+
