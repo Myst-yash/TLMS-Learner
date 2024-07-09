@@ -115,7 +115,7 @@ struct ContentView: View {
     func loginUser(){
         Auth.auth().signIn(withEmail: email, password: password) { firebaseResult, err in
             if let err = err{
-                alertMessage = err.localizedDescription
+                alertMessage = "Invalid Credentials"
                 showAlert = true
                 print("not logged in")
                 return

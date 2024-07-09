@@ -9,7 +9,7 @@ import Foundation
 class AuthValidation{
     static var shared = AuthValidation()
      func validateName(name: String) -> Bool {
-            let nameRegex = "^[a-zA-Z]{2,20}$"
+            let nameRegex = "^[a-zA-Z]( ?[a-zA-Z]){1,19}$"
             let namePredicate = NSPredicate(format: "SELF MATCHES %@", nameRegex)
             return namePredicate.evaluate(with: name)
         }
@@ -24,5 +24,9 @@ class AuthValidation{
         let passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*])[A-Za-z\\d!@#$%^&*]{8,20}$"
         let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
         return passwordPredicate.evaluate(with: password)
+    }
+    
+    func checkFullName(fName:String,lName:String)->Bool{
+        return fName != lName
     }
 }

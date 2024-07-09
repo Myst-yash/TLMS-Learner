@@ -15,7 +15,7 @@ struct AccountView: View {
     @State private var isLastNameValid: Bool = true
     @State private var isEmailValid: Bool = true
     @State private var isPasswordValid: Bool = true
-
+    @State private var checkFullName = true
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottom) {
@@ -57,6 +57,7 @@ struct AccountView: View {
                                 )
                                 .onChange(of: lastname) { newValue in
                                     isLastNameValid = AuthValidation.shared.validateName(name: newValue)
+                                    checkFullName = AuthValidation.shared.checkFullName(fName: firstname, lName: lastname)
                                 }
                         }
                         .padding(.leading, 30)
@@ -76,6 +77,12 @@ struct AccountView: View {
                                 .padding(.trailing,15)
                         }
                         
+                        if !checkFullName{
+                            Text("first name and last name should not be same")
+                                .foregroundColor(.red)
+                                .font(.caption)
+                                .padding(.trailing,15)
+                        }
                         CustomTextField(placeholder: "Email", text: $email)
                             .keyboardType(.emailAddress)
                             .onChange(of:email){
@@ -96,7 +103,7 @@ struct AccountView: View {
                             }
                         
                             if !isPasswordValid{
-                                Text("Invalid Password")
+                                Text("Enter a Strong password")
                                     .foregroundColor(.red)
                                     .font(.caption)
                                     .padding(.trailing,15)
