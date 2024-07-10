@@ -19,7 +19,7 @@ struct AccountView: View {
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottom) {
-                Color.white.ignoresSafeArea()
+//                Color.white.ignoresSafeArea()
                 
                 PNGImageView(imageName: "Waves", width: 394, height: 194)
                 
