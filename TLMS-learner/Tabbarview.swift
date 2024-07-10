@@ -83,8 +83,8 @@ struct CustomTabBarAppearance: UIViewControllerRepresentable {
 
         // Customize tab bar item colors
         let itemAppearance = UITabBarItemAppearance()
-        let selectedColor = UIColor(Color(hex: "#6C5DD4")!)
-        let normalColor = UIColor(Color(hex: "#6C5DD4")!).withAlphaComponent(0.5)
+        let selectedColor = UIColor(Color("color 2"))
+        let normalColor = UIColor(Color("color 2")).withAlphaComponent(0.5)
 
         itemAppearance.normal.iconColor = normalColor
         itemAppearance.normal.titleTextAttributes = [.foregroundColor: normalColor]

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04570C3B2C36BF7600B5B03F /* ColorsFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04570C3A2C36BF7600B5B03F /* ColorsFile.swift */; };
 		04A3858A2C37B53300832DDC /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A385892C37B53300832DDC /* Poppins-Regular.ttf */; };
 		04A385952C37BFD600832DDC /* PasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3858F2C37BFD600832DDC /* PasswordField.swift */; };
 		04A385962C37BFD700832DDC /* PasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3858F2C37BFD600832DDC /* PasswordField.swift */; };
@@ -44,8 +43,6 @@
 		D1EF76392C39420200C8B8A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */; };
 		D1EF763A2C39420200C8B8A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */; };
 		D1EF763C2C3969FF00C8B8A9 /* courseCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF763B2C3969FF00C8B8A9 /* courseCategories.swift */; };
-		D1EF763D2C3969FF00C8B8A9 /* courseCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF763B2C3969FF00C8B8A9 /* courseCategories.swift */; };
-		D1EF763E2C3969FF00C8B8A9 /* courseCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF763B2C3969FF00C8B8A9 /* courseCategories.swift */; };
 		D1EF76402C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF763F2C396ABB00C8B8A9 /* CourseCategoriesModel.swift */; };
 		D1EF76412C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF763F2C396ABB00C8B8A9 /* CourseCategoriesModel.swift */; };
 		D1EF76422C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF763F2C396ABB00C8B8A9 /* CourseCategoriesModel.swift */; };
@@ -81,7 +78,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		04570C3A2C36BF7600B5B03F /* ColorsFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsFile.swift; sourceTree = "<group>"; };
 		04A385832C37B4DC00832DDC /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		04A385852C37B4E500832DDC /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		04A385872C37B4EC00832DDC /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -215,7 +211,6 @@
 				D1C146122C39C31F00F6E43F /* Model */,
 				D1C146112C39C1A400F6E43F /* Auth */,
 				D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */,
-				04570C3A2C36BF7600B5B03F /* ColorsFile.swift */,
 				04A3858E2C37BFC000832DDC /* Elements */,
 				04A3858B2C37B6B100832DDC /* Info.plist */,
 				04A385822C37B4C700832DDC /* Fonts */,
@@ -396,7 +391,6 @@
 				D1F8C0E32C35407C0060C30E /* learnerlogin.swift in Sources */,
 				D1EF76442C39B55600C8B8A9 /* MyCourses.swift in Sources */,
 				D1EF76402C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */,
-				04570C3B2C36BF7600B5B03F /* ColorsFile.swift in Sources */,
 				04A385A12C37BFD700832DDC /* MainButton.swift in Sources */,
 				EF2EB61F2C397DC7007A56B4 /* LearnerHome.swift in Sources */,
 				D1F8C0E12C35407C0060C30E /* TLMS_learnerApp.swift in Sources */,
@@ -414,7 +408,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1C146132C39C34D00F6E43F /* CourseModel.swift in Sources */,
-				D1EF763D2C3969FF00C8B8A9 /* courseCategories.swift in Sources */,
 				04A3859F2C37BFD700832DDC /* TextLabel.swift in Sources */,
 				04A385992C37BFD700832DDC /* ImageView.swift in Sources */,
 				04A385A22C37BFD700832DDC /* MainButton.swift in Sources */,
@@ -434,7 +427,6 @@
 				04A3859A2C37BFD700832DDC /* ImageView.swift in Sources */,
 				D1EF76462C39B55600C8B8A9 /* MyCourses.swift in Sources */,
 				04A385A32C37BFD700832DDC /* MainButton.swift in Sources */,
-				D1EF763E2C3969FF00C8B8A9 /* courseCategories.swift in Sources */,
 				D1C146142C39C34D00F6E43F /* CourseModel.swift in Sources */,
 				04A385A02C37BFD700832DDC /* TextLabel.swift in Sources */,
 				D1EF76422C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */,
@@ -595,7 +587,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -626,7 +618,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -8,11 +8,11 @@ struct MyCourses: View {
     init() {
        
         //      Sets the background color of the Picker
-             UISegmentedControl.appearance().backgroundColor = UIColor(hex: "#FAFAFA")
+        UISegmentedControl.appearance().backgroundColor = UIColor(named: "#FAFAFA")
         //      Disappears the divider
              UISegmentedControl.appearance().setDividerImage(UIImage(), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
         //      Changes the color for the selected item
-                 UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(hex: "#6C5DD4")
+        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(named: "#6C5DD4")
         //      Changes the text color for the selected item
              UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
              
@@ -68,7 +68,7 @@ struct ForYouCourseCard: View {
                     ProgressBar(value: 0.8).frame(height: 5)
                 }
                 Spacer()
-            }.frame(width: 359, height: 100).background(Color(hex:"F7F7FC"))
+            }.frame(width: 359, height: 100).background(Color("color 3"))
                 .cornerRadius(10)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
@@ -85,10 +85,10 @@ struct ProgressBar: View {
             ZStack(alignment: .leading) {
                 Rectangle().frame(width: geometry.size.width, height: geometry.size.height)
                     .opacity(0.3)
-                    .foregroundColor(Color(hex: "#A9A2A2"))
+                    .foregroundColor(Color("color 4"))
 
                 Rectangle().frame(width: min(CGFloat(self.value)*geometry.size.width, geometry.size.width), height: geometry.size.height)
-                    .foregroundColor(Color(hex: "#6C5DD4"))
+                    .foregroundColor(Color("color 2"))
             }
             .cornerRadius(45.0)
         }

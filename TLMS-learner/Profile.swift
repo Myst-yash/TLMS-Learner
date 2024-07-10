@@ -105,10 +105,10 @@ struct DashboardView: View {
                 }
             }.frame(width: 330, height: 140)
             .padding()
-            .background(Color(hex: "F0EFFB"))
+            .background(Color("color 7"))
             .cornerRadius(25).overlay(
                 RoundedRectangle(cornerRadius: 25)
-                    .stroke(Color(hex: "#000000")!, lineWidth: 0.5)
+                    .stroke(Color.black, lineWidth: 0.5)
             )
         }
     }
@@ -152,7 +152,7 @@ struct CourseActionsView: View {
             .background(Color.white)
             .cornerRadius(25).overlay(
                 RoundedRectangle(cornerRadius: 25)
-                    .stroke(Color(hex: "#E0E0E0")!, lineWidth: 1)
+                    .stroke(Color("color 6"), lineWidth: 1)
             )
             Button(action: {}) {
                 VStack {
@@ -168,7 +168,7 @@ struct CourseActionsView: View {
             .background(Color.white)
             .cornerRadius(25).overlay(
                 RoundedRectangle(cornerRadius: 25)
-                    .stroke(Color(hex: "#E0E0E0")!, lineWidth: 1)
+                    .stroke(Color("color 6"), lineWidth: 1)
             )
         }
     }
@@ -203,11 +203,11 @@ struct LikedCoursesView: View {
                         Spacer()
                     }
                     .padding()
-                    .background(Color(hex: "#FBFBFE"))
+                    .background(Color("color 7"))
                     .cornerRadius(8)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color(hex: "#E0E0E0")!, lineWidth: 0.1)
+                            .stroke(Color("color 6"), lineWidth: 0.1)
                     ).shadow(radius: 1)
                 }
             }

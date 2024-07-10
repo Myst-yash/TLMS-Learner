@@ -29,7 +29,7 @@ struct CourseCategoriesView: View {
                             HStack {
                                 ZStack {
                                     Circle()
-                                        .fill((selectedCategories.contains(category.id) ? Color(hex: "#6C5DD4") : Color.white) ?? Color.purple)
+                                        .fill((selectedCategories.contains(category.id) ? Color("color 2") : Color.white))
 
                                         .frame(width: 20, height: 20)
                                         .overlay(
@@ -66,9 +66,8 @@ struct CourseCategoriesView: View {
             .padding()
             .navigationBarBackButtonHidden()
             .navigationDestination(isPresented: $readyToNavigate) {
-                ContentView1()
+          ContentView1()
 //                ProgressView1()
-                
             }
         }
         .navigationBarBackButtonHidden()

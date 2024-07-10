@@ -135,7 +135,7 @@ struct HomeView: View {
                                 Spacer()
                                 if goal == selectedGoal {
                                     Image(systemName: "checkmark")
-                                        .foregroundColor(Color(hex: "#6C5DD4"))
+                                        .foregroundColor(Color("color 2"))
                                 }
                             }
                             .padding()
@@ -152,7 +152,7 @@ struct HomeView: View {
                             .font(.headline)
                             .padding()
                             .frame(maxWidth: .infinity)
-                            .background(Color(hex: "#6C5DD4"))
+                            .background(Color("color 2"))
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
@@ -216,7 +216,7 @@ struct PopularCourseCard: View {
         }
         .frame(width: 250, height: 150)
         .padding()
-        .background(Color(hex:"#F7F7FC"))
+        .background(Color("color 3"))
         .cornerRadius(15)
         .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.black, lineWidth: 0.1)).shadow(radius: 5)
         .padding(.bottom , 10).padding(.top, 10)
@@ -260,3 +260,6 @@ struct ProfileView: View {
     }
 }
 
+#Preview {
+    HomeView()
+}

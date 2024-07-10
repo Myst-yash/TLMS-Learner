@@ -36,9 +36,8 @@ struct AccountView: View {
                     VStack(spacing: 15) {
                         HStack{
                             TextField("First Name", text: $firstname).padding()
-                                .background(Color("#FFFFFF")) // Background color
-                                .cornerRadius(12)
-                                .keyboardType(.default)// Rounded corners
+                                .background(Color.white) // Background color
+                                .cornerRadius(12) // Rounded corners
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 12)
                                         .stroke(Color.gray, lineWidth: 1) // Border
@@ -50,7 +49,7 @@ struct AccountView: View {
                             
                             
                             TextField("Last Name", text: $lastname).padding()
-                                .background(Color("#FFFFFF")) // Background color
+                                .background(Color.white) // Background color
                                 .cornerRadius(12) // Rounded corners
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 12)
@@ -130,7 +129,7 @@ struct AccountView: View {
                     NavigationLink(destination: ContentView()) {
                         Text("Already have an account?")
                             .navigationBarHidden(true)
-                            .foregroundColor(Color(hex: "#007AFF"))
+                            .foregroundColor(Color("color 1"))
                             .padding(.top, 2)
                     }
                     

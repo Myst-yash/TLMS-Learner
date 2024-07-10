@@ -16,7 +16,7 @@ struct CustomSecureField: View {
             SecureField("", text: $text)
                 .padding()
                 .frame(width: 335, height: 55)
-                .background(Color("#FFFFF")) // Background color
+                .background(Color.white) // Background color
                 .cornerRadius(12) // Rounded corners
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)

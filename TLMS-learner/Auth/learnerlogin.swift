@@ -31,7 +31,8 @@ struct ContentView: View {
                         CustomTextField(placeholder: "Email", text: $email)
                             .keyboardType(.emailAddress)
                             .onChange(of:email){
-                                newValue in isEmailValid = AuthValidation.shared.validateEmail(email: newValue)
+                                newValue in
+                                isEmailValid = AuthValidation.shared.validateEmail(email: newValue)
                                 
                             }
                         HStack{
@@ -84,7 +85,7 @@ struct ContentView: View {
                             Text("Sign up")
                                 .font(.system(size: 15, weight: .bold, design: .default))
                                 .fontWeight(.bold)
-                                .foregroundColor(Color(hex: "#6C5DD4"))
+                                .foregroundColor(Color("color 2"))
                         }
                     }
                     NavigationLink(destination : ForgotPasswordView(), isActive: $navigateToForgotPassword) {
