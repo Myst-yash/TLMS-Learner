@@ -1,11 +1,8 @@
 import SwiftUI
-import FirebaseAuth
 
 struct HomeView: View {
     @State private var selectedGoal: String = "GD, PI & WAT for CAT & OMETs"
     @State private var showDropdown: Bool = false
-    @Environment(\.presentationMode) var presentationMode
-//    @State var authViewModel : ContentView
     @State private var goals: [String] = [
         "GD, PI & WAT for CAT & OMETs",
         "CAT & Other MBA Entrance Tests",
@@ -17,25 +14,6 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Text("Admin Home Screen")
-                    .navigationBarBackButtonHidden()
-                
-                Button(action: {
-                    do {
-                        try Auth.auth().signOut()
-                        presentationMode.wrappedValue.dismiss()
-//                        authViewModel.signOut()
-                    } catch let signOutError as NSError {
-                        print("Error signing out: %@", signOutError)
-                    }
-                }) {
-                    Text("Sign Out")
-                        .foregroundColor(.blue)
-                }
-                .padding(.top, 200)
-                
-//                NavigationLink("", destination: ContentView(), isActive: $authViewModel.login)
-            }
                 
                     HStack {
                         Text(selectedGoal)
@@ -185,7 +163,7 @@ struct HomeView: View {
             }
         }
     }
-
+}
 
 struct SearchBar: View {
     @State private var searchText = ""
