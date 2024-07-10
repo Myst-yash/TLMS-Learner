@@ -46,6 +46,7 @@
 		D1BFEE862C367620006492F2 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE852C367620006492F2 /* FirebaseStorage */; };
 		D1C146132C39C34D00F6E43F /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2EB61C2C397D93007A56B4 /* CourseModel.swift */; };
 		D1C146142C39C34D00F6E43F /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2EB61C2C397D93007A56B4 /* CourseModel.swift */; };
+		D1EF3C032C3EA70000FFC2AC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF3C022C3EA70000FFC2AC /* User.swift */; };
 		D1EF76382C39420200C8B8A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */; };
 		D1EF76392C39420200C8B8A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */; };
 		D1EF763A2C39420200C8B8A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */; };
@@ -102,6 +103,7 @@
 		7ACDE42D2C3BD82E00AFAAE7 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		D12E70192C3E5AC100CFC59D /* FirebaseServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseServices.swift; sourceTree = "<group>"; };
 		D1902A8F2C3C218700602392 /* AuthValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidation.swift; sourceTree = "<group>"; };
+		D1EF3C022C3EA70000FFC2AC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D1EF763B2C3969FF00C8B8A9 /* courseCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = courseCategories.swift; sourceTree = "<group>"; };
 		D1EF763F2C396ABB00C8B8A9 /* CourseCategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCategoriesModel.swift; sourceTree = "<group>"; };
@@ -200,10 +202,18 @@
 			isa = PBXGroup;
 			children = (
 				D1EF763F2C396ABB00C8B8A9 /* CourseCategoriesModel.swift */,
-				D12E70192C3E5AC100CFC59D /* FirebaseServices.swift */,
 				EF2EB61C2C397D93007A56B4 /* CourseModel.swift */,
+				D1EF3C022C3EA70000FFC2AC /* User.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D1EF3BCB2C3E836C00FFC2AC /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				D12E70192C3E5AC100CFC59D /* FirebaseServices.swift */,
+			);
+			path = Firebase;
 			sourceTree = "<group>";
 		};
 		D1F8C0D42C35407C0060C30E = {
@@ -228,6 +238,7 @@
 		D1F8C0DF2C35407C0060C30E /* TLMS-learner */ = {
 			isa = PBXGroup;
 			children = (
+				D1EF3BCB2C3E836C00FFC2AC /* Firebase */,
 				D1C146122C39C31F00F6E43F /* Model */,
 				D1C146112C39C1A400F6E43F /* Auth */,
 				D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */,
@@ -413,6 +424,7 @@
 				52C21B182C3E5B4E00B8CCB9 /* CourseDetail.swift in Sources */,
 				52C21B1B2C3E5B4E00B8CCB9 /* SectionView.swift in Sources */,
 				D1F8C0E32C35407C0060C30E /* learnerlogin.swift in Sources */,
+				D1EF3C032C3EA70000FFC2AC /* User.swift in Sources */,
 				D1EF76442C39B55600C8B8A9 /* MyCourses.swift in Sources */,
 				D1EF76402C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */,
 				04A385A12C37BFD700832DDC /* MainButton.swift in Sources */,

@@ -23,7 +23,7 @@ struct ContentView1: View {
                     }
                     .tag(1) // Tag for CoursesView
 
-                ProfileViews(user: user)
+                ProfileViews()
                     .tabItem {
                         Image(systemName: "person.fill")
                         Text("Profile")
@@ -36,36 +36,9 @@ struct ContentView1: View {
         }
         .navigationBarBackButtonHidden()
     }
+    
+    
 }
-/*
-struct ContentView1: View {
-    var body: some View {
-        TabView {
-            NavigationStack {
-                HomeView()
-            }
-            .tabItem {
-                Label("Home", systemImage: "house.fill")
-            }
-            
-            NavigationStack {
-                ProgressView()
-            }
-            .tabItem {
-                Label("Progress", systemImage: "chart.bar.fill")
-            }
-            
-            NavigationStack {
-                ProfileView()
-            }
-            .tabItem {
-                Label("Profile", systemImage: "person.fill")
-            }
-        }
-        .navigationBarBackButtonHidden()
-    }
-}
-*/
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

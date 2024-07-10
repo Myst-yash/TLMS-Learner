@@ -1,48 +1,40 @@
 import SwiftUI
+import FirebaseAuth
+
+import SwiftUI
+import FirebaseAuth
 
 struct HomeView: View {
-    @State private var selectedGoal: String = "GD, PI & WAT for CAT & OMETs"
+    @State private var selectedGoal: String = ""
     @State private var showDropdown: Bool = false
-    @State private var goals: [String] = [
-        "GD, PI & WAT for CAT & OMETs",
-        "CAT & Other MBA Entrance Tests",
-        "UPSC CSE - GS",
-        "IIT JEE",
-        "GATE - CSIT, DSAI & Interview Preparation"
-    ]
-    
-        
-       
-    
+    @State var goals: [String] = []
+
     var body: some View {
         NavigationStack {
             VStack {
-                
-                    HStack {
-                        Text(selectedGoal)
-                            .font(.headline)
-                            .frame(width: 150)
-                            .fontWeight(.bold)
-                        Button(action: {
-                            showDropdown.toggle()
-                        }) {
-                            Image(systemName: "chevron.down")
-                                .foregroundColor(.gray)
-                        }
-                        Spacer()
-                        Image(systemName: "magnifyingglass")
+                HStack() {
+                    Text(selectedGoal)
+                        .font(.headline)
+                        .frame(width: 150)
+                        .fontWeight(.bold)
+                    
+                    Button(action: {
+                        showDropdown.toggle()
+                    }) {
+                        Image(systemName: "chevron.down")
                             .foregroundColor(.gray)
                     }
-                    .padding(.horizontal, 20)
-                    .background(Color(.white))
-                    .cornerRadius(8)
-                    .lineLimit(1)
+                    Spacer()
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.gray)
+                }
+                .padding(.horizontal, 20)
+                .background(Color(.white))
+                .cornerRadius(8)
+                .lineLimit(1)
 
-                
-                
                 ScrollView {
                     VStack(alignment: .leading) {
-                        
                         HStack {
                             Text("For You")
                                 .font(.title2).bold()
@@ -69,8 +61,6 @@ struct HomeView: View {
                             .padding(.leading, 20)
                         }
 
-                        
-                        
                         HStack {
                             Text("Popular Courses")
                                 .font(.title2).bold()
@@ -94,13 +84,11 @@ struct HomeView: View {
                                     }) {
                                         PopularCoursesCard()
                                     }.buttonStyle(PlainButtonStyle())
-                                    
                                 }
                             }
                             .padding(.leading, 20)
                         }
 
-                        
                         HStack {
                             Text("Upcoming Courses")
                                 .font(.title2).bold()
@@ -126,7 +114,6 @@ struct HomeView: View {
                     }
                 }
             }
-//            .padding()
             .navigationBarBackButtonHidden()
             .sheet(isPresented: $showDropdown) {
                 VStack {
@@ -140,6 +127,8 @@ struct HomeView: View {
                         Button(action: {
                             selectedGoal = goal
                             showDropdown = false
+                            updateGoal(newData: goal)
+                            
                         }) {
                             HStack {
                                 Text(goal)
@@ -170,11 +159,33 @@ struct HomeView: View {
                     .padding()
                 }
                 .background(Color(.systemGray6))
-                
+                .onAppear {
+                    FirebaseServices.shared.fetchTargets { fetchedTargets in
+                        self.goals = fetchedTargets
+                        print(fetchedTargets)
+                    }
+                }
+            }
+            .onAppear {
+                FirebaseServices.shared.findSelectedGoal { userGoal in
+                    self.selectedGoal = userGoal
+                }
+            }
+        }
+    }
+    
+    func updateGoal(newData:String){
+        FirebaseServices.shared.updateSelectedGoasl(newData: newData) { success in
+            if success {
+                print("Goal updated")
+            }
+            else{
+                print("there is an issue with it")
             }
         }
     }
 }
+
 
 struct SearchBar: View {
     @State private var searchText = ""

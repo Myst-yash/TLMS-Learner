@@ -1,4 +1,5 @@
 import SwiftUI
+import FirebaseAuth
 
 struct CourseCategoriesView: View {
     @State private var selectedCategories = Set<UUID>()
@@ -18,7 +19,6 @@ struct CourseCategoriesView: View {
                 TitleLabel(text: "Select Your Goal!")
                     .padding(.top, 10)
             
-//                Spacer()
                 LazyVGrid(columns: columns, spacing: 15) {
                     ForEach(courseCategories) { category in
                         Button(action: {
@@ -64,6 +64,7 @@ struct CourseCategoriesView: View {
                 Spacer()
                 
                 CustomButton(label: "Continue", action: {
+                    setTarget()
                     readyToNavigate = true
                 })
             }
@@ -82,7 +83,6 @@ struct CourseCategoriesView: View {
     func allTargets() {
         FirebaseServices.shared.fetchTargets { fetchedTargets in
             print("Fetched Targets : \(fetchedTargets)")
-//            self.targets = fetchedTargets
             var courseCategories: [CourseCategory] = []
             for i in fetchedTargets{
                 let newTarget = CourseCategory(name: i)
@@ -91,6 +91,36 @@ struct CourseCategoriesView: View {
             self.courseCategories = courseCategories
             
         }
+    }
+    
+    func setTarget(){
+        
+        guard let currentUser = Auth.auth().currentUser else{
+            print("email not found")
+            return
+        }
+        
+        var goal:String = "no goal"
+        
+        for i in courseCategories{
+            if selectedCategories.contains(i.id){
+                goal = i.name
+                break ;
+            }
+        }
+        
+        FirebaseServices.shared.addFieldToLearnerDocument(email: currentUser.email!, fieldName: "goal", newData: goal) { success in
+            if success {
+                print("Field successfully added")
+            } else {
+                print("Failed to add field")
+            }
+        }
+        
+        
+        
+
+        
     }
 }
 
@@ -132,10 +162,6 @@ struct CustomButton1: View {
                 .cornerRadius(8)
         }
     }
-}
-
-func updateGoal() {
-    // the updation of the goal of the a particular user will be done here
 }
 
 

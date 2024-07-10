@@ -9,24 +9,30 @@ import SwiftUI
 import FirebaseAuth
 
 struct ProfileViews: View {
-    @State private var user: User
+    @State private var user: User = User(id: "", email: "", firstName: "", lastName: "", completedCourses: [""], enrolledCourses: [""], goal: "", joinedDate: "", likedCourses: [""])
     @State private var showSettings = false
     @State private var isSignedOut = false
-
-    init(user: User) {
-        _user = State(initialValue: user)
-    }
 
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     ProfileHeader(user: user, showSettings: $showSettings)
-                    DashboardView(enrolledCourses: user.enrolledCourses, completedCourses: user.completedCourses)
+                    DashboardView(enrolledCourses: user.enrolledCourses.count, completedCourses: user.completedCourses.count)
                     CourseActionsView()
-                    LikedCoursesView(likedCourses: user.likedCourses)
+//                    LikedCoursesView(likedCourses: user.likedCourses)
                 }
                 .padding()
+                .onAppear(perform: {
+                    FirebaseServices.shared.fetchProfileDetails { fetchedUser in
+                        if let fetchedUser = fetchedUser{
+                            self.user = fetchedUser
+                        }
+                        else{
+                            print("error hai bhai")
+                        }
+                    }
+                })
             }
             .background(Color(UIColor.white))
             .sheet(isPresented: $showSettings) {
@@ -63,7 +69,7 @@ struct ProfileHeader: View {
                 .frame(width: 60, height: 60)
                 .foregroundColor(.purple).padding(.leading, 150)
 
-            Text(user.name)
+            Text("\(user.firstName) \(user.lastName)")
                 .font(.title2)
                 .fontWeight(.semibold).padding(.leading, 130)
             Text("Joined \(user.joinedDate)")
@@ -242,14 +248,6 @@ struct SettingsView: View {
     }
 }
 
-struct User {
-    let name: String
-    let joinedDate: String
-    let enrolledCourses: Int
-    let completedCourses: Int
-    let likedCourses: [Courses]
-}
-
 struct Courses: Identifiable {
     let id = UUID()
     let name: String
@@ -257,32 +255,12 @@ struct Courses: Identifiable {
 }
 
 // Preview
-struct ContentViews_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileViews(user: User(
-            name: "Syed Abid",
-            joinedDate: "June 20, 2024",
-            enrolledCourses: 25,
-            completedCourses: 10,
-            likedCourses: [
-                Courses(name: "Django se Panga", instructor: "Batman"),
-                Courses(name: "Django se Panga", instructor: "Batman"),
-                Courses(name: "Django se Panga", instructor: "Batman")
-            ]
-        ))
-    }
-}
+//struct ContentViews_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProfileViews()
+//    }
+//}
 
-let user = User(
-    name: "Syed Abid",
-    joinedDate: "June 20, 2024",
-    enrolledCourses: 25,
-    completedCourses: 10,
-    likedCourses: [
-        Courses(name: "Django se Panga", instructor: "Batman"),
-        // Add more courses as needed
-    ]
-)
 
 
 //extension Color {

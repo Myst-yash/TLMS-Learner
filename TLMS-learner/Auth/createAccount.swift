@@ -168,7 +168,18 @@ struct AccountView: View {
     }
     
     func uploadUserDetails() {
-        let datadic = ["FirstName": firstname, "LastName": lastname, "Email": email, "Password": password]
+        let joinedDate = currentDateFormatted()
+        let datadic = [
+            "FirstName": firstname,
+            "LastName": lastname,
+            "Email": email.lowercased(),
+            "Password": password,
+            "joinedData": joinedDate,
+            "enrolledCourses": [String](),
+            "completedCourses":[String](),
+            "likedCourses":[String]()
+        ] as [String : Any]
+
         
         let db = Firestore.firestore()
         _ = db.collection("Learners").addDocument(data: datadic) { error in
@@ -182,9 +193,12 @@ struct AccountView: View {
         }
     }
     
-    func createAccount(){
-        
+    func currentDateFormatted() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM d, yyyy"
+        return dateFormatter.string(from: Date())
     }
+    
 }
 
 #Preview {
