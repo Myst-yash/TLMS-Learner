@@ -216,6 +216,7 @@ struct LikedCoursesView: View {
 }
 
 struct SettingsView: View {
+    @Environment(\.presentationMode) var presentationMode
     @Binding var isSignedOut: Bool
 
     var body: some View {
@@ -223,6 +224,7 @@ struct SettingsView: View {
             Text("Settings")
             Button(action: {
                 signOut()
+                presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Sign Out")
                     .foregroundColor(.blue)
