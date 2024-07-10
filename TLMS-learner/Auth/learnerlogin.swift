@@ -13,7 +13,7 @@ struct ContentView: View {
     @State private var password = ""
     @State private var showAlert = false
     @State private var alertMessage = ""
-    @State private var login = false
+    @State  public var login = false
     @State private var isEmailValid:Bool = true
     @State private var navigateToForgotPassword = false
     
@@ -113,6 +113,10 @@ struct ContentView: View {
                 }.padding(10)
                 
             }
+            .onAppear(){
+                email = ""
+                password =  ""
+            }
             .ignoresSafeArea()
         }
         .navigationBarBackButtonHidden()
@@ -132,12 +136,23 @@ struct ContentView: View {
             print("logged in")
         }
     }
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+            self.login = false
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
+    }
     
     func validateEmail(email: String) -> Bool {
                 let emailRegex = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}$"
                 let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
                 return emailPredicate.evaluate(with: email)
     }
+    
+ 
+    
     struct SignupView: View {
         var body: some View {
             Text("Signup View")
