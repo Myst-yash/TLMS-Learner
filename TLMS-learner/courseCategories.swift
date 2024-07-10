@@ -9,15 +9,18 @@ struct CourseCategoriesView: View {
         GridItem(.flexible())
     ]
     
+    
+    @State var courseCategories: [CourseCategory] = []
+    
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 20) {
                 TitleLabel(text: "Select Your Goal!")
                     .padding(.top, 10)
             
-                
+//                Spacer()
                 LazyVGrid(columns: columns, spacing: 15) {
-                    ForEach(CourseCategory.courseCategories) { category in
+                    ForEach(courseCategories) { category in
                         Button(action: {
                             if selectedCategories.contains(category.id) {
                                 selectedCategories.remove(category.id)
@@ -58,6 +61,7 @@ struct CourseCategoriesView: View {
                         }
                     }
                 }
+                Spacer()
                 
                 CustomButton(label: "Continue", action: {
                     readyToNavigate = true
@@ -65,12 +69,28 @@ struct CourseCategoriesView: View {
             }
             .padding()
             .navigationBarBackButtonHidden()
+            .onAppear(perform: {
+                allTargets()
+            })
             .navigationDestination(isPresented: $readyToNavigate) {
           ContentView1()
 //                ProgressView1()
             }
         }
         .navigationBarBackButtonHidden()
+    }
+    func allTargets() {
+        FirebaseServices.shared.fetchTargets { fetchedTargets in
+            print("Fetched Targets : \(fetchedTargets)")
+//            self.targets = fetchedTargets
+            var courseCategories: [CourseCategory] = []
+            for i in fetchedTargets{
+                let newTarget = CourseCategory(name: i)
+                courseCategories.append(newTarget)
+            }
+            self.courseCategories = courseCategories
+            
+        }
     }
 }
 

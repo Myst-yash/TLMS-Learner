@@ -11,6 +11,7 @@ struct CourseCategory: Identifiable {
     let id = UUID()
     let name: String
     
+    
     static let courseCategories: [CourseCategory] = [
         CourseCategory(name: "Illustration"),
         CourseCategory(name: "Animation"),
