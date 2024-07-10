@@ -11,18 +11,10 @@ import SwiftUI
 struct CustomTextField: View {
     var placeholder: String
     @Binding var text: String
-    var placeholderOpacity: Double = 0.5 // Default opacity for placeholder
-
     var body: some View {
         ZStack(alignment: .leading) {
-            // Placeholder text
-            if text.isEmpty {
-                Text(placeholder)
-                    .foregroundColor(Color.gray.opacity(placeholderOpacity))
-                    .padding(.leading, 32) // Adjust padding to align with TextField's padding
-            }
             // Actual TextField
-            TextField("", text: $text)
+            TextField(placeholder, text: $text)
                 .padding()
                 .frame(width: 335, height: 55)
                 .background(Color.white) // Background color

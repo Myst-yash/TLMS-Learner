@@ -19,23 +19,16 @@ struct ForgotPasswordView: View {
     @State private var alertMessage = ""
     
     var body: some View {
-        
-        VStack{
-            
-            
-            Spacer()
+        ZStack(alignment: .bottom){
+            PNGImageView(imageName: "Waves", width: 394, height: 194)
             
             VStack(alignment: .center) {
-                
-                
-                VStack() {
-                    CustomTextField(placeholder: "Email", text: $email)
-                        .onChange(of: email) { _, newVal in
-                            isEmailValid = AuthValidation.shared.validateEmail(email: newVal)
-                            print(isEmailValid)
-                            
-                        }
-                }
+                CustomTextField(placeholder: "Email", text: $email)
+                    .onChange(of: email) { _, newVal in
+                        isEmailValid = AuthValidation.shared.validateEmail(email: newVal)
+                        print(isEmailValid)
+                        
+                    }
                 HStack {
                     
                     if !isEmailValid && email != ""{
@@ -59,20 +52,21 @@ struct ForgotPasswordView: View {
                         passwordReset()
                     }
                 })
-                
+                Spacer()
             }
-            .padding(.bottom, 100)
-            .alert(isPresented: $showAlert) {
-                Alert(
-                    title: Text("Notification"),
-                    message: Text(alertMessage),
-                    dismissButton: .default(Text("OK")) {
-                        presentationMode.wrappedValue.dismiss()
-                    })
-            }
-            .navigationBarTitle("Enter your valid title", displayMode: .large)
-            Spacer()
+            .padding(.top, 180)
         }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Notification"),
+                message: Text(alertMessage),
+                dismissButton: .default(Text("OK")) {
+                    presentationMode.wrappedValue.dismiss()
+                })
+        }
+        .navigationBarTitle("Forgot password", displayMode: .large)
+        .ignoresSafeArea()
+        
     }
     
     func passwordReset() {
@@ -95,5 +89,7 @@ struct ForgotPasswordView: View {
 }
 
 #Preview {
-    ForgotPasswordView()
+    NavigationView {
+        ForgotPasswordView()
+    }
 }
