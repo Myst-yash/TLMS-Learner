@@ -230,7 +230,7 @@ struct PopularCourseCard: View {
                 .padding(.top, -5)
                 .padding(.leading, 6 )
             
-            Text("by \(course.instructor)")
+            Text("by \(course.instructorName)")
                 .font(.subheadline)
                 .foregroundColor(.gray)
                 .padding(.leading, 6 )
@@ -261,7 +261,7 @@ struct CourseCard: View {
                 .font(.headline)
                 .lineLimit(2)
             
-            Text("by \(course.instructor)")
+            Text("by \(course.instructorName)")
                 .font(.subheadline)
                 .foregroundColor(.gray)
                 .lineLimit(2)

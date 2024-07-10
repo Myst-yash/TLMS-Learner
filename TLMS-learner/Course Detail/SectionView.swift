@@ -8,8 +8,7 @@ struct SectionView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(title)
-                .font(.system(size: 20))
-                .fontWeight(.bold)
+                .font(.custom("Poppins-Bold", size: 20))
                 .padding(.bottom, 4)
             
             ForEach(items.indices, id: \.self) { index in
@@ -20,11 +19,9 @@ struct SectionView: View {
                             .font(.system(size: 15))
                     }
                     Text(items[index])
+                        .font(.custom("Poppins-Regular", size: 14))
                 }
-                .padding(.vertical, 2)
-                .padding(.horizontal, 5)
             }
         }
-        .padding(.bottom)
     }
 }

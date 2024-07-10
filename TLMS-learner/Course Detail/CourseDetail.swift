@@ -3,6 +3,10 @@ import SwiftUI
 struct CourseDetails: View {
     let course: Course
     @State private var isEnrolled: Bool = false
+    @State private var isLiked: Bool = false
+    @State private var showFullSubtitle: Bool = false
+    @State private var showFullDescription: Bool = false
+    @State private var showFullInstructorBio: Bool = false
 
     var body: some View {
         ScrollView {
@@ -17,92 +21,104 @@ struct CourseDetails: View {
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 355, height: 206)
                             .clipped()
-                        )
-                        .shadow(color: .black.opacity(0.2), radius: 3, x: 1, y: 2)
-                        .padding(.horizontal, 20)
+                    )
+                    .shadow(color: .black.opacity(0.2), radius: 3, x: 1, y: 2)
+                    .padding(.horizontal, 20)
+
                 // Title
                 Text(course.title)
-                    .font(.title)
-                    .fontWeight(.semibold)
+                    .font(.custom("Poppins-Bold", size: 24))
                     .padding(.top)
                     .padding(.horizontal, 20)
 
                 Spacer(minLength: 10)
 
                 // Subtitle and enroll button
-                Text(course.subtitle)
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-                    .padding(.horizontal, 20)
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(course.subtitle)
+                        .font(.custom("Poppins-Regular", size: 16))
+                        .foregroundColor(.gray)
+                        .padding(.horizontal, 20)
+                        .lineLimit(showFullSubtitle ? nil : 3)
+                        .fixedSize(horizontal: false, vertical: true) // Ensure text wraps correctly
+
+                    if !showFullSubtitle && shouldShowShowMoreButton(text: course.subtitle, maxLines: 3) {
+                        Button(action: {
+                            showFullSubtitle.toggle()
+                        }) {
+                            Text("Show more")
+                                .font(.custom("Poppins-Regular", size: 16))
+                                .foregroundColor(Color("color 2")) // Use "color 2" here
+                        }
+                        .padding(.horizontal, 20)
+                    }
+                }
 
                 Spacer(minLength: 15)
 
+                // Students enrolled
                 Text("\(course.studentsEnrolled) students enrolled")
-                    .font(.system(size: 20))
-                    .fontWeight(.bold)
-                    .foregroundColor(.purple)
+                    .font(.custom("Poppins-Bold", size: 20))
+                    .foregroundColor(Color("color 2"))
                     .padding(.horizontal, 20)
 
                 Spacer(minLength: 15)
 
+                // Created by
                 HStack {
                     Text("Created by ")
-                        .font(.system(size: 12))
-                        .fontWeight(.medium)
+                        .font(.custom("Poppins-Medium", size: 12))
                         .foregroundColor(.black)
                     +
                     Text(course.creator)
-                        .font(.system(size: 12))
-                        .fontWeight(.medium)
-                        .foregroundColor(.purple)
+                        .font(.custom("Poppins-Medium", size: 12))
+                        .foregroundColor(Color("color 2"))
                 }
                 .padding(.horizontal, 20)
 
                 Spacer(minLength: 5)
 
+                // Last updated
                 HStack {
                     Image(systemName: "exclamationmark.circle")
                         .foregroundColor(.gray)
                     Text("Last Updated \(course.lastUpdated)")
-                        .font(.system(size: 8))
+                        .font(.custom("Poppins-Regular", size: 8))
                         .foregroundColor(.gray)
                 }
                 .padding(.horizontal, 20)
 
                 Spacer(minLength: 5)
 
+                // Language
                 HStack {
                     Image(systemName: "globe")
                         .foregroundColor(.gray)
                     Text(course.language)
-                        .font(.system(size: 8))
+                        .font(.custom("Poppins-Regular", size: 8))
                         .foregroundColor(.gray)
                 }
                 .padding(.horizontal, 20)
 
                 Spacer(minLength: 15)
 
-                Button(action: {
+                // Enroll button
+                CustomButton(label: isEnrolled ? "Enrolled" : "Enroll Now") {
                     // Enroll action
                     isEnrolled.toggle()
-                }) {
-                    Text(isEnrolled ? "Enrolled" : "Enroll Now")
-                        .font(.system(size: 17))
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(isEnrolled ? Color.purple.opacity(0.8) : Color.purple)
-                        .cornerRadius(12)
+                    print("Enroll Now button tapped")
                 }
                 .padding(.horizontal, 20)
+                .shadow(color: isEnrolled ? Color.purple.opacity(0.6) : Color.clear, radius: 10, x: 0, y: 10)
 
+                // Add to Likes button
                 Button(action: {
-                    // Add to Likes action
+                    // Toggle liked state
+                    isLiked.toggle()
+                    print("Add to Likes button tapped")
                 }) {
-                    Text("Add to Likes")
-                        .font(.system(size: 17))
-                        .fontWeight(.semibold)
+                    Text(isLiked ? "Liked" : "Add to Likes")
+                        .font(.custom("Poppins-SemiBold", size: 17))
                         .foregroundColor(.black)
                         .padding()
                         .frame(maxWidth: .infinity)
@@ -119,23 +135,43 @@ struct CourseDetails: View {
                 // What you'll learn section with checkmark icon
                 SectionView(title: "What you'll learn", items: course.whatYoullLearn, iconNames: Array(repeating: "checkmark", count: course.whatYoullLearn.count))
                     .padding(.horizontal, 20)
+                
+                Spacer(minLength: 15)
 
                 // This course includes section with different icons fetched from course model
                 SectionView(title: "This course includes", items: course.courseIncludes, iconNames: course.courseIncludeIcons)
                     .padding(.horizontal, 20)
-
+                
+                Spacer(minLength: 15)
+                
                 // Description section (without icon)
-                SectionView(title: "Description", items: [course.description], iconNames: [nil])
-                    .padding(.horizontal, 20)
+                VStack(alignment: .leading) {
+                    SectionView(title: "Description", items: [course.description], iconNames: [nil])
+                        .padding(.horizontal, 20)
+                        .lineLimit(showFullDescription ? nil : 3)
+                    
+                    if !showFullDescription && shouldShowShowMoreButton(text: course.description, maxLines: 3) {
+                        Button(action: {
+                            showFullDescription.toggle()
+                        }) {
+                            Text("Show more")
+                                .font(.custom("Poppins-Regular", size: 16))
+                                .foregroundColor(Color("color 2")) // Use "color 2" here
+                        }
+                        .padding(.horizontal, 20)
+                    }
+                }
+
+                Spacer(minLength: 15)
 
                 // Instructor
                 Text("Instructor")
-                    .font(.system(size: 20))
-                    .fontWeight(.bold)
+                    .font(.custom("Poppins-Bold", size: 20))
                     .padding(.horizontal, 20)
 
                 Spacer(minLength: 15)
 
+                // Instructor details
                 HStack {
                     Image(course.instructorImageName)
                         .resizable()
@@ -145,9 +181,9 @@ struct CourseDetails: View {
 
                     VStack(alignment: .leading) {
                         Text(course.instructorName)
-                            .font(.headline)
+                            .font(.custom("Poppins-Bold", size: 16))
                         Text(course.instructorUniversity)
-                            .font(.subheadline)
+                            .font(.custom("Poppins-Regular", size: 14))
                             .foregroundColor(.gray)
 
                         HStack {
@@ -162,7 +198,7 @@ struct CourseDetails: View {
                                 }
                             }
                             Text("\(course.instructorStudents) students")
-                                .font(.subheadline)
+                                .font(.custom("Poppins-Regular", size: 14))
                                 .foregroundColor(.gray)
                                 .padding(.leading, 4)
                         }
@@ -173,18 +209,54 @@ struct CourseDetails: View {
 
                 Spacer(minLength: 15)
 
-                Text(course.instructorBio)
-                    .padding(.bottom)
-                    .padding(.horizontal, 20)
+                // Instructor bio
+                VStack(alignment: .leading) {
+                    Text(course.instructorBio)
+                        .font(.custom("Poppins-Regular", size: 14))
+                        .padding(.horizontal, 20)
+                        .lineLimit(showFullInstructorBio ? nil : 3)
+                    
+                    if !showFullInstructorBio && shouldShowShowMoreButton(text: course.instructorBio, maxLines: 3) {
+                        Button(action: {
+                            showFullInstructorBio.toggle()
+                        }) {
+                            Text("Show more")
+                                .font(.custom("Poppins-Regular", size: 16))
+                                .foregroundColor(Color("color 2")) // Use "color 2" here
+                        }
+                        .padding(.horizontal, 20)
+                    }
+                }
             }
             .padding()
         }
-        .padding(.vertical, 15)
         .navigationBarTitle("Course Details", displayMode: .inline)
+    }
+
+    // Helper function to determine if "Show more" button should be shown
+    private func shouldShowShowMoreButton(text: String, maxLines: Int) -> Bool {
+        guard let font = UIFont(name: "Poppins-Regular", size: 16) else {
+            return false
+        }
+        
+        let lineHeight = font.lineHeight
+        let textHeight = text.height(withConstrainedWidth: UIScreen.main.bounds.width - 40, font: font)
+        let numberOfLines = Int(textHeight / lineHeight)
+        
+        return numberOfLines > maxLines
     }
 }
 
-struct CourseDetailView_Previews: PreviewProvider {
+// Extension to calculate text height
+extension String {
+    func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
+        return ceil(boundingBox.height)
+    }
+}
+
+struct CourseDetails_Previews: PreviewProvider {
     static var previews: some View {
         CourseDetails(course: sampleCourse)
     }
