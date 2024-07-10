@@ -11,6 +11,9 @@ struct HomeView: View {
         "GATE - CSIT, DSAI & Interview Preparation"
     ]
     
+        
+       
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -30,6 +33,7 @@ struct HomeView: View {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.gray)
                     }
+                    .padding(.horizontal, 20)
                     .background(Color(.white))
                     .cornerRadius(8)
                     .lineLimit(1)
@@ -40,8 +44,8 @@ struct HomeView: View {
                     VStack(alignment: .leading) {
                         
                         HStack {
-                            Text("Continue Learning")
-                                .font(.headline)
+                            Text("For You")
+                                .font(.title2).bold()
                             Spacer()
                             NavigationLink(destination: MyCourses()) {
                                 Text("See All")
@@ -49,27 +53,27 @@ struct HomeView: View {
                                     .foregroundColor(.blue)
                             }
                         }
-                        .padding(.vertical, 5)
-                        ScrollView(.horizontal, showsIndicators: false){
-                            HStack{
-                                Image("swift")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(height: 150)
-                                    .cornerRadius(10)
-                                Image("swift")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(height: 150)
-                                    .cornerRadius(10)
+                        .padding(.horizontal, 20).padding(.top, 20)
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 10) {
+                                ForEach(0..<5) { _ in
+                                    Button(action: {
+                                        // Add your action here
+                                        print("ContinueWatchingCard tapped")
+                                    }) {
+                                        ContinueWatchingCard()
+                                    }
+                                    .buttonStyle(PlainButtonStyle()) // Ensures no default button styling is applied
+                                }
                             }
-                            
+                            .padding(.leading, 20)
                         }
+
                         
                         
                         HStack {
                             Text("Popular Courses")
-                                .font(.headline)
+                                .font(.title2).bold()
                             Spacer()
                             Button(action: {
                                 // Action for "See All"
@@ -79,20 +83,27 @@ struct HomeView: View {
                                     .foregroundColor(.blue)
                             }
                         }
-                        .padding(.vertical, 5)
+                        .padding(.horizontal, 20).padding(.top, 10)
                         
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 15) {
-                                ForEach(popularCourses) { course in
-                                    PopularCourseCard(course: course)
+                                ForEach(0..<5) { _ in
+                                    Button(action: {
+                                        // Add your action here
+                                        print("PopularCoursesCard tapped")
+                                    }) {
+                                        PopularCoursesCard()
+                                    }.buttonStyle(PlainButtonStyle())
+                                    
                                 }
                             }
-                            .padding(.horizontal, 10)
+                            .padding(.leading, 20)
                         }
+
                         
                         HStack {
-                            Text("For you")
-                                .font(.headline)
+                            Text("Upcoming Courses")
+                                .font(.title2).bold()
                             Spacer()
                             Button(action: {
                                 // Action for "See All"
@@ -102,20 +113,20 @@ struct HomeView: View {
                                     .foregroundColor(.blue)
                             }
                         }
-                        .padding(.vertical, 5)
+                        .padding(.horizontal, 20).padding(.top, 10)
                         
                         ScrollView(.horizontal, showsIndicators: false){
-                            HStack(spacing: 15) {
-                                ForEach(recommendedCourses) { course in
-                                    CourseCard(course: course)
+                            VStack(spacing: -10) {
+                                ForEach(0..<5) { _ in
+                                    UpcomingCourseCard()
                                 }
                             }
-                            .padding(.horizontal, 10)
+                            .padding(.leading, 30)
                         }
                     }
                 }
             }
-            .padding(20)
+//            .padding()
             .navigationBarBackButtonHidden()
             .sheet(isPresented: $showDropdown) {
                 VStack {
@@ -192,59 +203,73 @@ struct SearchBar: View {
         }
     }
 }
-
-struct PopularCourseCard: View {
-    let course: Course
+struct ContinueWatchingCard: View {
     var body: some View {
-        VStack(alignment: .leading) {
-            Image(course.imageName)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 265, height: 110)
-                .cornerRadius(15)
+        ZStack(alignment: .leading) {
+            Image("batman")
+            Image("glass")
+            Image("glassCart").padding(.top, 90)
             
-            Text(course.title)
-                .font(.headline)
-                .padding(.top, -5)
-                .padding(.leading, 6 )
+                Text("Get started\n with Git").foregroundStyle(Color.white).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/).padding().padding(.top, 85)
+                
+            Image("edu").padding(.top, 100).padding(.leading, 210)
+            Text("Batman").font(.footnote).bold().foregroundStyle(.white).padding(.top, 100).padding(.leading, 225)
+            Image("heart").padding(.bottom, 100).padding(.leading, 260)
+                
             
-            Text("by \(course.instructorName)")
-                .font(.subheadline)
-                .foregroundColor(.gray)
-                .padding(.leading, 6 )
-                .padding(.top, 0)
+            
+            
+            
+            
         }
-        .frame(width: 250, height: 150)
-        .padding()
-        .background(Color("color 3"))
-        .cornerRadius(15)
-        .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.black, lineWidth: 0.1)).shadow(radius: 5)
-        .padding(.bottom , 10).padding(.top, 10)
     }
 }
 
-struct CourseCard: View {
-    let course: Course
-
+struct PopularCoursesCard: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            ZStack {
+                VStack{
+                    Image("swift").resizable().frame(width: 356,height: 160)
+                    Text("All about Swift").font(.title3).bold().padding(.leading, -155).padding(.top, 5).fontWeight(.semibold)
+                    Text("by batman").padding(.leading, -154).font(.subheadline).foregroundColor(.gray)
+                    
+                }
+                
+            }
+        }
+    }
+}
+struct UpcomingCourseCard: View {
     var body: some View {
         VStack(alignment: .leading) {
-            Image(course.imageName)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 150, height: 100)
-                .clipped()
-                .cornerRadius(10)
             
-            Text(course.title)
-                .font(.headline)
-                .lineLimit(2)
             
-            Text("by \(course.instructorName)")
-                .font(.subheadline)
-                .foregroundColor(.gray)
-                .lineLimit(2)
+            
+                HStack {
+                    Image("django")
+                        .resizable()
+                        .frame(width: 140, height: 80)
+                        .cornerRadius(8)
+                    
+                    VStack(alignment: .leading) {
+                        Text("Django se Panga")
+                            .font(.headline)
+                        Text("by batman")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                        Text("24/09/2025")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
+                    Spacer()
+                }
+                .padding(.leading, 10)
+                Divider()
+            
+            
         }
-        .frame(width: 150)
+        .padding().padding(.leading, -40).padding(.top, -20)
     }
 }
 
