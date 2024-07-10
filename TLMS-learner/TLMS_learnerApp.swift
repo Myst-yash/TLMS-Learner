@@ -22,7 +22,23 @@ struct TLMS_learnerApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if checkstatus(){
+                HomeView()
+            }else{
+                ContentView()
+            }
+                
+               
         }
+    
+    }
+    
+    func checkstatus() -> Bool{
+        if Auth.auth().currentUser != nil {
+            return true
+        }else{
+            return false
+        }
+        
     }
 }
