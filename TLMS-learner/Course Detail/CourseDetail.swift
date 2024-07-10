@@ -42,11 +42,11 @@ struct CourseDetails: View {
                         .lineLimit(showFullSubtitle ? nil : 3)
                         .fixedSize(horizontal: false, vertical: true) // Ensure text wraps correctly
 
-                    if !showFullSubtitle && shouldShowShowMoreButton(text: course.subtitle, maxLines: 3) {
+                    if shouldShowShowMoreButton(text: course.subtitle, maxLines: 3) {
                         Button(action: {
                             showFullSubtitle.toggle()
                         }) {
-                            Text("Show more")
+                            Text(showFullSubtitle ? "Show less" : "Show more")
                                 .font(.custom("Poppins-Regular", size: 16))
                                 .foregroundColor(Color("color 2")) // Use "color 2" here
                         }
@@ -67,11 +67,11 @@ struct CourseDetails: View {
                 // Created by
                 HStack {
                     Text("Created by ")
-                        .font(.custom("Poppins-Medium", size: 12))
+                        .font(.custom("Poppins-Medium", size: 16))
                         .foregroundColor(.black)
                     +
                     Text(course.creator)
-                        .font(.custom("Poppins-Medium", size: 12))
+                        .font(.custom("Poppins-Medium", size: 16))
                         .foregroundColor(Color("color 2"))
                 }
                 .padding(.horizontal, 20)
@@ -83,7 +83,7 @@ struct CourseDetails: View {
                     Image(systemName: "exclamationmark.circle")
                         .foregroundColor(.gray)
                     Text("Last Updated \(course.lastUpdated)")
-                        .font(.custom("Poppins-Regular", size: 8))
+                        .font(.custom("Poppins-Regular", size: 12))
                         .foregroundColor(.gray)
                 }
                 .padding(.horizontal, 20)
@@ -95,7 +95,7 @@ struct CourseDetails: View {
                     Image(systemName: "globe")
                         .foregroundColor(.gray)
                     Text(course.language)
-                        .font(.custom("Poppins-Regular", size: 8))
+                        .font(.custom("Poppins-Regular", size: 12))
                         .foregroundColor(.gray)
                 }
                 .padding(.horizontal, 20)
@@ -150,11 +150,11 @@ struct CourseDetails: View {
                         .padding(.horizontal, 20)
                         .lineLimit(showFullDescription ? nil : 3)
                     
-                    if !showFullDescription && shouldShowShowMoreButton(text: course.description, maxLines: 3) {
+                    if shouldShowShowMoreButton(text: course.description, maxLines: 3) {
                         Button(action: {
                             showFullDescription.toggle()
                         }) {
-                            Text("Show more")
+                            Text(showFullDescription ? "Show less" : "Show more")
                                 .font(.custom("Poppins-Regular", size: 16))
                                 .foregroundColor(Color("color 2")) // Use "color 2" here
                         }
@@ -190,11 +190,11 @@ struct CourseDetails: View {
                             HStack(spacing: 2) {
                                 ForEach(0..<course.instructorRating, id: \.self) { _ in
                                     Image(systemName: "star.fill")
-                                        .foregroundColor(.purple)
+                                        .foregroundColor(Color("color 2"))
                                 }
                                 ForEach(course.instructorRating..<5, id: \.self) { _ in
                                     Image(systemName: "star")
-                                        .foregroundColor(.purple)
+                                        .foregroundColor(Color("color 2"))
                                 }
                             }
                             Text("\(course.instructorStudents) students")
@@ -216,11 +216,11 @@ struct CourseDetails: View {
                         .padding(.horizontal, 20)
                         .lineLimit(showFullInstructorBio ? nil : 3)
                     
-                    if !showFullInstructorBio && shouldShowShowMoreButton(text: course.instructorBio, maxLines: 3) {
+                    if shouldShowShowMoreButton(text: course.instructorBio, maxLines: 3) {
                         Button(action: {
                             showFullInstructorBio.toggle()
                         }) {
-                            Text("Show more")
+                            Text(showFullInstructorBio ? "Show less" : "Show more")
                                 .font(.custom("Poppins-Regular", size: 16))
                                 .foregroundColor(Color("color 2")) // Use "color 2" here
                         }
