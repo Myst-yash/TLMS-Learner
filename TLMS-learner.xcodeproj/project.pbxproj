@@ -33,6 +33,7 @@
 		52C21B1B2C3E5B4E00B8CCB9 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C21B0C2C3E5B4E00B8CCB9 /* SectionView.swift */; };
 		52C21B1C2C3E5B4E00B8CCB9 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C21B0C2C3E5B4E00B8CCB9 /* SectionView.swift */; };
 		52C21B1D2C3E5B4E00B8CCB9 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C21B0C2C3E5B4E00B8CCB9 /* SectionView.swift */; };
+		7A85CA932C3FB79C008E9D7D /* MyEducators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A85CA922C3FB79C008E9D7D /* MyEducators.swift */; };
 		7ACDE3872C370B0600AFAAE7 /* createAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACDE3862C370B0600AFAAE7 /* createAccount.swift */; };
 		7ACDE42E2C3BD82F00AFAAE7 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACDE42D2C3BD82E00AFAAE7 /* Profile.swift */; };
 		D12E701A2C3E5AC100CFC59D /* FirebaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12E70192C3E5AC100CFC59D /* FirebaseServices.swift */; };
@@ -99,6 +100,7 @@
 		04A385942C37BFD600832DDC /* HeadingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadingLabel.swift; sourceTree = "<group>"; };
 		52C21B0B2C3E5B4E00B8CCB9 /* CourseDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetail.swift; sourceTree = "<group>"; };
 		52C21B0C2C3E5B4E00B8CCB9 /* SectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
+		7A85CA922C3FB79C008E9D7D /* MyEducators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEducators.swift; sourceTree = "<group>"; };
 		7ACDE3862C370B0600AFAAE7 /* createAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createAccount.swift; sourceTree = "<group>"; };
 		7ACDE42D2C3BD82E00AFAAE7 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		D12E70192C3E5AC100CFC59D /* FirebaseServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseServices.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				EFF683CC2C3AAC3C00162D7F /* Tabbarview.swift */,
 				D1EF763B2C3969FF00C8B8A9 /* courseCategories.swift */,
 				D1EF76432C39B55500C8B8A9 /* MyCourses.swift */,
+				7A85CA922C3FB79C008E9D7D /* MyEducators.swift */,
 				7ACDE42D2C3BD82E00AFAAE7 /* Profile.swift */,
 				D1F8C0E42C35407D0060C30E /* Assets.xcassets */,
 				D1F8C0E62C35407D0060C30E /* Preview Content */,
@@ -427,6 +430,7 @@
 				D1EF3C032C3EA70000FFC2AC /* User.swift in Sources */,
 				D1EF76442C39B55600C8B8A9 /* MyCourses.swift in Sources */,
 				D1EF76402C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */,
+				7A85CA932C3FB79C008E9D7D /* MyEducators.swift in Sources */,
 				04A385A12C37BFD700832DDC /* MainButton.swift in Sources */,
 				EF2EB61F2C397DC7007A56B4 /* LearnerHome.swift in Sources */,
 				D1F8C0E12C35407C0060C30E /* TLMS_learnerApp.swift in Sources */,
