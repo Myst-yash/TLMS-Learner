@@ -60,14 +60,13 @@ class FirebaseServices{
                 return
             }
             
-            let document = documents[0]
+            _ = documents[0]
             let user = documents.compactMap { document in
                         let data = document.data()
                         let id = document.documentID
                         let email = data["Email"] as? String ?? ""
                         let firstName = data["FirstName"] as? String ?? ""
                         let lastName = data["LastName"] as? String ?? ""
-                        let password = data["Password"] as? String ?? ""
                         let completedCourses = data["completedCourses"] as? [String] ?? []
                         let enrolledCourses = data["enrolledCourses"] as? [String] ?? []
                         let goal = data["goal"] as? String ?? ""
@@ -199,5 +198,49 @@ class FirebaseServices{
         }
     }
     
+    func fetchEducators(completion: @escaping ([Educators]) -> Void) {
+        let db = Firestore.firestore()
+        let ref = db.collection("Educators")
+        
+        ref.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error while fetching Educators: \(error.localizedDescription)")
+                completion([])
+                return
+            }
+            
+            guard let documents = querySnapshot?.documents else {
+                print("No documents found.")
+                completion([])
+                return
+            }
+            
+            let educators = documents.compactMap { document -> Educators? in
+                let data = document.data()
+                let id = document.documentID
+                let email = data["email"] as? String ?? ""
+                let firstName = data["FirstName"] as? String ?? ""
+                let lastName = data["LastName"] as? String ?? ""
+                let phonenumber = data["phoneNumber"] as? String ?? ""
+                let imageUrl = data["profileImageURL"] as? String ?? ""
+                let about = data["about"] as? String ?? ""
+                
+                return Educators(
+                    id: id,
+                    email: email,
+                    firstName: firstName,
+                    lastName: lastName,
+                    phonenumber: phonenumber,
+                    imageUrl: imageUrl,
+                    about: about
+                )
+            }
+            
+            completion(educators)
+        }
+    }
     
 }
+    
+    
+

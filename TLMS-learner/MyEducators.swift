@@ -1,28 +1,10 @@
-//
-//  educator.swift
-//  profile
-//
-//  Created by Abid Ali    on 11/07/24.
-//
-
 import Foundation
 import SwiftUI
 
-struct Educator: Identifiable {
-    let id = UUID()
-    let name: String
-    let course: String
-    let institution: String
-}
+
 
 struct EducatorView: View {
-    let educators = [
-        Educator(name: "Homelander", course: "MongoDB", institution: "IIIT Hyderabad"),
-        Educator(name: "Homelander", course: "MongoDB", institution: "IIIT Hyderabad"),
-        Educator(name: "Homelander", course: "MongoDB", institution: "IIIT Hyderabad"),
-        Educator(name: "Homelander", course: "MongoDB", institution: "IIIT Hyderabad"),
-        Educator(name: "Homelander", course: "MongoDB", institution: "IIIT Hyderabad")
-    ]
+    @State var educators:[Educators] = []
     
     var body: some View {
         NavigationView {
@@ -32,24 +14,22 @@ struct EducatorView: View {
                         ZStack {
                             
                             
-                            Image("blob") // Replace with your image
+                            Image("blob")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 75, height: 75)
+                                                    
                             
-                            // educator Image //
-                            Image("educator").resizable().aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/).frame(width: 80, height: 75).padding(.top, 10).padding(.leading, 10)
+                            ProfileImage(imageURL: educator.imageUrl)
+//                            Image("educator").resizable().aspectRatio(contentMode: .fill).frame(width: 80, height: 75).padding(.top, 10).padding(.leading, 10)
                             Image("blank").resizable().frame(width: 106, height: 100)
                             
                         }.padding(.leading, -10)
                         
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(educator.name)
+                            Text("\(educator.firstName) \(educator.lastName)")
                                 .font(.title2).bold()
-                            Text(educator.course)
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
-                            Text(educator.institution)
+                            Text(educator.about)
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
                         }
@@ -68,14 +48,10 @@ struct EducatorView: View {
                 
             }
             .navigationBarTitle("My Educators", displayMode: .large)
-            .navigationBarItems(leading: Button(action: {
-                // Add back button action here
-            }) {
-                HStack {
-                    Image(systemName: "chevron.left")
-                    Text("Back")
+            .onAppear(perform: {
+                FirebaseServices.shared.fetchEducators { fetchedData in
+                    self.educators = fetchedData
                 }
-                .foregroundColor(.blue)
             })
         }
     }
@@ -89,3 +65,29 @@ struct UpcomingCoursesView_Previews: PreviewProvider {
 }
 
 
+struct ProfileImage: View {
+    var imageURL: String?
+    var width : CGFloat?
+    var height : CGFloat?
+
+    var body: some View {
+        if let urlString = imageURL, let url = URL(string: urlString) {
+            AsyncImage(url: url) { image in
+                image
+                    .resizable().aspectRatio(contentMode: .fill).frame(width: 80, height: 75).padding(.top, 10).padding(.leading, 10)
+            }
+            placeholder: {
+                ProgressView()
+                    .frame(width: 60, height: 60)
+            }
+        } else {
+            Image(systemName: "person.circle.fill")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 60, height: 60)
+                .foregroundColor(.gray)
+                .clipShape(Circle())
+                .padding(.vertical, 8)
+        }
+    }
+}

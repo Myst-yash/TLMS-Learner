@@ -255,11 +255,11 @@ struct Courses: Identifiable {
 }
 
 // Preview
-//struct ContentViews_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ProfileViews()
-//    }
-//}
+struct ContentViews_Previews: PreviewProvider {
+    static var previews: some View {
+        ProfileViews()
+    }
+}
 
 
 

@@ -37,6 +37,7 @@
 		7ACDE3872C370B0600AFAAE7 /* createAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACDE3862C370B0600AFAAE7 /* createAccount.swift */; };
 		7ACDE42E2C3BD82F00AFAAE7 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACDE42D2C3BD82E00AFAAE7 /* Profile.swift */; };
 		D12E701A2C3E5AC100CFC59D /* FirebaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12E70192C3E5AC100CFC59D /* FirebaseServices.swift */; };
+		D1358F9A2C3FA5720042E368 /* EducatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1358F992C3FA5720042E368 /* EducatorModel.swift */; };
 		D1902A902C3C218700602392 /* AuthValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1902A8F2C3C218700602392 /* AuthValidation.swift */; };
 		D1BFEE7A2C367620006492F2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE792C367620006492F2 /* FirebaseAuth */; };
 		D1BFEE7C2C367620006492F2 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE7B2C367620006492F2 /* FirebaseAuthCombine-Community */; };
@@ -47,7 +48,7 @@
 		D1BFEE862C367620006492F2 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE852C367620006492F2 /* FirebaseStorage */; };
 		D1C146132C39C34D00F6E43F /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2EB61C2C397D93007A56B4 /* CourseModel.swift */; };
 		D1C146142C39C34D00F6E43F /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2EB61C2C397D93007A56B4 /* CourseModel.swift */; };
-		D1EF3C032C3EA70000FFC2AC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF3C022C3EA70000FFC2AC /* User.swift */; };
+		D1EF3C032C3EA70000FFC2AC /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF3C022C3EA70000FFC2AC /* UserModel.swift */; };
 		D1EF76382C39420200C8B8A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */; };
 		D1EF76392C39420200C8B8A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */; };
 		D1EF763A2C39420200C8B8A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */; };
@@ -104,8 +105,9 @@
 		7ACDE3862C370B0600AFAAE7 /* createAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createAccount.swift; sourceTree = "<group>"; };
 		7ACDE42D2C3BD82E00AFAAE7 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		D12E70192C3E5AC100CFC59D /* FirebaseServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseServices.swift; sourceTree = "<group>"; };
+		D1358F992C3FA5720042E368 /* EducatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducatorModel.swift; sourceTree = "<group>"; };
 		D1902A8F2C3C218700602392 /* AuthValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidation.swift; sourceTree = "<group>"; };
-		D1EF3C022C3EA70000FFC2AC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D1EF3C022C3EA70000FFC2AC /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D1EF763B2C3969FF00C8B8A9 /* courseCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = courseCategories.swift; sourceTree = "<group>"; };
 		D1EF763F2C396ABB00C8B8A9 /* CourseCategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCategoriesModel.swift; sourceTree = "<group>"; };
@@ -205,7 +207,8 @@
 			children = (
 				D1EF763F2C396ABB00C8B8A9 /* CourseCategoriesModel.swift */,
 				EF2EB61C2C397D93007A56B4 /* CourseModel.swift */,
-				D1EF3C022C3EA70000FFC2AC /* User.swift */,
+				D1EF3C022C3EA70000FFC2AC /* UserModel.swift */,
+				D1358F992C3FA5720042E368 /* EducatorModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -425,9 +428,10 @@
 				D12E701A2C3E5AC100CFC59D /* FirebaseServices.swift in Sources */,
 				EFD0919A2C3D34EC001C030F /* ForgetPassword.swift in Sources */,
 				52C21B182C3E5B4E00B8CCB9 /* CourseDetail.swift in Sources */,
+				D1358F9A2C3FA5720042E368 /* EducatorModel.swift in Sources */,
 				52C21B1B2C3E5B4E00B8CCB9 /* SectionView.swift in Sources */,
 				D1F8C0E32C35407C0060C30E /* learnerlogin.swift in Sources */,
-				D1EF3C032C3EA70000FFC2AC /* User.swift in Sources */,
+				D1EF3C032C3EA70000FFC2AC /* UserModel.swift in Sources */,
 				D1EF76442C39B55600C8B8A9 /* MyCourses.swift in Sources */,
 				D1EF76402C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */,
 				7A85CA932C3FB79C008E9D7D /* MyEducators.swift in Sources */,
