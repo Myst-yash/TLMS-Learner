@@ -36,32 +36,6 @@ struct HomeView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         HStack {
-                            Text("For You")
-                                .font(.title2).bold()
-                            Spacer()
-                            NavigationLink(destination: MyCourses()) {
-                                Text("See All")
-                                    .font(.subheadline)
-                                    .foregroundColor(.blue)
-                            }
-                        }
-                        .padding(.horizontal, 20).padding(.top, 20)
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 10) {
-                                ForEach(0..<5) { _ in
-                                    Button(action: {
-                                        // Add your action here
-                                        print("ContinueWatchingCard tapped")
-                                    }) {
-                                        ContinueWatchingCard()
-                                    }
-                                    .buttonStyle(PlainButtonStyle()) // Ensures no default button styling is applied
-                                }
-                            }
-                            .padding(.leading, 20)
-                        }
-
-                        HStack {
                             Text("Popular Courses")
                                 .font(.title2).bold()
                             Spacer()
@@ -87,6 +61,35 @@ struct HomeView: View {
                                 }
                             }
                             .padding(.leading, 20)
+                        }
+
+                           
+
+                        HStack {
+                            Text("For You")
+                                .font(.title2).bold()
+                            Spacer()
+                            NavigationLink(destination: MyCourses()) {
+                                Text("See All")
+                                    .font(.subheadline)
+                                    .foregroundColor(.blue)
+                            }
+                        }
+                        .padding(.horizontal, 20).padding(.top, 20)
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 10) {
+                                ForEach(0..<5) { _ in
+                                    Button(action: {
+                                        // Add your action here
+                                        print("ContinueWatchingCard tapped")
+                                    }) {
+                                        ContinueWatchingCard()
+                                    }
+                                    .buttonStyle(PlainButtonStyle()) // Ensures no default button styling is applied
+                                }
+                            }
+                            .padding(.leading, 20)
+                        
                         }
 
                         HStack {
