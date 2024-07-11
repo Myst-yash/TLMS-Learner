@@ -228,6 +228,8 @@ struct CourseDetails: View {
                     }
                 }
             }
+            .navigationTitle("course")
+            .navigationBarTitleDisplayMode(.inline)
             .padding()
         }
         .navigationBarTitle("Course Details", displayMode: .inline)

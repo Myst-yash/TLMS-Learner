@@ -8,7 +8,7 @@ struct HomeView: View {
     @State private var selectedGoal: String = ""
     @State private var showDropdown: Bool = false
     @State var goals: [String] = []
-
+    var course : Course
     var body: some View {
         NavigationStack {
             VStack {
@@ -56,7 +56,7 @@ struct HomeView: View {
                                         // Add your action here
                                         print("PopularCoursesCard tapped")
                                     }) {
-                                        PopularCoursesCard()
+                                        PopularCoursesCard(course: <#Course#>)
                                     }.buttonStyle(PlainButtonStyle())
                                 }
                             }
@@ -240,6 +240,7 @@ struct ContinueWatchingCard: View {
 }
 
 struct PopularCoursesCard: View {
+    var course : Course
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             ZStack {
@@ -296,5 +297,5 @@ struct ProfileView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(course: Course())
 }
