@@ -240,23 +240,38 @@ class FirebaseServices{
         }
     }
     
-    func fetchUpcomingCourse(completion: @escaping([HomeCourse]) -> Void){
+    func fetchCourses(completion: @escaping ([HomeCourse]) -> Void) {
         let db = Firestore.firestore()
-        let ref = db.collection("Targets")
+        let ref = db.collection("Courses")
         
         ref.getDocuments { querySnapshot, err in
-            if err != nil{
-                print("Error while fetching upcoming Course")
+            if let err = err {
+                print("Error while fetching upcoming Course: \(err)")
                 completion([])
                 return
             }
-            
-            
-            
+            guard let documents = querySnapshot?.documents else {
+                print("No documents found.")
+                completion([])
+                return
+            }
+            let courses = documents.compactMap { document -> HomeCourse? in
+                let data = document.data()
+                let id = document.documentID
+                let assignedEducator = data["EducatorName"] as? String ?? ""
+                let courseName = data["courseName"] as? String ?? ""
+                let courseImg = data["courseImageURL"] as? String ?? ""
+                guard let releaseData = data["releaseDate"] as? Timestamp else { return nil }
+                let releaseDate = releaseData.dateValue()
+                
+                let yourGoal = data["target"] as? String ?? ""
+                
+                return HomeCourse(id: id, assignedEducator: assignedEducator, courseName: courseName, courseImage: courseImg, releaseData: releaseDate, target: yourGoal)
+            }
+            completion(courses)
         }
-        
-        
     }
+
 }
     
     

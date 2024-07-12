@@ -23,11 +23,13 @@ struct Course: Identifiable {
 }
 
 
-struct HomeCourse{
+struct HomeCourse:Identifiable{
     var id :String
     var assignedEducator:String
     var courseName:String
     var courseImage:String
+    var releaseData:Date
+    var target:String
 }
 
 var popularCourses = [

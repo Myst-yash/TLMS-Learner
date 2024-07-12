@@ -5,14 +5,16 @@ import SwiftUI
 import FirebaseAuth
 
 struct HomeView: View {
-    @State private var selectedGoal: String = ""
+    @State private var selectedGoal: String = "GATE"
     @State private var showDropdown: Bool = false
     @State private var isSearchActive = false
     
     @State var goals: [String] = []
+
     
-    
-    @State var upcommingCourse:[HomeCourse] = []
+    @State var upcomingCourse:[HomeCourse] = []
+    @State var forYouCourse:[HomeCourse] = []
+    @State var allCourses:[HomeCourse] = []
 //    var course : Course
     var body: some View {
         NavigationStack {
@@ -89,15 +91,18 @@ struct HomeView: View {
                         .padding(.horizontal, 20).padding(.top, 20)
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 10) {
-                                ForEach(0..<5) { _ in
-                                    Button(action: {
-                                        // Add your action here
-                                        print("ContinueWatchingCard tapped")
-                                    }) {
-                                        ContinueWatchingCard()
-                                    }
-                                    .buttonStyle(PlainButtonStyle()) // Ensures no default button styling is applied
+                                ForEach(forYouCourse.prefix(5)) { course in
+                                    ContinueWatchingCard(courseName: course.courseName, courseImageURl: course.courseImage)
+                                        .onTapGesture {
+                                            // Add your action here
+                                            print("UpcomingCourseCard tapped")
+                                            // You can perform any action related to the tapped course here
+                                        }
                                 }
+                                .buttonStyle(PlainButtonStyle()) // Ensures no default button styling is applied
+
+                                
+                                
                             }
                             .padding(.leading, 20)
                         
@@ -119,9 +124,12 @@ struct HomeView: View {
                         
                         ScrollView(.horizontal, showsIndicators: false){
                             VStack(spacing: -10) {
-                                ForEach(0..<5) { _ in
-                                    UpcomingCourseCard()
-                                }
+                                
+                                ForEach(upcomingCourse, id: \.id) { course in
+                                    UpcomingCourseCard(courseName: course.courseName, releaseDate: course.releaseData,courseImageUrl:course.courseImage)
+                                    }
+                                
+                                
                             }
                             .padding(.leading, 30)
                         }
@@ -184,6 +192,22 @@ struct HomeView: View {
                 FirebaseServices.shared.findSelectedGoal { userGoal in
                     self.selectedGoal = userGoal
                 }
+                
+                FirebaseServices.shared.fetchCourses { fetchedCourses in
+                    let now = Date()
+                    self.upcomingCourse = fetchedCourses.filter { course in
+                        return course.releaseData > now
+                    }
+                    
+                    self.forYouCourse = fetchedCourses.filter({ course in
+                        return course.target == selectedGoal
+                    })
+                    if forYouCourse.isEmpty{
+                        self.forYouCourse = fetchedCourses
+                    }
+                    
+                    self.allCourses = fetchedCourses
+                }
             }
         }
     }
@@ -202,13 +226,32 @@ struct HomeView: View {
 
 
 struct ContinueWatchingCard: View {
+    var courseName:String
+    var courseImageURl:String
     var body: some View {
         ZStack(alignment: .leading) {
-            Image("batman")
+            AsyncImage(url: URL(string: courseImageURl)) { phase in
+                switch phase {
+                case .empty:
+                    ProgressView()
+                case .success(let image):
+                    image
+                        .resizable()
+                        .frame(width: 300, height: 150)
+                        .cornerRadius(8)
+                case .failure:
+                    Image(systemName: "photo")
+                        .resizable()
+                        .frame(width: 140, height: 80)
+                        .cornerRadius(8)
+                @unknown default:
+                    EmptyView()
+                }
+            }
             Image("glass")
             Image("glassCart").padding(.top, 90)
             
-                Text("Get started\n with Git").foregroundStyle(Color.white).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/).padding().padding(.top, 85)
+                Text(courseName).foregroundStyle(Color.white).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/).padding().padding(.top, 85)
                 
             Image("edu").padding(.top, 100).padding(.leading, 210)
             Text("Batman").font(.footnote).bold().foregroundStyle(.white).padding(.top, 100).padding(.leading, 225)
@@ -240,35 +283,56 @@ struct PopularCoursesCard: View {
     }
 }
 struct UpcomingCourseCard: View {
+    
+    var courseName: String
+    var releaseDate: Date
+    var courseImageUrl: String // URL for the course image
+    
     var body: some View {
         VStack(alignment: .leading) {
-            
-            
-            
-                HStack {
-                    Image("django")
-                        .resizable()
-                        .frame(width: 140, height: 80)
-                        .cornerRadius(8)
-                    
-                    VStack(alignment: .leading) {
-                        Text("Django se Panga")
-                            .font(.headline)
-                        Text("by batman")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                        Text("24/09/2025")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
+            HStack {
+                AsyncImage(url: URL(string: courseImageUrl)) { phase in
+                    switch phase {
+                    case .empty:
+                        ProgressView()
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .frame(width: 140, height: 80)
+                            .cornerRadius(8)
+                    case .failure:
+                        Image(systemName: "photo")
+                            .resizable()
+                            .frame(width: 140, height: 80)
+                            .cornerRadius(8)
+                    @unknown default:
+                        EmptyView()
                     }
-                    Spacer()
                 }
-                .padding(.leading, 10)
-                Divider()
-            
-            
+                
+                VStack(alignment: .leading) {
+                    Text(courseName)
+                        .font(.headline)
+                    Text("by Batman") // Assuming static text for now
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                    Text("\(formattedDate(date: releaseDate))")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+                Spacer()
+            }
+            .padding(.leading, 10)
+            Divider()
         }
         .padding().padding(.leading, -40).padding(.top, -20)
+    }
+    
+    // Helper function to format date
+    private func formattedDate(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy" // Customize date format as needed
+        return formatter.string(from: date)
     }
 }
 
