@@ -240,6 +240,23 @@ class FirebaseServices{
         }
     }
     
+    func fetchUpcomingCourse(completion: @escaping([HomeCourse]) -> Void){
+        let db = Firestore.firestore()
+        let ref = db.collection("Targets")
+        
+        ref.getDocuments { querySnapshot, err in
+            if err != nil{
+                print("Error while fetching upcoming Course")
+                completion([])
+                return
+            }
+            
+            
+            
+        }
+        
+        
+    }
 }
     
     

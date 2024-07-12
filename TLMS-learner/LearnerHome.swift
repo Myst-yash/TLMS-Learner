@@ -10,7 +10,10 @@ struct HomeView: View {
     @State private var isSearchActive = false
     
     @State var goals: [String] = []
-    var course : Course
+    
+    
+    @State var upcommingCourse:[HomeCourse] = []
+//    var course : Course
     var body: some View {
         NavigationStack {
             VStack {
@@ -64,7 +67,7 @@ struct HomeView: View {
                                         // Add your action here
                                         print("PopularCoursesCard tapped")
                                     }) {
-                                        PopularCoursesCard(course: <#Course#>)
+                                        PopularCoursesCard()
                                     }.buttonStyle(PlainButtonStyle())
                                 }
                             }
@@ -221,7 +224,7 @@ struct ContinueWatchingCard: View {
 }
 
 struct PopularCoursesCard: View {
-    var course : Course
+//    var course : Course
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             ZStack {
@@ -269,14 +272,6 @@ struct UpcomingCourseCard: View {
     }
 }
 
-
-
-struct ProfileView: View {
-    var body: some View {
-        Text("Profile View")
-    }
-}
-
 #Preview {
-    HomeView(course: Course())
+    HomeView()
 }

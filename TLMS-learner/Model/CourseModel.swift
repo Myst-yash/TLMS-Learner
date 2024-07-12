@@ -22,6 +22,14 @@ struct Course: Identifiable {
     var progress: Double? = nil
 }
 
+
+struct HomeCourse{
+    var id :String
+    var assignedEducator:String
+    var courseName:String
+    var courseImage:String
+}
+
 var popularCourses = [
     Course(imageName: "django", title: "Django Fundamentals", instructorName: "William Shakespeare", progress: 0.3),
     Course(imageName: "nodejs", title: "Node.js Basics", instructorName: "William Shakespeare", progress: 0.4),
