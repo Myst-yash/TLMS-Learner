@@ -7,6 +7,8 @@ import FirebaseAuth
 struct HomeView: View {
     @State private var selectedGoal: String = ""
     @State private var showDropdown: Bool = false
+    @State private var isSearchActive = false
+    
     @State var goals: [String] = []
     var course : Course
     var body: some View {
@@ -25,13 +27,19 @@ struct HomeView: View {
                             .foregroundColor(.gray)
                     }
                     Spacer()
-                    Image(systemName: "magnifyingglass")
-                        .foregroundColor(.gray)
-                }
-                .padding(.horizontal, 20)
-                .background(Color(.white))
-                .cornerRadius(8)
-                .lineLimit(1)
+                    Button(action: {
+                            isSearchActive = true}) {
+                                                         
+                            Image(systemName: "magnifyingglass")
+                            .foregroundColor(.black)}
+                            .background(
+                            NavigationLink(destination: SearchBar(), isActive: $isSearchActive) {
+                              
+                            })}
+                            .background(Color.white)
+                            .cornerRadius(8)
+                            .lineLimit(1)
+                            .padding(20)
 
                 ScrollView {
                     VStack(alignment: .leading) {
@@ -190,33 +198,6 @@ struct HomeView: View {
 }
 
 
-struct SearchBar: View {
-    @State private var searchText = ""
-
-    var body: some View {
-        HStack {
-            TextField("Search", text: $searchText)
-                .padding(7)
-                .padding(.horizontal, 25)
-                .background(Color(.systemGray6))
-                .cornerRadius(8)
-                .overlay(
-                    HStack {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.gray)
-                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                            .padding(.leading, 8)
-                    }
-                )
-            Button(action: {
-                // Action for voice search
-            }) {
-                Image(systemName: "mic.fill")
-                    .padding(.trailing, 10)
-            }
-        }
-    }
-}
 struct ContinueWatchingCard: View {
     var body: some View {
         ZStack(alignment: .leading) {

@@ -21,3 +21,31 @@ struct Course: Identifiable {
     var instructorBio: String = ""
     var progress: Double? = nil
 }
+
+var popularCourses = [
+    Course(imageName: "django", title: "Django Fundamentals", instructorName: "William Shakespeare", progress: 0.3),
+    Course(imageName: "nodejs", title: "Node.js Basics", instructorName: "William Shakespeare", progress: 0.4),
+    Course(imageName: "nodejs", title: "Node.js Basics", instructorName: "William Shakespeare", progress: 0.4),
+    Course(imageName: "nodejs", title: "Node.js Basics", instructorName: "William Shakespeare", progress: 0.4),
+    Course(imageName: "nodejs", title: "Node.js Basics", instructorName: "William Shakespeare", progress: 0.4),
+    Course(imageName: "nodejs", title: "Node.js Basics", instructorName: "William Shakespeare", progress: 0.4),
+    Course(imageName: "nodejs", title: "Node.js Basics", instructorName: "William Shakespeare", progress: 0.4)
+]
+
+var recommendedCourses = [
+    Course(imageName: "django", title: "Django se Panga", instructorName: "Batman", progress: 0.6),
+    Course(imageName: "django", title: "Django se Panga", instructorName: "Batman", progress: 0.7),
+    Course(imageName: "django", title: "Django se Panga", instructorName: "Batman", progress: 0.7),
+    Course(imageName: "django", title: "Django se Panga", instructorName: "Batman", progress: 0.7),
+    Course(imageName: "django", title: "Django se Panga", instructorName: "Batman", progress: 0.7),
+    Course(imageName: "django", title: "Django se Panga", instructorName: "Batman", progress: 0.7),
+    Course(imageName: "django", title: "Django se Panga", instructorName: "Batman", progress: 0.7),
+    Course(imageName: "django", title: "Django se Panga", instructorName: "Batman", progress: 0.7),
+    Course(imageName: "django", title: "Django se Panga", instructorName: "Batman", progress: 0.7),
+    Course(imageName: "django", title: "Django se Panga", instructorName: "Batman", progress: 0.7),
+    Course(imageName: "django", title: "Django se Panga", instructorName: "Batman", progress: 0.7),
+    Course(imageName: "django", title: "Django se Panga", instructorName: "Batman", progress: 0.7),
+    Course(imageName: "django", title: "Django se Panga", instructorName: "Batman", progress: 0.7),
+    Course(imageName: "django", title: "Django se Panga", instructorName: "Batman", progress: 0.7),
+    Course(imageName: "django", title: "Django se Panga", instructorName: "Batman", progress: 0.7)
+]
