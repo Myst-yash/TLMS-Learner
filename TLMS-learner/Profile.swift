@@ -19,7 +19,35 @@ struct ProfileViews: View {
                 VStack(alignment: .leading, spacing: 20) {
                     ProfileHeader(user: user, showSettings: $showSettings)
                     DashboardView(enrolledCourses: user.enrolledCourses.count, completedCourses: user.completedCourses.count)
-                    CourseActionsView()
+//                    CourseActionsView()
+                    
+                        VStack(alignment: .leading, spacing: 10) {
+                            NavigationLink(destination: FavoritesView()) {
+                                ListItemView(systemName: "book", text: "Your Courses", color: .black)
+                            }
+                            Divider()
+                            NavigationLink(destination: PaymentView()) {
+                                ListItemView(systemName: "person", text: "Your Educators", color: .black)
+                            }
+                            Divider()
+                            
+                            NavigationLink(destination: TellYourFriendView()) {
+                                ListItemView(systemName: "heart", text: "Your Wishlist", color: .black)
+                            }
+                            Divider()
+                            NavigationLink(destination: TellYourFriendView()) {
+                                ListItemView(systemName: "doc", text: "Your Certificates", color: .black)
+                            }
+                            Divider()
+                            
+                            
+                            NavigationLink(destination: LogoutView()) {
+                                ListItemView(systemName: "power", text: "Log out", color: .red)
+                            }
+                        }
+                        .padding().padding(.leading, -20).padding(.top, -20)
+                        
+                    
 //                    LikedCoursesView(likedCourses: user.likedCourses)
                 }
                 .padding()
@@ -140,45 +168,45 @@ struct PieChartView: View {
     }
 }
 
-struct CourseActionsView: View {
-    var body: some View {
-        HStack {
-            Button(action: {}) {
-
-                VStack {
-                    Image(systemName: "play.circle.fill")
-                        .resizable()
-                        .frame(width: 40, height: 40)
-                    Text("Enrolled Courses")
-                        .font(.headline).foregroundStyle(.black).padding(.top, 40)
-                }
-            }
-            .frame(width: 150, height: 130)
-            .padding()
-            .background(Color.white)
-            .cornerRadius(25).overlay(
-                RoundedRectangle(cornerRadius: 25)
-                    .stroke(Color("color 6"), lineWidth: 1)
-            )
-            Button(action: {}) {
-                VStack {
-                    Image(systemName: "star.circle.fill")
-                        .resizable()
-                        .frame(width: 40, height: 40)
-                    Text("Certificates")
-                        .font(.headline).foregroundStyle(.black).padding(.top, 40)
-                }
-            }
-            .frame(width: 150, height: 130)
-            .padding()
-            .background(Color.white)
-            .cornerRadius(25).overlay(
-                RoundedRectangle(cornerRadius: 25)
-                    .stroke(Color("color 6"), lineWidth: 1)
-            )
-        }
-    }
-}
+//struct CourseActionsView: View {
+//    var body: some View {
+//        HStack {
+//            Button(action: {}) {
+//
+//                VStack {
+//                    Image(systemName: "play.circle.fill")
+//                        .resizable()
+//                        .frame(width: 40, height: 40)
+//                    Text("Enrolled Courses")
+//                        .font(.headline).foregroundStyle(.black).padding(.top, 40)
+//                }
+//            }
+//            .frame(width: 150, height: 130)
+//            .padding()
+//            .background(Color.white)
+//            .cornerRadius(25).overlay(
+//                RoundedRectangle(cornerRadius: 25)
+//                    .stroke(Color("color 6"), lineWidth: 1)
+//            )
+//            Button(action: {}) {
+//                VStack {
+//                    Image(systemName: "star.circle.fill")
+//                        .resizable()
+//                        .frame(width: 40, height: 40)
+//                    Text("Certificates")
+//                        .font(.headline).foregroundStyle(.black).padding(.top, 40)
+//                }
+//            }
+//            .frame(width: 150, height: 130)
+//            .padding()
+//            .background(Color.white)
+//            .cornerRadius(25).overlay(
+//                RoundedRectangle(cornerRadius: 25)
+//                    .stroke(Color("color 6"), lineWidth: 1)
+//            )
+//        }
+//    }
+//}
 
 struct LikedCoursesView: View {
     let likedCourses: [Courses]
@@ -288,4 +316,75 @@ struct ContentViews_Previews: PreviewProvider {
 //        )
 //    }
 //}
+
+struct ListItemView: View {
+    let systemName: String
+    let text: String
+    let color: Color
+    let backgroundColor: Color?
+    
+    init(systemName: String, text: String, color: Color, backgroundColor: Color? = nil) {
+        self.systemName = systemName
+        self.text = text
+        self.color = color
+        self.backgroundColor = backgroundColor
+    }
+    
+    var body: some View {
+        HStack {
+            Image(systemName: systemName)
+                .foregroundColor(color)
+            Text(text)
+                .foregroundColor(color)
+                .font(.system(size: 18))
+            Spacer()
+        }
+        .padding()
+        .background(backgroundColor ?? Color.clear)
+        .cornerRadius(10)
+    }
+}
+
+// Placeholder views for navigation
+struct FavoritesView: View {
+    var body: some View {
+        Text("Your Favorites")
+            .font(.largeTitle)
+    }
+}
+
+struct PaymentView: View {
+    var body: some View {
+        Text("Payment")
+            .font(.largeTitle)
+    }
+}
+
+struct TellYourFriendView: View {
+    var body: some View {
+        Text("Tell Your Friend")
+            .font(.largeTitle)
+    }
+}
+
+struct PromotionsView: View {
+    var body: some View {
+        Text("Promotions")
+            .font(.largeTitle)
+    }
+}
+
+struct SettingView: View {
+    var body: some View {
+        Text("Settings")
+            .font(.largeTitle)
+    }
+}
+
+struct LogoutView: View {
+    var body: some View {
+        Text("Log out")
+            .font(.largeTitle)
+    }
+}
 
