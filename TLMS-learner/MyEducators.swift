@@ -10,36 +10,39 @@ struct EducatorView: View {
         NavigationView {
             VStack(spacing: 0) {
                 List(educators) { educator in
-                    HStack(spacing: 30) {
-                        ZStack {
-                            
-                            
-                            Image("blob")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 75, height: 75)
-                                                    
-                            
-                            ProfileImage(imageURL: educator.imageUrl)
-//                            Image("educator").resizable().aspectRatio(contentMode: .fill).frame(width: 80, height: 75).padding(.top, 10).padding(.leading, 10)
-                            Image("blank").resizable().frame(width: 106, height: 100)
-                            
-                        }.padding(.leading, -10)
+                    NavigationLink(destination: EducatorProfileView()) {
                         
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("\(educator.firstName) \(educator.lastName)")
-                                .font(.title2).bold()
-                            Text(educator.about)
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
+                        HStack(spacing: 30) {
+                            ZStack {
+                                
+                                
+                                Image("blob")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 75, height: 75)
+                                
+                                
+                                ProfileImage(imageURL: educator.imageUrl)
+                                //                            Image("educator").resizable().aspectRatio(contentMode: .fill).frame(width: 80, height: 75).padding(.top, 10).padding(.leading, 10)
+                                Image("blank").resizable().frame(width: 106, height: 100)
+                                
+                            }.padding(.leading, -10)
+                            
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("\(educator.firstName) \(educator.lastName)")
+                                    .font(.title2).bold()
+                                Text(educator.about)
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                            }
+                            
+                            Spacer()
+                            
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.blue)
                         }
-                        
-                        Spacer()
-                        
-                        Image(systemName: "chevron.right")
-                            .foregroundColor(.blue)
+                        .padding(.vertical, 8)
                     }
-                    .padding(.vertical, 8)
                 }
                 .listStyle(PlainListStyle())
                 

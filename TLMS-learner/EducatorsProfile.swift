@@ -12,17 +12,7 @@ import SwiftUI
 struct EducatorProfileView: View {
     var body: some View {
         VStack {
-            HStack {
-                Button(action: {
-                    // Action for back button
-                }) {
-                    Text("Back")
-                        .font(.system(size: 18))
-                        .foregroundColor(.blue)
-                }
-                Spacer()
-            }
-            .padding()
+           
 
             ScrollView{
                 VStack {
