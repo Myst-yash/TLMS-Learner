@@ -9,6 +9,9 @@ struct QuizView: View {
     // State for quiz questions
     @State private var questions: [Question] = QuizData.dummyData.questions
     
+    // State to track the presentation of the alert
+    @State private var showAlert = false
+    
     // Computed property to get the number of questions in the quiz
     private var numberOfQuestions: Int {
         questions.count
@@ -61,19 +64,35 @@ struct QuizView: View {
                     .hidden() // Hide the NavigationLink label
                 )
             }
-            .navigationBarTitleDisplayMode(.inline) // Display title in inline mode
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    TimerView(remainingTime: $remainingTime) // Display timer in the center of the navigation bar
-                }
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        // Handle back action if needed
-                    }) {
-                        Image(systemName: "xmark") // Display close icon
-                    }
+        }
+        .navigationBarBackButtonHidden(true)
+        .toolbar(.hidden, for: .tabBar)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                TimerView(remainingTime: $remainingTime) // Display timer in the center of the navigation bar
+            }
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    showAlert = true
+                }) {
+                    Image(systemName: "xmark") // Display close icon
                 }
             }
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("End Quiz"),
+                message: Text("Are you sure you want to end the quiz? Your progress will be lost."),
+                primaryButton: .destructive(Text("End")) {
+                    if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                        if let window = scene.windows.first {
+                            window.rootViewController = UIHostingController(rootView: NodeJsCourseView(courseName: "Node js from Scratch", courseImage: "https://example.com/course-image.jpg"))
+                            window.makeKeyAndVisible()
+                        }
+                    }
+                },
+                secondaryButton: .cancel(Text("Continue"))
+            )
         }
     }
     
