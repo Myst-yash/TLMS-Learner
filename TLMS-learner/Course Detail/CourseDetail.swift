@@ -41,6 +41,7 @@ struct CourseDetails: View {
     @State private var isEnrolled: Bool = false
     @State private var isLiked: Bool = false
     @State private var showAlert = false
+    @State private var navigateToNextView = false
     @State private var showFullSubtitle: Bool = false
     @State private var showFullDescription: Bool = false
     @State private var showFullInstructorBio: Bool = false
@@ -153,7 +154,7 @@ struct CourseDetails: View {
                 Spacer(minLength: 15)
 
                 // Enroll button
-                CustomButton(label: isEnrolled ? "Enrolled" : "Enroll Now") {
+                CustomButton(label: isEnrolled ? "Go to Course" : "Enroll Now") {
                     // Enroll action
                     isEnrolled.toggle()
                     print("Enroll Now button tapped")
@@ -165,17 +166,22 @@ struct CourseDetails: View {
                             }
                             else{
                                 print("not enrolled")
+                                isEnrolled = false
                             }
                         }
                     }
                 }
                 .padding(.horizontal, 20)
-                .shadow(color: isEnrolled ? Color.purple.opacity(0.6) : Color.clear, radius: 10, x: 0, y: 10)
+                
+//                .shadow(color: isEnrolled ? Color.gray.opacity(0.6) : Color.clear, radius: 10, x: 0, y: 10)
+                .foregroundColor(.white)
+//                .disabled(isEnrolled)
                 .alert(isPresented: $showAlert) {
                                 Alert(
                                     title: Text("Congratulations!"),
                                     message: Text("You have successfully enrolled in this course."),
                                     primaryButton: .default(Text("Start This Course")) {
+                                        navigateToNextView = true
                                         // Action for starting the course
                                         print("Start This Course button tapped")
                                         // Add your navigation or action to start the course here
@@ -183,6 +189,9 @@ struct CourseDetails: View {
                                     secondaryButton: .cancel()
                                 )
                             }
+                NavigationLink(destination: NodeJsCourseView(), isActive: $navigateToNextView) {
+                                    EmptyView()
+                                }
 
                 // Add to Likes button
                 Button(action: {
@@ -201,7 +210,7 @@ struct CourseDetails: View {
                                 .stroke(Color.black, lineWidth: 1)
                         )
                 }
-                .padding(.horizontal, 20)
+                .padding(.horizontal, 20).padding(.top , 10)
 
                 Spacer(minLength: 20)
 
