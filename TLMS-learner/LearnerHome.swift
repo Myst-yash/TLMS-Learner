@@ -211,6 +211,12 @@ struct HomeView: View {
                     
                     self.allCourses = fetchedCourses
                 }
+                
+                FirebaseServices.shared.fetchEnrolledCourseIds { arr in
+                    CentralState.shared.updateEnrolledCourse(arr: arr)
+                }
+                
+//                print(CentralState.shared.enrolledCourse)
             }
         }
     }

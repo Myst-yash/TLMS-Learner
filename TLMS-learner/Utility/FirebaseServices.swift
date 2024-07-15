@@ -530,6 +530,57 @@ class FirebaseServices{
             }
         }
     }
+    
+    func fetchEnrolledCourseIds(completion: @escaping ([String]) -> Void) {
+        guard let currentUser = Auth.auth().currentUser else {
+            print("Email not found")
+            return
+        }
+        let db = Firestore.firestore()
+
+        let learnersCollection = db.collection("Learners")
+        let coursesCollection = db.collection("Courses")
+
+        learnersCollection.whereField("Email", isEqualTo: currentUser.email!).getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error fetching learner: \(error.localizedDescription)")
+                completion([])
+                return
+            }
+
+            guard let documents = querySnapshot?.documents, !documents.isEmpty else {
+                print("No learner found with this email")
+                completion([]) // No learner found with the given email
+                return
+            }
+
+            let learner = documents.compactMap { document -> User? in
+                let data = document.data()
+                let enrolledCourseIds = data["enrolledCourses"] as? [String] ?? []
+
+                return User(
+                    id: data["id"] as? String ?? "",
+                    email: data["Email"] as? String ?? "",
+                    firstName: data["firstName"] as? String ?? "",
+                    lastName: data["lastName"] as? String ?? "",
+                    completedCourses: data["completedCourses"] as? [String] ?? [],
+                    enrolledCourses: enrolledCourseIds,
+                    goal: data["goal"] as? String ?? "",
+                    joinedDate: data["joinedDate"] as? String ?? "",
+                    likedCourses: data["likedCourses"] as? [String] ?? []
+                )
+            }.first
+
+            guard let enrolledCourseIDs = learner?.enrolledCourses, !enrolledCourseIDs.isEmpty else {
+                print("No enrolled courses")
+                completion([]) // No enrolled courses
+                return
+            }
+
+//            print("Enrolled Courses IDs: \(enrolledCourseIDs)")
+            completion(enrolledCourseIDs)
+        }
+    }
 
 
 

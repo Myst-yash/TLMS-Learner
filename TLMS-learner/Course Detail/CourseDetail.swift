@@ -156,12 +156,13 @@ struct CourseDetails: View {
                 // Enroll button
                 CustomButton(label: isEnrolled ? "Go to Course" : "Enroll Now") {
                     // Enroll action
-                    isEnrolled.toggle()
+                    
                     print("Enroll Now button tapped")
-                    if isEnrolled {
+                    if !isEnrolled {
                         FirebaseServices.shared.enrollStudent(courseId: courseId) { ans in
                             if ans {
                                 print("enrolled")
+                                isEnrolled = true
                                 showAlert = true
                             }
                             else{
@@ -169,6 +170,9 @@ struct CourseDetails: View {
                                 isEnrolled = false
                             }
                         }
+                    }
+                    else{
+                        navigateToNextView = true
                     }
                 }
                 .padding(.horizontal, 20)
@@ -189,7 +193,7 @@ struct CourseDetails: View {
                                     secondaryButton: .cancel()
                                 )
                             }
-                NavigationLink(destination: NodeJsCourseView(), isActive: $navigateToNextView) {
+                NavigationLink(destination: NodeJsCourseView(courseName: course.title, courseImage: course.imageName), isActive: $navigateToNextView) {
                                     EmptyView()
                                 }
 
@@ -321,6 +325,8 @@ struct CourseDetails: View {
                 self.course.title = fetchedCourse?.title ?? course.title
                 self.course.description = fetchedCourse?.description ?? course.description
             }
+            
+            self.isEnrolled = CentralState.shared.checkIfEnrolled(id: courseId)
         })
     }
 
