@@ -89,6 +89,7 @@ struct HomeView: View {
                                 Text("See All")
                                     .font(.subheadline)
                                     .foregroundColor(.blue)
+                                    
                             }
                         }
                         .padding(.horizontal, 20).padding(.top, 20)

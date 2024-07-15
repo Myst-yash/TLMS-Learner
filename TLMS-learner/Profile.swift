@@ -95,7 +95,7 @@ struct ProfileHeader: View {
             Image(systemName: "person.circle.fill")
                 .resizable()
                 .frame(width: 60, height: 60)
-                .foregroundColor(.purple).padding(.leading, 150)
+                .foregroundColor(Color("color 2")).padding(.leading, 150)
 
             Text("\(user.firstName) \(user.lastName)")
                 .font(.title2)
@@ -122,23 +122,22 @@ struct DashboardView: View {
             HStack {
                 PieChartView(completedPercentage: Float(completedCourses) / Float(enrolledCourses))
                     .frame(width: 100, height: 100)
-
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text("Enrolled Courses")
-                        Spacer()
-                        Text("\(enrolledCourses)")
-                            .fontWeight(.bold)
-                    }.padding(.leading, 20).padding(.bottom, 10)
-                    HStack {
-                        Text("Completed Courses")
-                        Spacer()
-                        Text("\(completedCourses)")
-                            .fontWeight(.bold)
-                    }.padding(.leading, 20)
-                }
+                    .foregroundColor(.blue)
+             Spacer()
+                    VStack(alignment: .leading) {
+                        
+                            Text("Enrolled Courses")
+                            
+                            Text("\(enrolledCourses)")
+                                .fontWeight(.bold)
+                        
+                            Text("Completed Courses")
+                            
+                            Text("\(completedCourses)")
+                                .fontWeight(.bold)
+                    }
             }.frame(width: 330, height: 140)
-            .padding()
+            .padding(20)
             .background(Color("color 7"))
             .cornerRadius(25).overlay(
                 RoundedRectangle(cornerRadius: 25)
@@ -161,7 +160,7 @@ struct PieChartView: View {
             Circle()
                 .trim(from: 0.0, to: CGFloat(min(self.completedPercentage, 1.0)))
                 .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
-                .foregroundColor(.purple)
+                .foregroundColor(Color("color 2"))
                 .rotationEffect(Angle(degrees: 270.0))
                 .animation(.linear, value: completedPercentage)
         }
@@ -281,7 +280,8 @@ struct FavoritesView: View {
         Text("You have not enrolled in any course")
             .font(.largeTitle)
             .onAppear(perform: {
-                FirebaseServices.shared.fetchLikedCourses { fetchedCourses in
+                FirebaseServices.shared.fetchEnrolledCourses { fetchedCourses in
+                    print(fetchedCourses)
                 }
             })
     }
