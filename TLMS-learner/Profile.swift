@@ -15,12 +15,12 @@ struct ProfileViews: View {
 
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
-                    ProfileHeader(user: user, showSettings: $showSettings)
-                    DashboardView(enrolledCourses: user.enrolledCourses.count, completedCourses: user.completedCourses.count)
-//                    CourseActionsView()
-                    
+            VStack {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 20) {
+                        ProfileHeader(user: user, showSettings: $showSettings)
+                        DashboardView(enrolledCourses: user.enrolledCourses.count, completedCourses: user.completedCourses.count)
+
                         VStack(alignment: .leading, spacing: 10) {
                             NavigationLink(destination: FavoritesView()) {
                                 ListItemView(systemName: "book", text: "Your Courses", color: .black)
@@ -30,7 +30,6 @@ struct ProfileViews: View {
                                 ListItemView(systemName: "person", text: "Your Educators", color: .black)
                             }
                             Divider()
-                            
                             NavigationLink(destination: TellYourFriendView()) {
                                 ListItemView(systemName: "heart", text: "Your Wishlist", color: .black)
                             }
@@ -39,39 +38,46 @@ struct ProfileViews: View {
                                 ListItemView(systemName: "doc", text: "Your Certificates", color: .black)
                             }
                             Divider()
-                            
-                            
-                            NavigationLink(destination: LogoutView()) {
+                            Button(action: {
+                                signOut()
+                            }) {
                                 ListItemView(systemName: "power", text: "Log out", color: .red)
                             }
                         }
-                        .padding().padding(.leading, -20).padding(.top, -20)
-                        
-                    
-//                    LikedCoursesView(likedCourses: user.likedCourses)
-                }
-                .padding()
-                .onAppear(perform: {
-                    FirebaseServices.shared.fetchProfileDetails { fetchedUser in
-                        if let fetchedUser = fetchedUser{
-                            self.user = fetchedUser
-                        }
-                        else{
-                            print("error hai bhai")
-                        }
+                        .padding()
+                        .padding(.leading, -20)
+                        .padding(.top, -20)
                     }
-                })
-            }
-            .background(Color(UIColor.white))
-            .sheet(isPresented: $showSettings) {
-                SettingsView(isSignedOut: $isSignedOut)
+                    .padding()
+                    .onAppear(perform: {
+                        FirebaseServices.shared.fetchProfileDetails { fetchedUser in
+                            if let fetchedUser = fetchedUser {
+                                self.user = fetchedUser
+                            } else {
+                                print("Error fetching user data")
+                            }
+                        }
+                    })
+                }
+                .background(Color(UIColor.white))
+                .sheet(isPresented: $showSettings) {
+                    
+                }
+
+                NavigationLink(destination: ContentView(), isActive: $isSignedOut) {
+                    EmptyView()
+                }
             }
         }
-        .background(
-            NavigationLink(destination: ContentView(), isActive: $isSignedOut) {
-                EmptyView()
-            }
-        )
+    }
+
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+            isSignedOut = true
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
     }
 }
 
@@ -85,10 +91,10 @@ struct ProfileHeader: View {
                 .font(.title)
                 .fontWeight(.bold)
             Spacer()
-            Button(action: { showSettings = true }) {
-                Image(systemName: "gearshape")
-                    .foregroundColor(.blue)
-            }
+//            Button(action: { showSettings = true }) {
+//                Image(systemName: "gearshape")
+//                    .foregroundColor(.blue)
+//            }
         }
 
         VStack(alignment: .leading) {
@@ -207,32 +213,7 @@ struct LikedCoursesView: View {
     }
 }
 
-struct SettingsView: View {
-    @Environment(\.presentationMode) var presentationMode
-    @Binding var isSignedOut: Bool
 
-    var body: some View {
-        VStack {
-            Text("Settings")
-            Button(action: {
-                signOut()
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Text("Sign Out")
-                    .foregroundColor(.blue)
-            }
-        }
-    }
-
-    func signOut() {
-        do {
-            try Auth.auth().signOut()
-            isSignedOut = true
-        } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
-        }
-    }
-}
 
 struct Courses: Identifiable {
     let id = UUID()
