@@ -44,6 +44,7 @@ struct SearchBar: View {
                             Image(systemName: "chevron.left")
                                 .foregroundColor(.blue)
                                 .padding(.leading, 10)
+                            
                         }
                         
                         Spacer()
