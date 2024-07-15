@@ -12,17 +12,32 @@ struct NodeJsCourseView: View {
     
     @State private var selectedSegment = 0
     
+    var courseName:String
+    var courseImage:String
     var body: some View {
         NavigationView{
             VStack {
                 // Header Image and Title
                 VStack(alignment: .leading){
-                    Image("nodejsCourse")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .padding(.horizontal,10)
+                    AsyncImage(url: URL(string: courseImage)) { phase in
+                        switch phase {
+                        case .empty:
+                            ProgressView()
+                        case .success(let image):
+                            image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .padding(.horizontal,10)
+                        case .failure:
+                            ProgressView()
+                            
+                        @unknown default:
+                            EmptyView()
+                        }
+                    }
+                        
                     
-                    Text("Node Js from Scratch")
+                    Text(courseName)
                         .font(.custom("Poppins-Bold", size: 20))
                         .padding(.leading,20)
                     
@@ -49,7 +64,7 @@ struct NodeJsCourseView: View {
                     }
                 }
             }
-            .navigationBarTitle("Node Js from Scratch", displayMode: .inline)
+            .navigationBarTitle(courseName, displayMode: .inline)
         }
     }
     
@@ -145,6 +160,7 @@ struct NodeJsCourseView: View {
 }
 struct NodeJsCourseView_Previews: PreviewProvider {
     static var previews: some View {
-        NodeJsCourseView()
+        // for proper preview provide some image url from remote
+        NodeJsCourseView(courseName: "test", courseImage: "")
     }
 }
