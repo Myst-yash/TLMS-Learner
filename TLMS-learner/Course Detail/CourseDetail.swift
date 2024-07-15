@@ -1,7 +1,10 @@
 import SwiftUI
 
 struct CourseDetails: View {
-    let course: Course =  Course(
+
+    let courseId:String
+
+    @State var course: Course =  Course(
         imageName: "nodejsCourse",
         title: "Node Js from Scratch",
         subtitle: "Master Node.js basics, build APIs, work with databases, and deploy apps. Ideal for beginners in backend development.",
@@ -35,8 +38,6 @@ struct CourseDetails: View {
         instructorStudents: 1823,
         instructorBio: "Meet Vasooli Bhai, the most charming debt collector in the universe! Known for his unique mix of muscle and mayhem, Vasooli Bhai's life motto is 'Money talks, but my fists do the negotiating.' With his hilarious attempts to get his dues and his over-the-top tough guy persona, he's the lovable goon."
     )
-    let courseId:String
-
     @State private var isEnrolled: Bool = false
     @State private var isLiked: Bool = false
     @State private var showFullSubtitle: Bool = false
@@ -51,11 +52,24 @@ struct CourseDetails: View {
                     .foregroundColor(.clear)
                     .frame(width: 355, height: 206)
                     .background(
-                        Image(course.imageName)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 355, height: 206)
-                            .clipped()
+                        AsyncImage(url: URL(string: course.imageName)) { phase in
+                            switch phase {
+                            case .empty:
+                                ProgressView()
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 355, height: 206)
+                                    .clipped()
+                            case .failure:
+                                ProgressView()
+                            @unknown default:
+                                EmptyView()
+                            }
+                        }
+//                        Image(course.imageName)
+                            
                     )
                     .shadow(color: .black.opacity(0.2), radius: 3, x: 1, y: 2)
                     .padding(.horizontal, 20)
@@ -142,6 +156,16 @@ struct CourseDetails: View {
                     // Enroll action
                     isEnrolled.toggle()
                     print("Enroll Now button tapped")
+                    if isEnrolled {
+                        FirebaseServices.shared.enrollStudent(courseId: courseId) { ans in
+                            if ans {
+                                print("enrolled")
+                            }
+                            else{
+                                print("not enrolled")
+                            }
+                        }
+                    }
                 }
                 .padding(.horizontal, 20)
                 .shadow(color: isEnrolled ? Color.purple.opacity(0.6) : Color.clear, radius: 10, x: 0, y: 10)
@@ -268,6 +292,13 @@ struct CourseDetails: View {
             .padding()
         }
         .navigationBarTitle("Course Details", displayMode: .inline)
+        .onAppear(perform: {
+            FirebaseServices.shared.fetchCourseDetailsWithId(courseID: courseId) { fetchedCourse in
+                self.course.imageName = fetchedCourse?.imageName ?? course.imageName
+                self.course.title = fetchedCourse?.title ?? course.title
+                self.course.description = fetchedCourse?.description ?? course.description
+            }
+        })
     }
 
     // Helper function to determine if "Show more" button should be shown
@@ -295,7 +326,8 @@ extension String {
 
 struct CourseDetails_Previews: PreviewProvider {
     static var previews: some View {
-        CourseDetails(courseId: "01")
+        CourseDetails(courseId: "F1AAA783-67A4-4554-A15C-D6B4A78729BE"
+)
     }
 }
 

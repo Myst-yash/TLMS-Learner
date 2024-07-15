@@ -1,6 +1,6 @@
 import Foundation
 
-struct User {
+struct User: Decodable {
     var id: String
     var email: String
     var firstName: String

@@ -15,7 +15,6 @@ struct HomeView: View {
     @State var upcomingCourse:[HomeCourse] = []
     @State var forYouCourse:[HomeCourse] = []
     @State var allCourses:[HomeCourse] = []
-//    var course : Course
     var body: some View {
         NavigationStack {
             VStack {
@@ -96,7 +95,7 @@ struct HomeView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 10) {
                                 ForEach(forYouCourse.prefix(5)) { course in
-                                    NavigationLink(destination: CourseDetails(courseId: "01")) { // Replace 'NextView' with your destination view
+                                    NavigationLink(destination: CourseDetails(courseId: course.id)) { // Replace 'NextView' with your destination view
                                         ContinueWatchingCard(courseName: course.courseName, courseImageURl: course.courseImage)
                                     }
                                     .buttonStyle(PlainButtonStyle()) // Ensures no default button styling is applied

@@ -258,7 +258,7 @@ class FirebaseServices{
             }
             let courses = documents.compactMap { document -> HomeCourse? in
                 let data = document.data()
-                let id = document.documentID
+                let id = data["courseID"] as? String ?? ""
                 let assignedEducator = data["EducatorName"] as? String ?? ""
                 let courseName = data["courseName"] as? String ?? ""
                 let courseImg = data["courseImageURL"] as? String ?? ""
@@ -270,6 +270,155 @@ class FirebaseServices{
                 return HomeCourse(id: id, assignedEducator: assignedEducator, courseName: courseName, courseImage: courseImg, releaseData: releaseDate, target: yourGoal)
             }
             completion(courses)
+        }
+    }
+
+    func fetchLikedCourses(completion: @escaping ([Course]) -> Void) {
+        
+        guard let currentUser = Auth.auth().currentUser else{
+            print("email not found")
+            return
+        }
+        let db = Firestore.firestore()
+        
+        let learnersCollection = db.collection("Learners")
+        let coursesCollection = db.collection("Courses")
+        
+        learnersCollection.whereField("Email", isEqualTo: currentUser.email!).getDocuments { (querySnapshot, error) in
+            if let error = error {
+                completion([])
+                return
+            }
+            
+            guard let documents = querySnapshot?.documents, !documents.isEmpty else {
+                print("no learner found with this email")
+                completion([]) // No learner found with the given email
+                return
+            }
+            
+            let learner = documents.compactMap { document -> User? in
+                let data = document.data()
+                let likedCourseIDs = data["likedCourses"] as? [String] ?? []
+                
+                return User(id: "", email: "", firstName: "", lastName: "", completedCourses: [], enrolledCourses: [], goal: "", joinedDate: "", likedCourses: likedCourseIDs)
+            }.first
+            
+            
+            guard let likedCourseIDs = learner?.likedCourses, !likedCourseIDs.isEmpty else {
+                print("no liked courses")
+                completion([]) // No liked courses
+                return
+            }
+            print(likedCourseIDs)
+            var likedCourses: [Course] = []
+            let group = DispatchGroup()
+
+            for courseID in likedCourseIDs {
+                group.enter()
+                coursesCollection.document(courseID).getDocument { (documentSnapshot, error) in
+                    defer { group.leave() }
+
+                    if let error = error {
+                        completion([])
+                        return
+                    }
+
+                    if let course = try? documentSnapshot?.data(as: Course.self) {
+                        likedCourses.append(course)
+                    }
+
+                }
+            }
+
+            group.notify(queue: .main) {
+                completion(likedCourses)
+            }
+        }
+    }
+    
+    func fetchCourseDetailsWithId(courseID: String, completion: @escaping (Course?) -> Void) {
+        let db = Firestore.firestore()
+        let ref = db.collection("Courses")
+        
+        ref.whereField("courseID", isEqualTo: courseID).getDocuments { snapshot, error in
+            if let error = error {
+                completion(nil)
+                return
+            }
+            
+            guard let documents = snapshot?.documents, !documents.isEmpty else {
+                completion(nil) // No course found with the given ID
+                return
+            }
+            
+            let document = documents.first!
+            let data = document.data()
+            
+            let course = Course(
+                id: UUID(uuidString: data["courseID"] as? String ?? "") ?? UUID(),
+                imageName: data["courseImageURL"] as? String ?? "",
+                title: data["courseName"] as? String ?? "",
+                subtitle: "",
+                studentsEnrolled: 0, // Not present in your data
+                creator: data["assignedEducator"] as? String ?? "",
+                lastUpdated: "",
+                language: "",
+                whatYoullLearn: [], // Not present in your data
+                courseIncludes: [], // Not present in your data
+                courseIncludeIcons: [], // Not present in your data
+                description: data["courseDescription"] as? String ?? "",
+                instructorImageName: "",
+                instructorName: "",
+                instructorUniversity: "",
+                instructorRating: 0,
+                instructorStudents: 0,
+                instructorBio: "",
+                progress: nil
+            )
+            
+            completion(course)
+        }
+    }
+    
+    func enrollStudent(courseId:String, completion: @escaping(Bool) -> Void){
+        let db = Firestore.firestore()
+        let learnerCollection = db.collection("Learners")
+        guard let currentUser = Auth.auth().currentUser else{
+            print("email not found")
+            return
+        }
+        
+        learnerCollection.whereField("Email", isEqualTo: currentUser.email!).getDocuments { querySnapshot, error in
+            if error != nil {
+                print("Error fetching learners")
+                completion(false)
+                return
+            }
+            
+            guard let documents = querySnapshot?.documents, documents.count == 1 else{
+                print("Document with the specified email not found or multiple documents found")
+                completion(false)
+                return
+            }
+            
+            let document = documents[0]
+            let documentID = document.documentID
+            
+            let data = document.data()
+            var enrolledCourse = data["enrolledCourses"] as? [String]
+            enrolledCourse?.append(courseId)
+            
+            // Update the document with the new field
+            learnerCollection.document(documentID).updateData(["enrolledCourses":enrolledCourse!]) { error in
+                if let error = error {
+                    print("Error updating document: \(error)")
+                    completion(false)
+                } else {
+                    print("Document successfully updated")
+                    completion(true)
+                }
+            }
+            
         }
     }
 
