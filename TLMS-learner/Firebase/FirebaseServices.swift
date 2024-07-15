@@ -224,6 +224,7 @@ class FirebaseServices{
                 let phonenumber = data["phoneNumber"] as? String ?? ""
                 let imageUrl = data["profileImageURL"] as? String ?? ""
                 let about = data["about"] as? String ?? ""
+                let assignedCourses = data["assignedCourses"]
                 
                 return Educators(
                     id: id,

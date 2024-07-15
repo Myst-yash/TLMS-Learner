@@ -26,7 +26,7 @@ struct ProfileViews: View {
                                 ListItemView(systemName: "book", text: "Your Courses", color: .black)
                             }
                             Divider()
-                            NavigationLink(destination: PaymentView()) {
+                            NavigationLink(destination: EducatorView()) {
                                 ListItemView(systemName: "person", text: "Your Educators", color: .black)
                             }
                             Divider()
@@ -349,13 +349,6 @@ struct ListItemView: View {
 struct FavoritesView: View {
     var body: some View {
         Text("Your Favorites")
-            .font(.largeTitle)
-    }
-}
-
-struct PaymentView: View {
-    var body: some View {
-        Text("Payment")
             .font(.largeTitle)
     }
 }
