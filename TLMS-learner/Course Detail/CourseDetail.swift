@@ -1,7 +1,42 @@
 import SwiftUI
 
 struct CourseDetails: View {
-    let course: Course
+    let course: Course =  Course(
+        imageName: "nodejsCourse",
+        title: "Node Js from Scratch",
+        subtitle: "Master Node.js basics, build APIs, work with databases, and deploy apps. Ideal for beginners in backend development.",
+        studentsEnrolled: 3027,
+        creator: "Vasooli Bhai",
+        lastUpdated: "24/06/2024",
+        language: "English",
+        whatYoullLearn: [
+            "Set up a Node.js development environment.",
+            "Build and deploy RESTful APIs.",
+            "Manage data with databases.",
+            "Implement and use Node.js modules."
+        ],
+        courseIncludes: [
+            "3.5 total hours on-demand video",
+            "Assignments and quizzes",
+            "Lifetime access",
+            "Certificate of completion"
+        ],
+        courseIncludeIcons: [
+            "play.rectangle.fill",
+            "doc.text.fill",
+            "infinity",
+            "rosette"
+        ],
+        description: "Kickstart your backend development journey with our Node.js from Scratch course. Learn to build and deploy efficient, scalable applications, create RESTful APIs, and manage databases.",
+        instructorImageName: "VasooliBhai",
+        instructorName: "Vasooli Bhai",
+        instructorUniversity: "University of Golmaal",
+        instructorRating: 4,
+        instructorStudents: 1823,
+        instructorBio: "Meet Vasooli Bhai, the most charming debt collector in the universe! Known for his unique mix of muscle and mayhem, Vasooli Bhai's life motto is 'Money talks, but my fists do the negotiating.' With his hilarious attempts to get his dues and his over-the-top tough guy persona, he's the lovable goon."
+    )
+    let courseId:String
+
     @State private var isEnrolled: Bool = false
     @State private var isLiked: Bool = false
     @State private var showFullSubtitle: Bool = false
@@ -260,7 +295,7 @@ extension String {
 
 struct CourseDetails_Previews: PreviewProvider {
     static var previews: some View {
-        CourseDetails(course: sampleCourse)
+        CourseDetails(courseId: "01")
     }
 }
 

@@ -11,7 +11,7 @@ struct HomeView: View {
     
     @State var goals: [String] = []
 
-    
+    @State private var selectedCourse: Int?
     @State var upcomingCourse:[HomeCourse] = []
     @State var forYouCourse:[HomeCourse] = []
     @State var allCourses:[HomeCourse] = []
@@ -64,8 +64,9 @@ struct HomeView: View {
                         
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 15) {
-                                ForEach(0..<5) { _ in
+                                ForEach(0..<5) { index in
                                     Button(action: {
+                                        selectedCourse = index
                                         // Add your action here
                                         print("PopularCoursesCard tapped")
                                     }) {
@@ -75,6 +76,9 @@ struct HomeView: View {
                             }
                             .padding(.leading, 20)
                         }
+                        NavigationLink(destination: CourseDetails(courseId: "01"), tag: 0, selection: $selectedCourse) {
+                                            EmptyView()
+                                        }
 
                            
 
@@ -92,21 +96,20 @@ struct HomeView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 10) {
                                 ForEach(forYouCourse.prefix(5)) { course in
-                                    ContinueWatchingCard(courseName: course.courseName, courseImageURl: course.courseImage)
-                                        .onTapGesture {
-                                            // Add your action here
-                                            print("UpcomingCourseCard tapped")
-                                            // You can perform any action related to the tapped course here
-                                        }
+                                    NavigationLink(destination: CourseDetails(courseId: "01")) { // Replace 'NextView' with your destination view
+                                        ContinueWatchingCard(courseName: course.courseName, courseImageURl: course.courseImage)
+                                    }
+                                    .buttonStyle(PlainButtonStyle()) // Ensures no default button styling is applied
+                                    
                                 }
-                                .buttonStyle(PlainButtonStyle()) // Ensures no default button styling is applied
-
-                                
                                 
                             }
                             .padding(.leading, 20)
                         
                         }
+//                        NavigationLink(destination: CourseDetails(courseId: "01"), tag: 0, selection: $selectedCourse) {
+//                                            EmptyView()
+//                                        }
 
                         HStack {
                             Text("Upcoming Courses")
