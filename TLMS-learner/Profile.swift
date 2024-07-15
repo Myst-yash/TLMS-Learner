@@ -1,10 +1,3 @@
-//
-//  Profile.swift
-//  TLMS-learner
-//
-//  Created by Abid Ali on 08/07/24.
-//
-
 import SwiftUI
 import FirebaseAuth
 
@@ -61,11 +54,12 @@ struct ProfileViews: View {
                 }
                 .background(Color(UIColor.white))
                 .sheet(isPresented: $showSettings) {
-                    
+                    // Add settings view content here
                 }
 
-                NavigationLink(destination: ContentView(), isActive: $isSignedOut) {
-                    EmptyView()
+                // Full screen cover for login screen
+                .fullScreenCover(isPresented: $isSignedOut) {
+                    ContentView()
                 }
             }
         }
@@ -295,4 +289,3 @@ struct LogoutView: View {
             .font(.largeTitle)
     }
 }
-
