@@ -1,12 +1,15 @@
 import SwiftUI
 
 struct QuizView: View {
-    @State private var remainingTime = QuizData.dummyData.time
-    @State private var currentQuestionIndex = 0
-    @State private var quizSubmitted = false // Track if quiz is submitted
-
-    @State private var questions: [Question] = QuizData.dummyData.questions // Updated to @State
-
+    // State variables
+    @State private var remainingTime = QuizData.dummyData.time // Remaining time for the quiz
+    @State private var currentQuestionIndex = 0 // Index of the current question being displayed
+    @State private var quizSubmitted = false // Tracks if the quiz has been submitted
+    
+    // State for quiz questions
+    @State private var questions: [Question] = QuizData.dummyData.questions
+    
+    // Computed property to get the number of questions in the quiz
     private var numberOfQuestions: Int {
         questions.count
     }
@@ -14,10 +17,12 @@ struct QuizView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
+                // Progress bar to show current question progress
                 ProgressView(value: Double(currentQuestionIndex), total: Double(numberOfQuestions))
-                    .progressViewStyle(LinearProgressViewStyle(tint: Color("color 2")))
+                    .progressViewStyle(LinearProgressViewStyle(tint: Color("color 2"))) // Styling with custom color
                     .frame(height: 4)
                 
+                // Display current question if index is valid
                 if let currentQuestion = questions[safe: currentQuestionIndex] {
                     QuestionView(
                         question: currentQuestion,
@@ -31,13 +36,14 @@ struct QuizView: View {
                 
                 Spacer()
                 
+                // Bottom navigation bar with navigation or submission button
                 CustomBottomBar(
                     isLastQuestion: currentQuestionIndex == numberOfQuestions - 1,
                     action: {
                         if currentQuestionIndex < numberOfQuestions - 1 {
-                            currentQuestionIndex += 1
+                            currentQuestionIndex += 1 // Move to the next question
                         } else {
-                            submitQuiz()
+                            submitQuiz() // Submit the quiz if it's the last question
                         }
                     },
                     courseName: QuizData.dummyData.courseName
@@ -55,276 +61,280 @@ struct QuizView: View {
                     .hidden() // Hide the NavigationLink label
                 )
             }
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitleDisplayMode(.inline) // Display title in inline mode
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    TimerView(remainingTime: $remainingTime)
+                    TimerView(remainingTime: $remainingTime) // Display timer in the center of the navigation bar
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
-                        // Handle back action
+                        // Handle back action if needed
                     }) {
-                        Image(systemName: "xmark")
+                        Image(systemName: "xmark") // Display close icon
                     }
                 }
             }
         }
     }
     
+    // Function to submit the quiz
     private func submitQuiz() {
         quizSubmitted = true
     }
     
+    // Function to calculate the score based on selected answers
     private func calculateScore() -> Int {
         questions.filter { $0.selectedAnswer == $0.correctAnswer }.count
     }
 }
 
-// TimerView struct remains unchanged
+// View to display countdown timer
 struct TimerView: View {
-    @Binding var remainingTime: Int
+    @Binding var remainingTime: Int // Binding for remaining time
 
     var body: some View {
         HStack {
-            Image(systemName: "clock")
-            Text("\(remainingTime / 60) mins \(remainingTime % 60) secs remaining")
-                .font(.custom("Poppins-Medium", size: 12))
+            Image(systemName: "clock") // Clock icon
+            Text("\(remainingTime / 60) mins \(remainingTime % 60) secs remaining") // Display remaining time in minutes and seconds
+                .font(.custom("Poppins-Medium", size: 12)) // Custom font
         }
         .onAppear {
-            // Start the timer when the view appears
-            startTimer()
+            startTimer() // Start the timer when the view appears
         }
     }
 
+    // Function to start the countdown timer
     private func startTimer() {
         // Timer to decrement remaining time every second
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
             if remainingTime > 0 {
                 remainingTime -= 1
             } else {
-                // Invalidate timer when time is up
-                timer.invalidate()
+                timer.invalidate() // Invalidate timer when time is up
             }
         }
     }
 }
 
-// QuestionView struct remains unchanged
+// View to display a single quiz question
 struct QuestionView: View {
-    let question: Question
-    @Binding var selectedChoice: String
-    let numberOfQuestions: Int
+    let question: Question // Question data model
+    @Binding var selectedChoice: String // Binding for selected answer
+    let numberOfQuestions: Int // Total number of questions
     
     var body: some View {
         VStack(alignment: .leading) {
             // Display question number and text
             Text("QUESTION \(question.id) OF \(numberOfQuestions)")
-                .font(.custom("Poppins-Bold", size: 14))
-                .foregroundColor(.gray)
-                .padding(.vertical, 10)
+                .font(.custom("Poppins-Bold", size: 14)) // Custom font
+                .foregroundColor(.gray) // Gray color
+                .padding(.vertical, 10) // Vertical padding
+            
+            // Display question text
             Text(question.text)
-                .font(.custom("Poppins-Bold", size: 20))
-                .fontWeight(.bold)
-                .padding(.bottom, 20)
+                .font(.custom("Poppins-Bold", size: 20)) // Custom font
+                .fontWeight(.bold) // Bold font weight
+                .padding(.bottom, 20) // Bottom padding
             
             // Display choices for the question
             ForEach(question.choices, id: \.self) { choice in
                 ChoiceView(choice: choice, selectedChoice: $selectedChoice)
             }
         }
-        .padding()
+        .padding() // Padding around the content
     }
 }
 
-// ChoiceView struct remains unchanged
+// View to display a choice for a quiz question
 struct ChoiceView: View {
-    let choice: String
-    @Binding var selectedChoice: String
+    let choice: String // Choice text
+    @Binding var selectedChoice: String // Binding for selected answer
 
     var body: some View {
         Button(action: {
-            // Update selected choice when button is tapped
-            selectedChoice = choice
+            selectedChoice = choice // Update selected choice when button is tapped
         }) {
             HStack {
                 // Display checkmark for selected choice
                 Image(systemName: selectedChoice == choice ? "checkmark.circle.fill" : "circle")
-                    .foregroundColor(selectedChoice == choice ? Color("color 2") : .primary)
-                    .imageScale(.large)
+                    .foregroundColor(selectedChoice == choice ? Color("color 2") : .primary) // Custom color for selected choice
+                    .imageScale(.large) // Larger image scale
                 Text(choice)
-                    .font(.custom("Poppins-Regular", size: 14))
+                    .font(.custom("Poppins-Regular", size: 14)) // Custom font for choice text
                 Spacer()
             }
-            .padding()
-            .background(selectedChoice == choice ? Color("color 2").opacity(0.1) : Color.clear)
+            .padding() // Padding around the content
+            .background(selectedChoice == choice ? Color("color 2").opacity(0.1) : Color.clear) // Background color for selected choice
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.black, lineWidth: 1)
+                    .stroke(Color.black, lineWidth: 1) // Border stroke
             )
-            .cornerRadius(10)
+            .cornerRadius(10) // Corner radius for the button
         }
-        .buttonStyle(PlainButtonStyle())
+        .buttonStyle(PlainButtonStyle()) // Plain button style
     }
 }
 
-// CustomBottomBar struct remains unchanged
+// View to display the bottom navigation bar
 struct CustomBottomBar: View {
-    let isLastQuestion: Bool
-    let action: () -> Void
-    let courseName: String
+    let isLastQuestion: Bool // Flag indicating if it's the last question
+    let action: () -> Void // Action closure for button tap
+    let courseName: String // Course name
     
     var body: some View {
         VStack(spacing: 4) {
-            Divider()
+            Divider() // Divider line
+            
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    // Display course name and assessment text
+                    // Display course name
                     Text(courseName)
-                        .font(.custom("Poppins-Bold", size: 18))
-                        .foregroundColor(.black)
-                        .padding(.leading, 30)
+                        .font(.custom("Poppins-Bold", size: 18)) // Custom font for course name
+                        .foregroundColor(.black) // Black color
+                        .padding(.leading, 30) // Leading padding
                     
+                    // Display assessment text
                     Text("Final Assessment")
-                        .font(.custom("Poppins-Medium", size: 14))
-                        .foregroundColor(.gray)
-                        .padding(.leading, 30)
+                        .font(.custom("Poppins-Medium", size: 14)) // Custom font for assessment text
+                        .foregroundColor(.gray) // Gray color
+                        .padding(.leading, 30) // Leading padding
                 }
-                Spacer()
+                
+                Spacer() // Spacer view
+                
                 // Display navigation button based on whether it's the last question
                 NavigationButton(isLastQuestion: isLastQuestion, action: action)
-                    .frame(width: 100, height: 50)
-                    .padding(.trailing, 30)
+                    .frame(width: 100, height: 50) // Button size
+                    .padding(.trailing, 30) // Trailing padding
             }
-            .padding(.top)
+            .padding(.top) // Top padding
         }
-        .background(Color.white)
-        .padding(.top, 40)
+        .background(Color.white) // White background
+        .padding(.top, 40) // Top padding
     }
 }
 
-// NavigationButton struct remains unchanged
+// View to display a navigation button
 struct NavigationButton: View {
-    let isLastQuestion: Bool
-    let action: () -> Void
+    let isLastQuestion: Bool // Flag indicating if it's the last question
+    let action: () -> Void // Action closure for button tap
 
     var body: some View {
         if !isLastQuestion {
             Button(action: action) {
                 HStack {
                     Spacer()
-                    Image(systemName: "arrow.right")
+                    Image(systemName: "arrow.right") // Arrow right icon
                         .resizable()
-                        .aspectRatio(CGSize(width: 1.6, height: 1), contentMode: .fit)
-                        .foregroundColor(Color("color 2"))
-                        .frame(width: 40)
-                        .background(Color.white)
+                        .aspectRatio(CGSize(width: 1.6, height: 1), contentMode: .fit) // Aspect ratio for the icon
+                        .foregroundColor(Color("color 2")) // Custom color for the icon
+                        .frame(width: 40) // Fixed width
+                        .background(Color.white) // White background
                 }
-                .padding(.trailing, 20)
+                .padding(.trailing, 20) // Trailing padding
             }
         } else {
-            CustomButton(label: "Submit", action: action)
-                .frame(width: 114, height: 50)
-                .cornerRadius(12)
-                .shadow(radius: 5)
+            CustomButton(label: "Submit", action: action) // Display submit button
+                .frame(width: 114, height: 50) // Button size
+                .cornerRadius(12) // Corner radius for the button
+                .shadow(radius: 5) // Shadow effect
         }
     }
 }
 
-// Question struct remains unchanged
+// Model for a quiz question
 struct Question: Identifiable {
-    let id: Int
-    let text: String
-    let choices: [String]
-    let correctAnswer: String
-    var selectedAnswer: String? = nil
+    let id: Int // Question ID
+    let text: String // Question text
+    let choices: [String] // List of choices
+    let correctAnswer: String // Correct answer
+    var selectedAnswer: String? = nil // Selected answer, initially nil
 }
 
-// QuizData struct remains unchanged
+// Model for quiz data
 struct QuizData {
-    let time: Int
-    let courseName: String
-    let questions: [Question]
+    let time: Int // Total time for the quiz in seconds
+    let courseName: String // Name of the course
+    let questions: [Question] // List of quiz questions
     
+    // Dummy data for preview and testing
     static let dummyData = QuizData(
-        time: 1200,
-        courseName: "Swift Fundamentals",
+        time: 1200, // 20 minutes in seconds
+        courseName: "Node js from Scratch", // Course name
         questions: [
-            Question(id: 1, text: "What is the primary purpose of the require function in Node.js?", choices: [
-                "To define a new function in Node.js.",
-                "To read a file from the file system.",
-                "To import and use modules in a Node.js application.",
-                "To execute a system command from within a Node.js script."
-            ], correctAnswer: "To import and use modules in a Node.js application."),
-            Question(id: 2, text: "Which of the following is NOT a JavaScript data type?", choices: [
-                "Number",
-                "String",
-                "Boolean",
-                "Float"
-            ], correctAnswer: "Float"),
-            Question(id: 3, text: "What does CSS stand for?", choices: [
-                "Creative Style Sheets",
-                "Cascading Style Sheets",
-                "Computer Style Sheets",
-                "Colorful Style Sheets"
-            ], correctAnswer: "Cascading Style Sheets"),
-            Question(id: 4, text: "Inside which HTML element do we put the JavaScript?", choices: [
-                "<js>",
-                "<javascript>",
-                "<script>",
-                "<scripting>"
-            ], correctAnswer: "<script>"),
-            Question(id: 5, text: "Which HTML attribute is used to define inline styles?", choices: [
-                "style",
-                "styles",
-                "class",
-                "font"
-            ], correctAnswer: "style"),
-            
-                Question(id: 6, text: "What is the primary purpose of the require function in Node.js?", choices: [
-                    "To define a new function in Node.js.",
-                    "To read a file from the file system.",
-                    "To import and use modules in a Node.js application.",
-                    "To execute a system command from within a Node.js script."
-                ], correctAnswer: "To import and use modules in a Node.js application."),
-                Question(id: 7, text: "Which of the following is NOT a JavaScript data type?", choices: [
-                    "Number",
-                    "String",
-                    "Boolean",
-                    "Float"
-                ], correctAnswer: "Float"),
-                Question(id: 8, text: "What does CSS stand for?", choices: [
-                    "Creative Style Sheets",
-                    "Cascading Style Sheets",
-                    "Computer Style Sheets",
-                    "Colorful Style Sheets"
-                ], correctAnswer: "Cascading Style Sheets"),
-                Question(id: 9, text: "Inside which HTML element do we put the JavaScript?", choices: [
-                    "<js>",
-                    "<javascript>",
-                    "<script>",
-                    "<scripting>"
-                ], correctAnswer: "<script>"),
-                Question(id: 10, text: "Which HTML attribute is used to define inline styles?", choices: [
-                    "style",
-                    "styles",
-                    "class",
-                    "font"
-                ], correctAnswer: "style")
-
+            Question(id: 1, text: "What is Node.js?", choices: [
+                "A front-end JavaScript framework.",
+                "A server-side runtime environment.",
+                "A relational database management system.",
+                "An HTML preprocessor."
+            ], correctAnswer: "A server-side runtime environment."),
+            Question(id: 2, text: "Which of the following is NOT a core module in Node.js?", choices: [
+                "http",
+                "fs",
+                "path",
+                "ajax"
+            ], correctAnswer: "ajax"),
+            Question(id: 3, text: "What is npm in the context of Node.js?", choices: [
+                "Node Package Manager, used for package management.",
+                "Node Preprocessing Module, used for code preprocessing.",
+                "Node Project Manager, used for project lifecycle management.",
+                "Node Package Middleware, used for HTTP middleware."
+            ], correctAnswer: "Node Package Manager, used for package management."),
+            Question(id: 4, text: "What is the purpose of package.json in a Node.js project?", choices: [
+                "To define the project dependencies and metadata.",
+                "To define the HTML structure of the application.",
+                "To store JavaScript functions.",
+                "To manage SQL databases."
+            ], correctAnswer: "To define the project dependencies and metadata."),
+            Question(id: 5, text: "How can you include an external module in a Node.js application?", choices: [
+                "Using the require() function.",
+                "Using the import statement.",
+                "By including a <script> tag in HTML.",
+                "By defining a class."
+            ], correctAnswer: "Using the require() function."),
+            Question(id: 6, text: "What is callback hell in Node.js?", choices: [
+                "A situation where callbacks are nested deeply.",
+                "A feature of Node.js for handling asynchronous code.",
+                "A popular Node.js design pattern.",
+                "A tool for debugging Node.js applications."
+            ], correctAnswer: "A situation where callbacks are nested deeply."),
+            Question(id: 7, text: "What is Express.js?", choices: [
+                "A templating engine for Node.js.",
+                "A JavaScript testing framework.",
+                "A minimalist web framework for Node.js.",
+                "A database management system."
+            ], correctAnswer: "A minimalist web framework for Node.js."),
+            Question(id: 8, text: "What does RESTful API mean in the context of Node.js?", choices: [
+                "Representational State Transfer, an architectural style for networked applications.",
+                "A Node.js package for handling REST requests.",
+                "A JavaScript library for UI development.",
+                "A security feature in Node.js."
+            ], correctAnswer: "Representational State Transfer, an architectural style for networked applications."),
+            Question(id: 9, text: "What is middleware in the context of Express.js?", choices: [
+                "Software that provides common services and capabilities to applications outside of what's offered by the operating system.",
+                "A package manager for Node.js.",
+                "A type of Node.js module.",
+                "A web server for Node.js."
+            ], correctAnswer: "Software that provides common services and capabilities to applications outside of what's offered by the operating system."),
+            Question(id: 10, text: "How can you handle errors in Express.js?", choices: [
+                "By using try-catch blocks.",
+                "By using the errorHandler middleware in Express.",
+                "By using console.log() statements.",
+                "By using the npm package 'error-handler'."
+            ], correctAnswer: "By using the errorHandler middleware in Express.")
         ]
     )
 }
 
-// Safe subscript extension remains unchanged
+// Extension to safely access elements by index from a collection
 extension Collection {
     subscript(safe index: Index) -> Element? {
         return indices.contains(index) ? self[index] : nil
     }
 }
 
-// Preview for QuizView
 struct QuizView_Previews: PreviewProvider {
     static var previews: some View {
-        QuizView()
+        QuizView() // Preview for QuizView
     }
 }

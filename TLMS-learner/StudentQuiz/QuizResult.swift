@@ -1,27 +1,23 @@
-//
-//  QuizResult.swift
-//  TLMS-learner
-//
-//  Created by Myst on 14/07/24.
-//
-
 import SwiftUI
 
-// Assuming you have QuestionDetailView defined somewhere like this
 struct QuestionDetailView: View {
     let question: Question
 
     var body: some View {
         VStack(alignment: .leading) {
+            // Display the question number
             Text("Question \(question.id)")
                 .font(.custom("Poppins-Bold", size: 20))
                 .padding(.bottom, 10)
+            // Display the question text
             Text(question.text)
                 .font(.custom("Poppins-Regular", size: 16))
                 .padding(.bottom, 20)
 
+            // Display answer choices with selection indication
             ForEach(question.choices, id: \.self) { choice in
                 HStack {
+                    // Display a checkmark for selected answer, circle otherwise
                     Image(systemName: question.selectedAnswer == choice ? "checkmark.circle.fill" : "circle")
                         .foregroundColor(question.selectedAnswer == choice ? .green : .primary)
                     Text(choice)
@@ -64,6 +60,7 @@ struct ResultView: View {
     }
     
     var circleColor: Color {
+        // Determine circle color based on passing percentage
         if obtainedPercentage >= 67 {
             return Color(red: 0.56, green: 0.81, blue: 0.37) // Green
         } else {
@@ -74,9 +71,11 @@ struct ResultView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
+                // Top section with score, course name, and exam type
                 VStack(alignment: .leading) {
                     HStack {
                         ZStack {
+                            // Circular progress indicator based on obtained percentage
                             Circle()
                                 .fill(circleColor)
                                 .frame(width: 100, height: 100)
@@ -86,6 +85,7 @@ struct ResultView: View {
                         }
                         .padding()
                         VStack(alignment: .leading) {
+                            // Display course name and exam type
                             Text(courseName)
                                 .font(.custom("Poppins-Bold", size: 20))
                                 .foregroundColor(.white)
@@ -97,6 +97,7 @@ struct ResultView: View {
                     }
                     .cornerRadius(20)
                     
+                    // Summary stats (passing grade, correct answers, wrong answers)
                     Rectangle()
                         .fill(Color.white)
                         .opacity(0.85)
@@ -105,6 +106,7 @@ struct ResultView: View {
                         .overlay(
                             HStack(spacing: 0) {
                                 VStack(spacing: 10) {
+                                    // Display passing grade
                                     Text("Passing Grade")
                                         .font(.custom("Poppins-Bold", size: 14))
                                         .foregroundColor(.black)
@@ -115,6 +117,7 @@ struct ResultView: View {
                                 .frame(maxWidth: .infinity)
                                 
                                 VStack(spacing: 10) {
+                                    // Display correct answers count
                                     Text("Correct")
                                         .font(.custom("Poppins-Bold", size: 14))
                                         .foregroundColor(.black)
@@ -125,6 +128,7 @@ struct ResultView: View {
                                 .frame(maxWidth: .infinity)
                                 
                                 VStack(spacing: 10) {
+                                    // Display wrong answers count
                                     Text("Wrong")
                                         .font(.custom("Poppins-Bold", size: 14))
                                         .foregroundColor(.black)
@@ -140,7 +144,10 @@ struct ResultView: View {
                 .frame(height: 237) // Set the height of the top background to 250
                 .background(Color("color 2"))
                 
-                Divider() // Add a divider between top and bottom sections
+                // Divider between top and question list
+                Divider()
+                
+                // Scrollable list of questions and their correctness status
                 ScrollView {
                     VStack(alignment: .leading, spacing: 15) {
                         Text("List of Questions")
@@ -154,9 +161,11 @@ struct ResultView: View {
                             NavigationLink(destination: QuestionDetailView(question: question)) {
                                 HStack {
                                     VStack(alignment: .leading, spacing: 5) {
+                                        // Display question number
                                         Text("Question \(question.id)")
                                             .font(.custom("Poppins-Bold", size: 14))
                                             .foregroundColor(.black)
+                                        // Display correctness status
                                         Text(isAnswerCorrect(for: question) ? "Correct Answer" : "Wrong Answer")
                                             .font(.custom("Poppins-Regular", size: 14))
                                             .foregroundColor(isAnswerCorrect(for: question) ? Color(red: 0.56, green: 0.81, blue: 0.37) : Color(red: 0.81, green: 0.37, blue: 0.37))
@@ -190,6 +199,7 @@ struct ResultView: View {
         }
     }
     
+    // Determine if the selected answer matches the correct answer
     private func isAnswerCorrect(for question: Question) -> Bool {
         guard let selectedAnswer = question.selectedAnswer else {
             return false
@@ -197,10 +207,12 @@ struct ResultView: View {
         return selectedAnswer == question.correctAnswer
     }
     
+    // Calculate the number of correctly answered questions
     private func calculateCorrectAnswers() -> Int {
         questions.filter { $0.selectedAnswer == $0.correctAnswer }.count
     }
     
+    // Calculate the number of incorrectly answered questions
     private func calculateWrongAnswers() -> Int {
         questions.count - calculateCorrectAnswers()
     }
@@ -210,16 +222,9 @@ struct ResultView: View {
 struct ResultView_Previews: PreviewProvider {
     static var previews: some View {
         let questions = QuizData.dummyData.questions
-        let totalQuestions = questions.count
-        let passingPercentage = 67 // 2/3 of total
-        let passingScore = (passingPercentage * totalQuestions) / 100
-        let passingGrade = "\(passingScore)/\(totalQuestions)"
-        let correctAnswers = "\(31)/\(totalQuestions)" // Assuming 31 correct out of 40 for preview
-        let wrongAnswers = "\(9)/\(totalQuestions)" // Assuming 9 wrong out of 40 for preview
-        
         return ResultView(
             score: 88,
-            courseName: "SwiftUI Course",
+            courseName: "Node js from Scratch",
             questions: questions
         )
         .previewLayout(.sizeThatFits)
