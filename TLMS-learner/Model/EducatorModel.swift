@@ -10,4 +10,8 @@ struct Educators:Identifiable{
     var phonenumber: String
     var imageUrl:String
     var about:String
+    var assignedCourse:[HomeCourse] = []
+    var students = 100
 }
+
+

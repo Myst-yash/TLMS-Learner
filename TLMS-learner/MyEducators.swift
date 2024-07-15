@@ -7,10 +7,9 @@ struct EducatorView: View {
     @State var educators:[Educators] = []
     
     var body: some View {
-        NavigationView {
             VStack(spacing: 0) {
                 List(educators) { educator in
-                    NavigationLink(destination: EducatorProfileView()) {
+                    NavigationLink(destination: EducatorProfileView(id: educator.id,firstName: educator.firstName,lastName: educator.lastName,image: educator.imageUrl,about: educator.about)) {
                         
                         HStack(spacing: 30) {
                             ZStack {
@@ -38,8 +37,6 @@ struct EducatorView: View {
                             
                             Spacer()
                             
-                            Image(systemName: "chevron.right")
-                                .foregroundColor(.blue)
                         }
                         .padding(.vertical, 8)
                     }
@@ -56,7 +53,6 @@ struct EducatorView: View {
                     self.educators = fetchedData
                 }
             })
-        }
     }
 }
 

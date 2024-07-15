@@ -1,9 +1,46 @@
 import SwiftUI
 
 struct CourseDetails: View {
-    let course: Course
+
+    let courseId:String
+
+    @State var course: Course =  Course(
+        imageName: "nodejsCourse",
+        title: "Node Js from Scratch",
+        subtitle: "Master Node.js basics, build APIs, work with databases, and deploy apps. Ideal for beginners in backend development.",
+        studentsEnrolled: 3027,
+        creator: "Vasooli Bhai",
+        lastUpdated: "24/06/2024",
+        language: "English",
+        whatYoullLearn: [
+            "Set up a Node.js development environment.",
+            "Build and deploy RESTful APIs.",
+            "Manage data with databases.",
+            "Implement and use Node.js modules."
+        ],
+        courseIncludes: [
+            "3.5 total hours on-demand video",
+            "Assignments and quizzes",
+            "Lifetime access",
+            "Certificate of completion"
+        ],
+        courseIncludeIcons: [
+            "play.rectangle.fill",
+            "doc.text.fill",
+            "infinity",
+            "rosette"
+        ],
+        description: "Kickstart your backend development journey with our Node.js from Scratch course. Learn to build and deploy efficient, scalable applications, create RESTful APIs, and manage databases.",
+        instructorImageName: "VasooliBhai",
+        instructorName: "Vasooli Bhai",
+        instructorUniversity: "University of Golmaal",
+        instructorRating: 4,
+        instructorStudents: 1823,
+        instructorBio: "Meet Vasooli Bhai, the most charming debt collector in the universe! Known for his unique mix of muscle and mayhem, Vasooli Bhai's life motto is 'Money talks, but my fists do the negotiating.' With his hilarious attempts to get his dues and his over-the-top tough guy persona, he's the lovable goon."
+    )
     @State private var isEnrolled: Bool = false
     @State private var isLiked: Bool = false
+    @State private var showAlert = false
     @State private var showFullSubtitle: Bool = false
     @State private var showFullDescription: Bool = false
     @State private var showFullInstructorBio: Bool = false
@@ -16,11 +53,24 @@ struct CourseDetails: View {
                     .foregroundColor(.clear)
                     .frame(width: 355, height: 206)
                     .background(
-                        Image(course.imageName)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 355, height: 206)
-                            .clipped()
+                        AsyncImage(url: URL(string: course.imageName)) { phase in
+                            switch phase {
+                            case .empty:
+                                ProgressView()
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 355, height: 206)
+                                    .clipped()
+                            case .failure:
+                                ProgressView()
+                            @unknown default:
+                                EmptyView()
+                            }
+                        }
+//                        Image(course.imageName)
+                            
                     )
                     .shadow(color: .black.opacity(0.2), radius: 3, x: 1, y: 2)
                     .padding(.horizontal, 20)
@@ -107,9 +157,32 @@ struct CourseDetails: View {
                     // Enroll action
                     isEnrolled.toggle()
                     print("Enroll Now button tapped")
+                    if isEnrolled {
+                        FirebaseServices.shared.enrollStudent(courseId: courseId) { ans in
+                            if ans {
+                                print("enrolled")
+                                showAlert = true
+                            }
+                            else{
+                                print("not enrolled")
+                            }
+                        }
+                    }
                 }
                 .padding(.horizontal, 20)
                 .shadow(color: isEnrolled ? Color.purple.opacity(0.6) : Color.clear, radius: 10, x: 0, y: 10)
+                .alert(isPresented: $showAlert) {
+                                Alert(
+                                    title: Text("Congratulations!"),
+                                    message: Text("You have successfully enrolled in this course."),
+                                    primaryButton: .default(Text("Start This Course")) {
+                                        // Action for starting the course
+                                        print("Start This Course button tapped")
+                                        // Add your navigation or action to start the course here
+                                    },
+                                    secondaryButton: .cancel()
+                                )
+                            }
 
                 // Add to Likes button
                 Button(action: {
@@ -233,6 +306,13 @@ struct CourseDetails: View {
             .padding()
         }
         .navigationBarTitle("Course Details", displayMode: .inline)
+        .onAppear(perform: {
+            FirebaseServices.shared.fetchCourseDetailsWithId(courseID: courseId) { fetchedCourse in
+                self.course.imageName = fetchedCourse?.imageName ?? course.imageName
+                self.course.title = fetchedCourse?.title ?? course.title
+                self.course.description = fetchedCourse?.description ?? course.description
+            }
+        })
     }
 
     // Helper function to determine if "Show more" button should be shown
@@ -260,7 +340,8 @@ extension String {
 
 struct CourseDetails_Previews: PreviewProvider {
     static var previews: some View {
-        CourseDetails(course: sampleCourse)
+        CourseDetails(courseId: "F1AAA783-67A4-4554-A15C-D6B4A78729BE"
+)
     }
 }
 

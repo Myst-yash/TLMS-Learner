@@ -17,9 +17,9 @@ struct ContentView1: View {
                     }
                     .tag(0) // Tag for NotificationView
 
-                ProgressView()
+                MyCourses()
                     .tabItem {
-                        Label("Progress", systemImage: "chart.bar.fill")
+                        Label("My Courses", systemImage: "book.fill")
                     }
                     .tag(1) // Tag for CoursesView
 

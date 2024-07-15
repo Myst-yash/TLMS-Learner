@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct Course: Identifiable {
+struct Course: Identifiable, Decodable {
     var id = UUID()
     var imageName: String = ""
     var title: String = ""

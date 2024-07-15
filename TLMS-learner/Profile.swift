@@ -26,7 +26,7 @@ struct ProfileViews: View {
                                 ListItemView(systemName: "book", text: "Your Courses", color: .black)
                             }
                             Divider()
-                            NavigationLink(destination: PaymentView()) {
+                            NavigationLink(destination: EducatorView()) {
                                 ListItemView(systemName: "person", text: "Your Educators", color: .black)
                             }
                             Divider()
@@ -167,47 +167,6 @@ struct PieChartView: View {
         }
     }
 }
-
-//struct CourseActionsView: View {
-//    var body: some View {
-//        HStack {
-//            Button(action: {}) {
-//
-//                VStack {
-//                    Image(systemName: "play.circle.fill")
-//                        .resizable()
-//                        .frame(width: 40, height: 40)
-//                    Text("Enrolled Courses")
-//                        .font(.headline).foregroundStyle(.black).padding(.top, 40)
-//                }
-//            }
-//            .frame(width: 150, height: 130)
-//            .padding()
-//            .background(Color.white)
-//            .cornerRadius(25).overlay(
-//                RoundedRectangle(cornerRadius: 25)
-//                    .stroke(Color("color 6"), lineWidth: 1)
-//            )
-//            Button(action: {}) {
-//                VStack {
-//                    Image(systemName: "star.circle.fill")
-//                        .resizable()
-//                        .frame(width: 40, height: 40)
-//                    Text("Certificates")
-//                        .font(.headline).foregroundStyle(.black).padding(.top, 40)
-//                }
-//            }
-//            .frame(width: 150, height: 130)
-//            .padding()
-//            .background(Color.white)
-//            .cornerRadius(25).overlay(
-//                RoundedRectangle(cornerRadius: 25)
-//                    .stroke(Color("color 6"), lineWidth: 1)
-//            )
-//        }
-//    }
-//}
-
 struct LikedCoursesView: View {
     let likedCourses: [Courses]
 
@@ -288,35 +247,6 @@ struct ContentViews_Previews: PreviewProvider {
         ProfileViews()
     }
 }
-
-
-
-//extension Color {
-//    init(hex: String) {
-//        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
-//        var int: UInt64 = 0
-//        Scanner(string: hex).scanHexInt64(&int)
-//        let a, r, g, b: UInt64
-//        switch hex.count {
-//        case 3: // RGB (12-bit)
-//            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
-//        case 6: // RGB (24-bit)
-//            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
-//        case 8: // ARGB (32-bit)
-//            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
-//        default:
-//            (a, r, g, b) = (255, 0, 0, 0)
-//        }
-//        self.init(
-//            .sRGB,
-//            red: Double(r) / 255,
-//            green: Double(g) / 255,
-//            blue: Double(b) / 255,
-//            opacity: Double(a) / 255
-//        )
-//    }
-//}
-
 struct ListItemView: View {
     let systemName: String
     let text: String
@@ -348,21 +278,18 @@ struct ListItemView: View {
 // Placeholder views for navigation
 struct FavoritesView: View {
     var body: some View {
-        Text("Your Favorites")
+        Text("You have not enrolled in any course")
             .font(.largeTitle)
-    }
-}
-
-struct PaymentView: View {
-    var body: some View {
-        Text("Payment")
-            .font(.largeTitle)
+            .onAppear(perform: {
+                FirebaseServices.shared.fetchLikedCourses { fetchedCourses in
+                }
+            })
     }
 }
 
 struct TellYourFriendView: View {
     var body: some View {
-        Text("Tell Your Friend")
+        Text("Nothing in Wishlist")
             .font(.largeTitle)
     }
 }

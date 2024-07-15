@@ -32,8 +32,6 @@
 		525B65A52C41294C00DA881C /* StudentQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B65A42C41294B00DA881C /* StudentQuiz.swift */; };
 		525B65A82C44570800DA881C /* QuizResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B65A72C44570800DA881C /* QuizResult.swift */; };
 		52C21B182C3E5B4E00B8CCB9 /* CourseDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C21B0B2C3E5B4E00B8CCB9 /* CourseDetail.swift */; };
-		52C21B192C3E5B4E00B8CCB9 /* CourseDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C21B0B2C3E5B4E00B8CCB9 /* CourseDetail.swift */; };
-		52C21B1A2C3E5B4E00B8CCB9 /* CourseDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C21B0B2C3E5B4E00B8CCB9 /* CourseDetail.swift */; };
 		52C21B1B2C3E5B4E00B8CCB9 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C21B0C2C3E5B4E00B8CCB9 /* SectionView.swift */; };
 		52C21B1C2C3E5B4E00B8CCB9 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C21B0C2C3E5B4E00B8CCB9 /* SectionView.swift */; };
 		52C21B1D2C3E5B4E00B8CCB9 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C21B0C2C3E5B4E00B8CCB9 /* SectionView.swift */; };
@@ -487,7 +485,6 @@
 				04A385962C37BFD700832DDC /* PasswordField.swift in Sources */,
 				04A385A52C37BFD700832DDC /* HeadingLabel.swift in Sources */,
 				52C21B1C2C3E5B4E00B8CCB9 /* SectionView.swift in Sources */,
-				52C21B192C3E5B4E00B8CCB9 /* CourseDetail.swift in Sources */,
 				D1EF76452C39B55600C8B8A9 /* MyCourses.swift in Sources */,
 				D1EF76412C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */,
 			);
@@ -505,7 +502,6 @@
 				04A385A02C37BFD700832DDC /* TextLabel.swift in Sources */,
 				D1EF76422C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */,
 				52C21B1D2C3E5B4E00B8CCB9 /* SectionView.swift in Sources */,
-				52C21B1A2C3E5B4E00B8CCB9 /* CourseDetail.swift in Sources */,
 				04A385A62C37BFD700832DDC /* HeadingLabel.swift in Sources */,
 				04A385972C37BFD700832DDC /* PasswordField.swift in Sources */,
 			);

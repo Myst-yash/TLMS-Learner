@@ -10,35 +10,55 @@
 import SwiftUI
 
 struct EducatorProfileView: View {
+    var id : String
+    var firstName:String
+    var lastName:String
+    var image :String
+    var about:String
     var body: some View {
         VStack {
-           
-
             ScrollView{
                 VStack {
-                    Image("meow")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 120, height: 120)
-                        .clipShape(Circle())
-                        .padding(.bottom, 10)
+//                    Image("meow")
+//                        .resizable()
+//                        .scaledToFill()
+//                        .frame(width: 120, height: 120)
+//                        .clipShape(Circle())
+//                        .padding(.bottom, 10)
                     
-                    Text("Homelander")
+                    
+                    AsyncImage(url: URL(string: image)) { phase in
+                        switch phase {
+                        case .empty:
+                            ProgressView()
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 120, height: 120)
+                                .clipShape(Circle())
+                                .padding(.bottom, 10)
+                        case .failure:
+                            Image(systemName: "photo")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 120, height: 120)
+                                .clipShape(Circle())
+                                .padding(.bottom, 10)
+                        @unknown default:
+                            EmptyView()
+                        }
+                    }
+                    
+                    Text("\(firstName) \(lastName)")
                         .font(.system(size: 28, weight: .bold))
 
                     HStack {
                         Image(systemName: "graduationcap")
-                        Text("P.h.D in Data Science")
+                        Text(about)
                             .font(.system(size: 16))
                     }
                     .padding(.top, 4)
-                    
-                    HStack {
-                        Image(systemName: "building.2")
-                        Text("IIIT Hyderabad")
-                            .font(.system(size: 16))
-                    }
-                    .padding(.top, 1)
                 }
                 .padding(.bottom, 20)
 
@@ -58,23 +78,6 @@ struct EducatorProfileView: View {
                         }
                     }
                     
-//                    VStack{
-//                        Text("Students").font(.title2).bold().padding(.bottom, 50).padding(.leading, 180)
-//                        Text("120").font(.title2).bold().foregroundStyle(.gray).padding(.leading, -75).padding(.top, 20)
-//                    }
-                    
-                    
-                }
-
-                VStack(alignment: .leading) {
-                    Text("Courses")
-                        .font(.system(size: 22, weight: .bold))
-                        .padding(.leading, 10)
-                        .padding(.top, 20)
-                    
-    //                CourseView(courseName: "Django se Panga", author: "Batman")
-    //                CourseView(courseName: "Django se Panga", author: "Batman")
-                    EducatorCourseCard()
                 }
             }
             
@@ -143,10 +146,11 @@ struct EducatorCourseCard: View {
         }
     }
 }
+// to display the data pick an id of an educator from firebase and do the same
 
 struct EducatorProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        EducatorProfileView()
+        EducatorProfileView(id:"",firstName: "",lastName: "",image: "",about: "")
     }
 }
 
