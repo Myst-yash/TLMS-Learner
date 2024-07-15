@@ -253,7 +253,7 @@ struct ContinueWatchingCard: View {
             Image("glass")
             Image("glassCart").padding(.top, 90)
             
-                Text(courseName).foregroundStyle(Color.white).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/).padding().padding(.top, 85)
+            Text(courseName).foregroundStyle(Color.white).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/).padding().padding(.top, 85).frame(width: 190).padding(.leading, -15)
                 
             Image("edu").padding(.top, 100).padding(.leading, 210)
             Text("Batman").font(.footnote).bold().foregroundStyle(.white).padding(.top, 100).padding(.leading, 225)

@@ -12,7 +12,7 @@ struct MyCourses: View {
         //      Disappears the divider
              UISegmentedControl.appearance().setDividerImage(UIImage(), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
         //      Changes the color for the selected item
-        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(named: "#6C5DD4")
+        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(named: "color 2")
         //      Changes the text color for the selected item
              UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
              
@@ -65,6 +65,7 @@ struct ForYouCourseCard: View {
                     Text("by Batman")
                         .font(.subheadline)
                         .foregroundColor(.gray)
+                    Text("76%").font(.caption).bold()
                     ProgressBar(value: 0.8).frame(height: 5)
                 }
                 Spacer()
@@ -72,7 +73,7 @@ struct ForYouCourseCard: View {
                 .cornerRadius(10)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.black.opacity(100), lineWidth: 0.1))
+                        .stroke(Color.black.opacity(100), lineWidth: 0.2))
                 
         }
     }
