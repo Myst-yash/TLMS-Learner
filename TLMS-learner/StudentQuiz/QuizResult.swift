@@ -83,6 +83,7 @@ struct ResultView: View {
                                 .font(.custom("Poppins-Bold", size: 32))
                                 .foregroundColor(.white)
                         }
+                        .padding(.leading, 10)
                         .padding()
                         VStack(alignment: .leading) {
                             // Display course name and exam type
@@ -91,9 +92,8 @@ struct ResultView: View {
                                 .foregroundColor(.white)
                             Text("Final Exam")
                                 .font(.custom("Poppins-Medium", size: 16))
-                                .foregroundColor(.white.opacity(0.7))
+                                .foregroundColor(Color(red: 0.71, green: 0.69, blue: 0.69))
                         }
-                        .padding(.leading) // Add padding to move content to the left
                     }
                     .cornerRadius(20)
                     
@@ -105,7 +105,7 @@ struct ResultView: View {
                         .shadow(color: .black.opacity(0.25), radius: 1, x: 0, y: 4)
                         .overlay(
                             HStack(spacing: 0) {
-                                VStack(spacing: 10) {
+                                VStack(spacing: 12) {
                                     // Display passing grade
                                     Text("Passing Grade")
                                         .font(.custom("Poppins-Bold", size: 14))
@@ -116,7 +116,12 @@ struct ResultView: View {
                                 }
                                 .frame(maxWidth: .infinity)
                                 
-                                VStack(spacing: 10) {
+                                Rectangle()
+                                    .fill(Color(red: 0.4, green: 0.4, blue: 0.4).opacity(0.3))
+                                    .frame(width: 1, height: 50)
+                                    .frame(alignment: .center)
+                                
+                                VStack(spacing: 12) {
                                     // Display correct answers count
                                     Text("Correct")
                                         .font(.custom("Poppins-Bold", size: 14))
@@ -127,7 +132,12 @@ struct ResultView: View {
                                 }
                                 .frame(maxWidth: .infinity)
                                 
-                                VStack(spacing: 10) {
+                                Rectangle()
+                                    .fill(Color(red: 0.4, green: 0.4, blue: 0.4).opacity(0.3))
+                                    .frame(width: 1, height: 40)
+                                    .frame(alignment: .center)
+                                
+                                VStack(spacing: 12) {
                                     // Display wrong answers count
                                     Text("Wrong")
                                         .font(.custom("Poppins-Bold", size: 14))
@@ -183,7 +193,7 @@ struct ResultView: View {
                                 .frame(maxWidth: .infinity, alignment: .center)
                         }
                     }
-                    .padding(.bottom, 20) // Add padding to bottom to prevent content from sticking to the edge
+                    .padding(.bottom, 10) // Add padding to bottom to prevent content from sticking to the edge
                 }
             }
         }
