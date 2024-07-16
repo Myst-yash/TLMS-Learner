@@ -1,18 +1,13 @@
 import SwiftUI
 
 struct QuizView: View {
-    // State variables
     @State private var remainingTime = QuizData.dummyData.time // Remaining time for the quiz
     @State private var currentQuestionIndex = 0 // Index of the current question being displayed
     @State private var quizSubmitted = false // Tracks if the quiz has been submitted
     
-    // State for quiz questions
-    @State private var questions: [Question] = QuizData.dummyData.questions
-    
-    // State to track the presentation of the alert
-    @State private var showAlert = false
-    
-    // Computed property to get the number of questions in the quiz
+    @State private var questions: [Question] = QuizData.dummyData.questions // State for quiz questions
+    @State private var showAlert = false // State to track the presentation of the alert
+
     private var numberOfQuestions: Int {
         questions.count
     }
@@ -20,12 +15,10 @@ struct QuizView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                // Progress bar to show current question progress
                 ProgressView(value: Double(currentQuestionIndex), total: Double(numberOfQuestions))
-                    .progressViewStyle(LinearProgressViewStyle(tint: Color("color 2"))) // Styling with custom color
+                    .progressViewStyle(LinearProgressViewStyle(tint: Color("color 2")))
                     .frame(height: 4)
                 
-                // Display current question if index is valid
                 if let currentQuestion = questions[safe: currentQuestionIndex] {
                     QuestionView(
                         question: currentQuestion,
@@ -39,14 +32,13 @@ struct QuizView: View {
                 
                 Spacer()
                 
-                // Bottom navigation bar with navigation or submission button
                 CustomBottomBar(
                     isLastQuestion: currentQuestionIndex == numberOfQuestions - 1,
                     action: {
                         if currentQuestionIndex < numberOfQuestions - 1 {
-                            currentQuestionIndex += 1 // Move to the next question
+                            currentQuestionIndex += 1
                         } else {
-                            submitQuiz() // Submit the quiz if it's the last question
+                            submitQuiz()
                         }
                     },
                     courseName: QuizData.dummyData.courseName
@@ -61,7 +53,7 @@ struct QuizView: View {
                     ), isActive: $quizSubmitted) {
                         EmptyView()
                     }
-                    .hidden() // Hide the NavigationLink label
+                    .hidden()
                 )
             }
         }
@@ -69,13 +61,13 @@ struct QuizView: View {
         .toolbar(.hidden, for: .tabBar)
         .toolbar {
             ToolbarItem(placement: .principal) {
-                TimerView(remainingTime: $remainingTime) // Display timer in the center of the navigation bar
+                TimerView(remainingTime: $remainingTime, onTimerEnd: submitQuiz)
             }
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: {
                     showAlert = true
                 }) {
-                    Image(systemName: "xmark") // Display close icon
+                    Image(systemName: "xmark")
                 }
             }
         }
@@ -96,40 +88,37 @@ struct QuizView: View {
         }
     }
     
-    // Function to submit the quiz
     private func submitQuiz() {
         quizSubmitted = true
     }
     
-    // Function to calculate the score based on selected answers
     private func calculateScore() -> Int {
         questions.filter { $0.selectedAnswer == $0.correctAnswer }.count
     }
 }
 
-// View to display countdown timer
 struct TimerView: View {
-    @Binding var remainingTime: Int // Binding for remaining time
+    @Binding var remainingTime: Int
+    let onTimerEnd: () -> Void
 
     var body: some View {
         HStack {
-            Image(systemName: "clock") // Clock icon
-            Text("\(remainingTime / 60) mins \(remainingTime % 60) secs remaining") // Display remaining time in minutes and seconds
-                .font(.custom("Poppins-Medium", size: 12)) // Custom font
+            Image(systemName: "clock")
+            Text("\(remainingTime / 60) mins \(remainingTime % 60) secs remaining")
+                .font(.custom("Poppins-Medium", size: 12))
         }
         .onAppear {
-            startTimer() // Start the timer when the view appears
+            startTimer()
         }
     }
 
-    // Function to start the countdown timer
     private func startTimer() {
-        // Timer to decrement remaining time every second
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
             if remainingTime > 0 {
                 remainingTime -= 1
             } else {
-                timer.invalidate() // Invalidate timer when time is up
+                timer.invalidate()
+                onTimerEnd()
             }
         }
     }
@@ -278,7 +267,7 @@ struct QuizData {
     
     // Dummy data for preview and testing
     static let dummyData = QuizData(
-        time: 1200, // 20 minutes in seconds
+        time: 12, // 20 minutes in seconds
         courseName: "Node js from Scratch", // Course name
         questions: [
             Question(id: 1, text: "What is Node.js?", choices: [

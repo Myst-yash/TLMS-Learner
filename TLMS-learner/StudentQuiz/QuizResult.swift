@@ -37,6 +37,9 @@ struct ResultView: View {
     let courseName: String
     let questions: [Question]
     
+    // State to track the presentation of the alert
+    @State private var showAlert = false
+    
     var passingGrade: String {
         let totalQuestions = questions.count
         let passingPercentage = 67 // 2/3 of total
@@ -197,6 +200,9 @@ struct ResultView: View {
                 }
             }
         }
+        
+        .navigationBarBackButtonHidden(true)
+        .toolbar(.hidden, for: .tabBar)
         .toolbar {
             ToolbarItem {
                 Button(action: {
@@ -206,6 +212,28 @@ struct ResultView: View {
                         .foregroundColor(.blue)
                 }
             }
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    showAlert = true
+                }) {
+                    Image(systemName: "xmark") // Display close icon
+                }
+            }
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Leave Page"),
+                message: Text("Are you sure you really want to leave?"),
+                primaryButton: .destructive(Text("Leave")) {
+                    if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                        if let window = scene.windows.first {
+                            window.rootViewController = UIHostingController(rootView: NodeJsCourseView(courseName: "Node js from Scratch", courseImage: "https://example.com/course-image.jpg"))
+                            window.makeKeyAndVisible()
+                        }
+                    }
+                },
+                secondaryButton: .cancel()
+            )
         }
     }
     
