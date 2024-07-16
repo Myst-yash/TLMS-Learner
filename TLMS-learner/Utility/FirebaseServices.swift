@@ -152,7 +152,7 @@ class FirebaseServices{
             }
             
             let document = documents[0] 
-            completion(document.data()["goal"] as! String)
+            completion(document.data()["goal"] as? String ?? "IIT JEE Advanced")
             
         }
         

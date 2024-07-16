@@ -202,7 +202,7 @@ struct ResultView: View {
         }
         
         .navigationBarBackButtonHidden(true)
-        .toolbar(.hidden, for: .tabBar)
+        .toolbar(.visible, for: .tabBar)
         .toolbar {
             ToolbarItem {
                 Button(action: {

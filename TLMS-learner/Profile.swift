@@ -27,7 +27,7 @@ struct ProfileViews: View {
                                 ListItemView(systemName: "heart", text: "Your Wishlist", color: .black)
                             }
                             Divider()
-                            NavigationLink(destination: TellYourFriendView()) {
+                            NavigationLink(destination: Certificate()) {
                                 ListItemView(systemName: "doc", text: "Your Certificates", color: .black)
                             }
                             Divider()
@@ -290,3 +290,8 @@ struct LogoutView: View {
     }
 }
 
+struct Certificate:View{
+    var body: some View{
+        Text("You don't have any certificates")
+    }
+}

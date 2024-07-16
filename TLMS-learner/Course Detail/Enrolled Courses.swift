@@ -64,7 +64,6 @@ struct NodeJsCourseView: View {
                     }
                 }
             }
-            .navigationBarTitle(courseName, displayMode: .inline)
         }
     }
     

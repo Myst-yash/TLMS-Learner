@@ -9,12 +9,9 @@ import Foundation
 import SwiftUI
 
 struct LikedView: View {
+    
     var body: some View {
             VStack {
-                
-                
-
-                // List of liked courses
                 List {
                     ForEach(0..<5) { _ in
                         NavigationLink(destination: Text("Course Details")) {
