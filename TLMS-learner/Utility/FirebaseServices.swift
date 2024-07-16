@@ -224,7 +224,7 @@ class FirebaseServices{
                 let phonenumber = data["phoneNumber"] as? String ?? ""
                 let imageUrl = data["profileImageURL"] as? String ?? ""
                 let about = data["about"] as? String ?? ""
-                let assignedCourses = data["assignedCourses"]
+                _ = data["assignedCourses"]
                 
                 return Educators(
                     id: id,
@@ -285,7 +285,7 @@ class FirebaseServices{
         let coursesCollection = db.collection("Courses")
         
         learnersCollection.whereField("Email", isEqualTo: currentUser.email!).getDocuments { (querySnapshot, error) in
-            if let error = error {
+            if error != nil {
                 completion([])
                 return
             }
@@ -324,7 +324,7 @@ class FirebaseServices{
                 coursesCollection.document(courseID).getDocument { (documentSnapshot, error) in
                     defer { group.leave() }
 
-                    if let error = error {
+                    if error != nil {
                         completion([])
                         return
                     }
@@ -347,7 +347,7 @@ class FirebaseServices{
         let ref = db.collection("Courses")
         
         ref.whereField("courseID", isEqualTo: courseID).getDocuments { snapshot, error in
-            if let error = error {
+            if error != nil {
                 completion(nil)
                 return
             }
@@ -427,6 +427,49 @@ class FirebaseServices{
             
         }
     }
+    
+    func likeAndUnlikeCourse(completion: @escaping(Bool) -> Void){
+        let db = Firestore.firestore()
+        let learnerCollection = db.collection("Learners")
+        guard let currentUser = Auth.auth().currentUser else{
+            print("email not found")
+            return
+        }
+        
+        learnerCollection.whereField("Email", isEqualTo: currentUser.email!).getDocuments { querySnapshot, error in
+            if error != nil {
+                print("Error fetching learners")
+                completion(false)
+                return
+            }
+            
+            guard let documents = querySnapshot?.documents, documents.count == 1 else{
+                print("Document with the specified email not found or multiple documents found")
+                completion(false)
+                return
+            }
+            
+            let document = documents[0]
+            let documentID = document.documentID
+            
+//            let data = document.data()
+//            var likedCourse = data["likedCourses"] as? [String]
+//            likedCourse?.append(courseId)
+            
+            // Update the document with the new field
+            learnerCollection.document(documentID).updateData(["likedCourses":CentralState.shared.likedCourse]) { error in
+                if let error = error {
+                    print("Error updating document: \(error)")
+                    completion(false)
+                } else {
+                    print("Document successfully updated")
+                    completion(true)
+                }
+            }
+            
+        }
+    }
+    
     
     func fetchEnrolledCourses(completion: @escaping ([Course]) -> Void) {
         guard let currentUser = Auth.auth().currentUser else {
@@ -539,7 +582,7 @@ class FirebaseServices{
         let db = Firestore.firestore()
 
         let learnersCollection = db.collection("Learners")
-        let coursesCollection = db.collection("Courses")
+        _ = db.collection("Courses")
 
         learnersCollection.whereField("Email", isEqualTo: currentUser.email!).getDocuments { (querySnapshot, error) in
             if let error = error {
@@ -581,7 +624,57 @@ class FirebaseServices{
             completion(enrolledCourseIDs)
         }
     }
+    
+    func fetchLikedCourseIds(completion: @escaping ([String]) -> Void) {
+        guard let currentUser = Auth.auth().currentUser else {
+            print("Email not found")
+            return
+        }
+        let db = Firestore.firestore()
 
+        let learnersCollection = db.collection("Learners")
+        _ = db.collection("Courses")
+
+        learnersCollection.whereField("Email", isEqualTo: currentUser.email!).getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error fetching learner: \(error.localizedDescription)")
+                completion([])
+                return
+            }
+
+            guard let documents = querySnapshot?.documents, !documents.isEmpty else {
+                print("No learner found with this email")
+                completion([]) // No learner found with the given email
+                return
+            }
+
+            let learner = documents.compactMap { document -> User? in
+                let data = document.data()
+                let enrolledCourseIds = data["likedCourses"] as? [String] ?? []
+
+                return User(
+                    id: data["id"] as? String ?? "",
+                    email: data["Email"] as? String ?? "",
+                    firstName: data["firstName"] as? String ?? "",
+                    lastName: data["lastName"] as? String ?? "",
+                    completedCourses: data["completedCourses"] as? [String] ?? [],
+                    enrolledCourses: enrolledCourseIds,
+                    goal: data["goal"] as? String ?? "",
+                    joinedDate: data["joinedDate"] as? String ?? "",
+                    likedCourses: data["likedCourses"] as? [String] ?? []
+                )
+            }.first
+
+            guard let likedCourseIDs = learner?.likedCourses, !likedCourseIDs.isEmpty else {
+                print("No liked courses")
+                completion([]) // No enrolled courses
+                return
+            }
+
+//            print("liked Courses IDs: \(likedCourseIDs)")
+            completion(likedCourseIDs)
+        }
+    }
 
 
     

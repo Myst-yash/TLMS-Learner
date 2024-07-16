@@ -200,7 +200,23 @@ struct CourseDetails: View {
                 // Add to Likes button
                 Button(action: {
                     // Toggle liked state
-                    isLiked.toggle()
+                    if !isLiked{
+                        CentralState.shared.likeCourse(id: courseId)
+                        isLiked = true
+                    }
+                    else{
+                        CentralState.shared.unlikeCourse(id: courseId)
+                        isLiked = false
+                    }
+                    FirebaseServices.shared.likeAndUnlikeCourse { status in
+                        if status{
+                            print("course liked or unliked")
+                        }
+                        else{
+                            print("error while liking the course")
+                        }
+                    }
+                    
                     print("Add to Likes button tapped")
                 }) {
                     Text(isLiked ? "Liked" : "Add to Likes")
@@ -327,6 +343,7 @@ struct CourseDetails: View {
             }
             
             self.isEnrolled = CentralState.shared.checkIfEnrolled(id: courseId)
+            self.isLiked = CentralState.shared.checkIfLiked(id: courseId)
         })
     }
 

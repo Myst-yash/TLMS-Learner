@@ -15,6 +15,7 @@ struct HomeView: View {
     @State var upcomingCourse:[HomeCourse] = []
     @State var forYouCourse:[HomeCourse] = []
     @State var allCourses:[HomeCourse] = []
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -107,10 +108,6 @@ struct HomeView: View {
                             .padding(.leading, 20)
                         
                         }
-//                        NavigationLink(destination: CourseDetails(courseId: "01"), tag: 0, selection: $selectedCourse) {
-//                                            EmptyView()
-//                                        }
-
                         HStack {
                             Text("Upcoming Courses")
                                 .font(.title2).bold()
@@ -152,8 +149,14 @@ struct HomeView: View {
                         Button(action: {
                             selectedGoal = goal
                             showDropdown = false
-                            updateGoal(newData: goal)
-                            
+                            FirebaseServices.shared.updateSelectedGoasl(newData: goal) { success in
+                                if success {
+                                    print("Goal updated")
+                                }
+                                else{
+                                    print("there is an issue with it")
+                                }
+                            }
                         }) {
                             HStack {
                                 Text(goal)
@@ -216,22 +219,35 @@ struct HomeView: View {
                     CentralState.shared.updateEnrolledCourse(arr: arr)
                 }
                 
-//                print(CentralState.shared.enrolledCourse)
+                FirebaseServices.shared.fetchLikedCourseIds { fetchedCourses in
+                    CentralState.shared.updateLikedCourse(arr: fetchedCourses)
+                }
+                print(CentralState.shared.likedCourse)
             }
-        }
-    }
-    
-    func updateGoal(newData:String){
-        FirebaseServices.shared.updateSelectedGoasl(newData: newData) { success in
-            if success {
-                print("Goal updated")
-            }
-            else{
-                print("there is an issue with it")
+            .onChange(of: selectedGoal) { newGoal in
+                FirebaseServices.shared.findSelectedGoal { userGoal in
+                    self.selectedGoal = userGoal
+                }
+                FirebaseServices.shared.fetchCourses { fetchedCourses in
+                    let now = Date()
+                    self.upcomingCourse = fetchedCourses.filter { course in
+                        return course.releaseData > now
+                    }
+                    
+                    self.forYouCourse = fetchedCourses.filter({ course in
+                        return course.target == selectedGoal
+                    })
+                    if forYouCourse.isEmpty{
+                        self.forYouCourse = fetchedCourses
+                    }
+                    
+                    self.allCourses = fetchedCourses
+                }
             }
         }
     }
 }
+
 
 
 struct ContinueWatchingCard: View {
