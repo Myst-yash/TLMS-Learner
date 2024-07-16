@@ -361,7 +361,7 @@ class FirebaseServices{
             let data = document.data()
             
             let course = Course(
-                id: UUID(uuidString: data["courseID"] as? String ?? "") ?? UUID(),
+                id: data["courseID"] as? String ?? "",
                 imageName: data["courseImageURL"] as? String ?? "",
                 title: data["courseName"] as? String ?? "",
                 subtitle: "",
@@ -541,7 +541,7 @@ class FirebaseServices{
                     for document in documents {
                         let data = document.data()
                         let course = Course(
-                            id: UUID(uuidString: data["courseID"] as? String ?? "") ?? UUID(),
+                            id: data["courseID"] as? String ?? "",
                             imageName: data["courseImageURL"] as? String ?? "",
                             title: data["courseName"] as? String ?? "",
                             subtitle: "",
@@ -675,6 +675,52 @@ class FirebaseServices{
             completion(likedCourseIDs)
         }
     }
+    
+    func fetchAllLikedCourses() async throws -> [Course] {
+        let db = Firestore.firestore()
+        let ref = db.collection("Courses")
+        let likedCourseIDs = CentralState.shared.likedCourse
+
+        guard !likedCourseIDs.isEmpty else {
+            return []
+        }
+
+        let querySnapshot = try await ref.whereField("courseID", in: likedCourseIDs).getDocuments()
+        var allLikedCourses: [Course] = []
+
+        for document in querySnapshot.documents {
+            let data = document.data()
+
+            let course = Course(
+                id: data["courseID"] as? String ?? "",
+                imageName: data["courseImageURL"] as? String ?? "",
+                title: data["courseName"] as? String ?? "",
+                subtitle: "",
+                studentsEnrolled: 0, // Not present in your data
+                creator: data["assignedEducator"] as? String ?? "",
+                lastUpdated: "",
+                language: "",
+                whatYoullLearn: [], // Not present in your data
+                courseIncludes: [], // Not present in your data
+                courseIncludeIcons: [], // Not present in your data
+                description: data["courseDescription"] as? String ?? "",
+                instructorImageName: "",
+                instructorName: "",
+                instructorUniversity: "",
+                instructorRating: 0,
+                instructorStudents: 0,
+                instructorBio: "",
+                progress: nil
+            )
+
+            allLikedCourses.append(course)
+        }
+
+        return allLikedCourses
+    }
+
+
+
 
 
     
