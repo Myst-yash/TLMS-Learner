@@ -15,15 +15,15 @@ struct ProfileViews: View {
                         DashboardView(enrolledCourses: user.enrolledCourses.count, completedCourses: user.completedCourses.count)
 
                         VStack(alignment: .leading, spacing: 10) {
-                            NavigationLink(destination: FavoritesView()) {
-                                ListItemView(systemName: "book", text: "Your Courses", color: .black)
-                            }
-                            Divider()
+//                            NavigationLink(destination: FavoritesView()) {
+//                                ListItemView(systemName: "book", text: "Your Courses", color: .black)
+//                            }
+//                            Divider()
                             NavigationLink(destination: EducatorView()) {
                                 ListItemView(systemName: "person", text: "Your Educators", color: .black)
                             }
                             Divider()
-                            NavigationLink(destination: TellYourFriendView()) {
+                            NavigationLink(destination: LikedView()) {
                                 ListItemView(systemName: "heart", text: "Your Wishlist", color: .black)
                             }
                             Divider()
@@ -289,3 +289,4 @@ struct LogoutView: View {
             .font(.largeTitle)
     }
 }
+
