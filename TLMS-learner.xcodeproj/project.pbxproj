@@ -13,8 +13,7 @@
 		0491A2C12C4779B6001162E3 /* Chat Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0491A2C02C4779B6001162E3 /* Chat Model.swift */; };
 		0491A2C32C4779C4001162E3 /* Message View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0491A2C22C4779C4001162E3 /* Message View.swift */; };
 		0491A2C52C4779D5001162E3 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0491A2C42C4779D5001162E3 /* ChatView.swift */; };
-		0491A2CA2C477DAD001162E3 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0491A2C92C477DAD001162E3 /* SDWebImageSwiftUI */; };
-		0491A2CC2C47C620001162E3 /* NotesModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0491A2CB2C47C620001162E3 /* NotesModelView.swift */; };
+		0491A2CF2C47FFDF001162E3 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0491A2CE2C47FFDF001162E3 /* SDWebImageSwiftUI */; };
 		04A3858A2C37B53300832DDC /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A385892C37B53300832DDC /* Poppins-Regular.ttf */; };
 		04A385952C37BFD600832DDC /* PasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3858F2C37BFD600832DDC /* PasswordField.swift */; };
 		04A385982C37BFD700832DDC /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A385902C37BFD600832DDC /* ImageView.swift */; };
@@ -67,7 +66,6 @@
 		0491A2C02C4779B6001162E3 /* Chat Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat Model.swift"; sourceTree = "<group>"; };
 		0491A2C22C4779C4001162E3 /* Message View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message View.swift"; sourceTree = "<group>"; };
 		0491A2C42C4779D5001162E3 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
-		0491A2CB2C47C620001162E3 /* NotesModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesModelView.swift; sourceTree = "<group>"; };
 		04A385832C37B4DC00832DDC /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		04A385852C37B4E500832DDC /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		04A385872C37B4EC00832DDC /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -119,7 +117,7 @@
 				D1BFEE7E2C367620006492F2 /* FirebaseDatabase in Frameworks */,
 				D1BFEE7A2C367620006492F2 /* FirebaseAuth in Frameworks */,
 				D1BFEE822C367620006492F2 /* FirebaseFirestore in Frameworks */,
-				0491A2CA2C477DAD001162E3 /* SDWebImageSwiftUI in Frameworks */,
+				0491A2CF2C47FFDF001162E3 /* SDWebImageSwiftUI in Frameworks */,
 				D1BFEE862C367620006492F2 /* FirebaseStorage in Frameworks */,
 				D1BFEE7C2C367620006492F2 /* FirebaseAuthCombine-Community in Frameworks */,
 				D1BFEE842C367620006492F2 /* FirebaseFirestoreSwift in Frameworks */,
@@ -251,7 +249,6 @@
 				0491A2BB2C47790A001162E3 /* Disuccion forum */,
 				525B65A62C41295E00DA881C /* StudentQuiz */,
 				D1EF76432C39B55500C8B8A9 /* MyCourses.swift */,
-				0491A2CB2C47C620001162E3 /* NotesModelView.swift */,
 				7A85CA922C3FB79C008E9D7D /* MyEducators.swift */,
 				7A85CA9A2C46303D008E9D7D /* likedCourses.swift */,
 				7A85CA942C40ED92008E9D7D /* EducatorsProfile.swift */,
@@ -294,7 +291,7 @@
 				D1BFEE812C367620006492F2 /* FirebaseFirestore */,
 				D1BFEE832C367620006492F2 /* FirebaseFirestoreSwift */,
 				D1BFEE852C367620006492F2 /* FirebaseStorage */,
-				0491A2C92C477DAD001162E3 /* SDWebImageSwiftUI */,
+				0491A2CE2C47FFDF001162E3 /* SDWebImageSwiftUI */,
 			);
 			productName = "TLMS-learner";
 			productReference = D1F8C0DD2C35407C0060C30E /* TLMS-learner.app */;
@@ -326,7 +323,7 @@
 			mainGroup = D1F8C0D42C35407C0060C30E;
 			packageReferences = (
 				D1BFEE782C367620006492F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				0491A2C82C477DAD001162E3 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				0491A2CD2C47FFDF001162E3 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = D1F8C0DE2C35407C0060C30E /* Products */;
 			projectDirPath = "";
@@ -374,7 +371,6 @@
 				52C21B182C3E5B4E00B8CCB9 /* CourseDetail.swift in Sources */,
 				0491A2C52C4779D5001162E3 /* ChatView.swift in Sources */,
 				D1358F9A2C3FA5720042E368 /* EducatorModel.swift in Sources */,
-				0491A2CC2C47C620001162E3 /* NotesModelView.swift in Sources */,
 				52C21B1B2C3E5B4E00B8CCB9 /* SectionView.swift in Sources */,
 				D1F8C0E32C35407C0060C30E /* learnerlogin.swift in Sources */,
 				D1EF3C032C3EA70000FFC2AC /* UserModel.swift in Sources */,
@@ -606,7 +602,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0491A2C82C477DAD001162E3 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+		0491A2CD2C47FFDF001162E3 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
 			requirement = {
@@ -625,9 +621,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0491A2C92C477DAD001162E3 /* SDWebImageSwiftUI */ = {
+		0491A2CE2C47FFDF001162E3 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 0491A2C82C477DAD001162E3 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			package = 0491A2CD2C47FFDF001162E3 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
 		};
 		D1BFEE792C367620006492F2 /* FirebaseAuth */ = {
