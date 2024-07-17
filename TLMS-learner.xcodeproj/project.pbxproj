@@ -32,6 +32,7 @@
 		7A85CA9B2C46303E008E9D7D /* likedCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A85CA9A2C46303D008E9D7D /* likedCourses.swift */; };
 		7ACDE3872C370B0600AFAAE7 /* createAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACDE3862C370B0600AFAAE7 /* createAccount.swift */; };
 		7ACDE42E2C3BD82F00AFAAE7 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACDE42D2C3BD82E00AFAAE7 /* Profile.swift */; };
+		BBDB9B892C47F2C600F846FB /* Change Password.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDB9B882C47F2C600F846FB /* Change Password.swift */; };
 		D12E701A2C3E5AC100CFC59D /* FirebaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12E70192C3E5AC100CFC59D /* FirebaseServices.swift */; };
 		D1358F9A2C3FA5720042E368 /* EducatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1358F992C3FA5720042E368 /* EducatorModel.swift */; };
 		D1902A902C3C218700602392 /* AuthValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1902A8F2C3C218700602392 /* AuthValidation.swift */; };
@@ -87,6 +88,7 @@
 		7A85CA9A2C46303D008E9D7D /* likedCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = likedCourses.swift; sourceTree = "<group>"; };
 		7ACDE3862C370B0600AFAAE7 /* createAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createAccount.swift; sourceTree = "<group>"; };
 		7ACDE42D2C3BD82E00AFAAE7 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		BBDB9B882C47F2C600F846FB /* Change Password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Change Password.swift"; sourceTree = "<group>"; };
 		D12E70192C3E5AC100CFC59D /* FirebaseServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseServices.swift; sourceTree = "<group>"; };
 		D1358F992C3FA5720042E368 /* EducatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducatorModel.swift; sourceTree = "<group>"; };
 		D1902A8F2C3C218700602392 /* AuthValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidation.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				7A85CA9A2C46303D008E9D7D /* likedCourses.swift */,
 				7A85CA942C40ED92008E9D7D /* EducatorsProfile.swift */,
 				7ACDE42D2C3BD82E00AFAAE7 /* Profile.swift */,
+				BBDB9B882C47F2C600F846FB /* Change Password.swift */,
 				D1F8C0E42C35407D0060C30E /* Assets.xcassets */,
 				D1F8C0E62C35407D0060C30E /* Preview Content */,
 			);
@@ -367,6 +370,7 @@
 				D1A8B1D32C45524800C8F874 /* CentralState.swift in Sources */,
 				D1902A902C3C218700602392 /* AuthValidation.swift in Sources */,
 				D12E701A2C3E5AC100CFC59D /* FirebaseServices.swift in Sources */,
+				BBDB9B892C47F2C600F846FB /* Change Password.swift in Sources */,
 				EFD0919A2C3D34EC001C030F /* ForgetPassword.swift in Sources */,
 				52C21B182C3E5B4E00B8CCB9 /* CourseDetail.swift in Sources */,
 				0491A2C52C4779D5001162E3 /* ChatView.swift in Sources */,
