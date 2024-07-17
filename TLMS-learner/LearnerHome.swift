@@ -98,7 +98,7 @@ struct HomeView: View {
                             HStack(spacing: 10) {
                                 ForEach(forYouCourse.prefix(5)) { course in
                                     NavigationLink(destination: CourseDetails(courseId: course.id)) { // Replace 'NextView' with your destination view
-                                        ContinueWatchingCard(courseName: course.courseName, courseImageURl: course.courseImage)
+                                        ContinueWatchingCard(courseName: course.courseName, courseImageURl: course.courseImage,educatorName: course.assignedEducator)
                                     }
                                     .buttonStyle(PlainButtonStyle()) // Ensures no default button styling is applied
                                     
@@ -126,7 +126,7 @@ struct HomeView: View {
                             VStack(spacing: -10) {
                                 
                                 ForEach(upcomingCourse, id: \.id) { course in
-                                    UpcomingCourseCard(courseName: course.courseName, releaseDate: course.releaseData,courseImageUrl:course.courseImage)
+                                    UpcomingCourseCard(courseName: course.courseName, releaseDate: course.releaseData,courseImageUrl:course.courseImage,educatorName: course.assignedEducator)
                                     }
                                 
                                 
@@ -199,22 +199,30 @@ struct HomeView: View {
                     self.selectedGoal = userGoal
                 }
                 
-                FirebaseServices.shared.fetchCourses { fetchedCourses in
-                    let now = Date()
-                    self.upcomingCourse = fetchedCourses.filter { course in
-                        return course.releaseData > now
-                    }
+//                FirebaseServices.shared.fetchCourses { fetchedCourses in
                     
-                    self.forYouCourse = fetchedCourses.filter({ course in
-                        return course.target == selectedGoal
-                    })
-                    if forYouCourse.isEmpty{
-                        self.forYouCourse = fetchedCourses
+//                }
+               Task {
+                    do {
+                        let fetchedCourses = try await FirebaseServices.shared.fetchCourses()
+                        let now = Date()
+                        self.upcomingCourse = fetchedCourses.filter { course in
+                            return course.releaseData > now
+                        }
+                        
+                        self.forYouCourse = fetchedCourses.filter({ course in
+                            return course.target == selectedGoal
+                        })
+                        if forYouCourse.isEmpty{
+                            self.forYouCourse = fetchedCourses
+                        }
+                        
+                        self.allCourses = fetchedCourses
+                    } catch {
+                        // Handle the error appropriately
+                        print("Error fetching courses: \(error)")
                     }
-                    
-                    self.allCourses = fetchedCourses
                 }
-                
                 FirebaseServices.shared.fetchEnrolledCourseIds { arr in
                     CentralState.shared.updateEnrolledCourse(arr: arr)
                 }
@@ -228,21 +236,27 @@ struct HomeView: View {
                 FirebaseServices.shared.findSelectedGoal { userGoal in
                     self.selectedGoal = userGoal
                 }
-                FirebaseServices.shared.fetchCourses { fetchedCourses in
-                    let now = Date()
-                    self.upcomingCourse = fetchedCourses.filter { course in
-                        return course.releaseData > now
-                    }
-                    
-                    self.forYouCourse = fetchedCourses.filter({ course in
-                        return course.target == selectedGoal
-                    })
-                    if forYouCourse.isEmpty{
-                        self.forYouCourse = fetchedCourses
-                    }
-                    
-                    self.allCourses = fetchedCourses
-                }
+                Task {
+                     do {
+                         let fetchedCourses = try await FirebaseServices.shared.fetchCourses()
+                         let now = Date()
+                         self.upcomingCourse = fetchedCourses.filter { course in
+                             return course.releaseData > now
+                         }
+                         
+                         self.forYouCourse = fetchedCourses.filter({ course in
+                             return course.target == selectedGoal
+                         })
+                         if forYouCourse.isEmpty{
+                             self.forYouCourse = fetchedCourses
+                         }
+                         
+                         self.allCourses = fetchedCourses
+                     } catch {
+                         // Handle the error appropriately
+                         print("Error fetching courses: \(error)")
+                     }
+                 }
             }
         }
     }
@@ -253,6 +267,7 @@ struct HomeView: View {
 struct ContinueWatchingCard: View {
     var courseName:String
     var courseImageURl:String
+    var educatorName:String
     var body: some View {
         ZStack(alignment: .leading) {
             AsyncImage(url: URL(string: courseImageURl)) { phase in
@@ -279,8 +294,8 @@ struct ContinueWatchingCard: View {
             Text(courseName).foregroundStyle(Color.white).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/).padding().padding(.top, 85).frame(width: 190).padding(.leading, -15)
                 
             Image("edu").padding(.top, 100).padding(.leading, 210)
-            Text("Batman").font(.footnote).bold().foregroundStyle(.white).padding(.top, 100).padding(.leading, 225)
-            Image("heart").padding(.bottom, 100).padding(.leading, 260)
+            Text(educatorName).font(.footnote).bold().foregroundStyle(.white).padding(.top, 100).padding(.leading, 220)
+//            Image("heart").padding(.bottom, 100).padding(.leading, 260)
                 
             
             
@@ -312,6 +327,7 @@ struct UpcomingCourseCard: View {
     var courseName: String
     var releaseDate: Date
     var courseImageUrl: String // URL for the course image
+    var educatorName:String
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -338,7 +354,7 @@ struct UpcomingCourseCard: View {
                 VStack(alignment: .leading) {
                     Text(courseName)
                         .font(.headline)
-                    Text("by Batman") // Assuming static text for now
+                    Text(educatorName) // Assuming static text for now
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                     Text("\(formattedDate(date: releaseDate))")

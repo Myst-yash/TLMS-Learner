@@ -14,7 +14,7 @@ struct LikedView: View {
             VStack {
                 List(allLikedCourse) { course in
                     NavigationLink(destination: CourseDetails(courseId: course.id)) {
-                        likedCourseRow(imageURL: course.imageName, courseName: course.title)
+                        likedCourseRow(imageURL: course.imageName, courseName: course.title,educatorName: course.instructorName)
                     }
                 }
                 
@@ -42,6 +42,7 @@ struct LikedView: View {
 struct likedCourseRow: View {
     var imageURL:String
     var courseName:String
+    var educatorName:String
     var body: some View {
         HStack {
             ZStack {
@@ -76,7 +77,7 @@ struct likedCourseRow: View {
             VStack(alignment: .leading) {
                 Text(courseName)
                     .font(.headline)
-                Text("Batman")
+                Text(educatorName)
                     .font(.subheadline)
                     .foregroundColor(.gray)
             }

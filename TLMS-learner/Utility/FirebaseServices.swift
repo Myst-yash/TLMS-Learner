@@ -241,37 +241,49 @@ class FirebaseServices{
         }
     }
     
-    func fetchCourses(completion: @escaping ([HomeCourse]) -> Void) {
+    func fetchCourses() async throws -> [HomeCourse] {
         let db = Firestore.firestore()
-        let ref = db.collection("Courses")
-        
-        ref.getDocuments { querySnapshot, err in
-            if let err = err {
-                print("Error while fetching upcoming Course: \(err)")
-                completion([])
-                return
+        let courseRef = db.collection("Courses")
+        let educatorRef = db.collection("Educators")
+
+        let querySnapshot = try await courseRef.getDocuments()
+        var courses: [HomeCourse] = []
+
+        for document in querySnapshot.documents {
+            let data = document.data()
+            let courseID = data["courseID"] as? String ?? ""
+            let educatorID = data["assignedEducator"] as? String ?? ""
+            let courseName = data["courseName"] as? String ?? ""
+            let courseImg = data["courseImageURL"] as? String ?? ""
+            guard let releaseTimestamp = data["releaseDate"] as? Timestamp else { continue }
+            let releaseDate = releaseTimestamp.dateValue()
+            let target = data["target"] as? String ?? ""
+
+            var assignedEducator = ""
+
+            if !educatorID.isEmpty {
+                let educatorDoc = try await educatorRef.document(educatorID).getDocument()
+                if let educatorData = educatorDoc.data() {
+                    let firstName = educatorData["FirstName"] as? String ?? ""
+                    let lastName = educatorData["LastName"] as? String ?? ""
+                    assignedEducator = "\(firstName)"
+                }
             }
-            guard let documents = querySnapshot?.documents else {
-                print("No documents found.")
-                completion([])
-                return
-            }
-            let courses = documents.compactMap { document -> HomeCourse? in
-                let data = document.data()
-                let id = data["courseID"] as? String ?? ""
-                let assignedEducator = data["EducatorName"] as? String ?? ""
-                let courseName = data["courseName"] as? String ?? ""
-                let courseImg = data["courseImageURL"] as? String ?? ""
-                guard let releaseData = data["releaseDate"] as? Timestamp else { return nil }
-                let releaseDate = releaseData.dateValue()
-                
-                let yourGoal = data["target"] as? String ?? ""
-                
-                return HomeCourse(id: id, assignedEducator: assignedEducator, courseName: courseName, courseImage: courseImg, releaseData: releaseDate, target: yourGoal)
-            }
-            completion(courses)
+
+            let homeCourse = HomeCourse(
+                id: courseID,
+                assignedEducator: assignedEducator,
+                courseName: courseName,
+                courseImage: courseImg,
+                releaseData: releaseDate,
+                target: target
+            )
+            courses.append(homeCourse)
         }
+
+        return courses
     }
+
 
     func fetchLikedCourses(completion: @escaping ([Course]) -> Void) {
         
@@ -576,17 +588,31 @@ class FirebaseServices{
     func fetchAllLikedCourses() async throws -> [Course] {
         let db = Firestore.firestore()
         let ref = db.collection("Courses")
-        let likedCourseIDs = CentralState.shared.likedCourse
+        let educatorRef = db.collection("Educators")
+        let likedCourse = CentralState.shared.likedCourse
 
-        guard !likedCourseIDs.isEmpty else {
+        guard !likedCourse.isEmpty else {
             return []
         }
 
-        let querySnapshot = try await ref.whereField("courseID", in: likedCourseIDs).getDocuments()
-        var allLikedCourses: [Course] = []
+        let querySnapshot = try await ref.whereField("courseID", in: likedCourse).getDocuments()
+        var allLikedCourse: [Course] = []
 
         for document in querySnapshot.documents {
             let data = document.data()
+            let assignedEducatorID = data["assignedEducator"] as? String ?? ""
+
+            var firstName = ""
+            var lastName = ""
+
+            if !assignedEducatorID.isEmpty {
+                let educatorDoc = try await educatorRef.document(assignedEducatorID).getDocument()
+                if let educatorData = educatorDoc.data() {
+                    firstName = educatorData["FirstName"] as? String ?? ""
+                    lastName = educatorData["LastName"] as? String ?? ""
+//                    print("This condition exuecuted")
+                }
+            }
 
             let course = Course(
                 id: data["courseID"] as? String ?? "",
@@ -594,7 +620,7 @@ class FirebaseServices{
                 title: data["courseName"] as? String ?? "",
                 subtitle: "",
                 studentsEnrolled: 0, // Not present in your data
-                creator: data["assignedEducator"] as? String ?? "",
+                creator: assignedEducatorID,
                 lastUpdated: "",
                 language: "",
                 whatYoullLearn: [], // Not present in your data
@@ -602,7 +628,7 @@ class FirebaseServices{
                 courseIncludeIcons: [], // Not present in your data
                 description: data["courseDescription"] as? String ?? "",
                 instructorImageName: "",
-                instructorName: "",
+                instructorName: "\(firstName) \(lastName)",
                 instructorUniversity: "",
                 instructorRating: 0,
                 instructorStudents: 0,
@@ -610,25 +636,40 @@ class FirebaseServices{
                 progress: nil
             )
 
-            allLikedCourses.append(course)
+            allLikedCourse.append(course)
         }
 
-        return allLikedCourses
+        return allLikedCourse
     }
     
-    func fetchAllEnrolledCourse() async throws -> [Course]{
+    func fetchAllEnrolledCourse() async throws -> [Course] {
         let db = Firestore.firestore()
         let ref = db.collection("Courses")
+        let educatorRef = db.collection("Educators")
         let enrolledCourses = CentralState.shared.enrolledCourse
-        
-        guard !enrolledCourses.isEmpty else{
+
+        guard !enrolledCourses.isEmpty else {
             return []
         }
+
         let querySnapshot = try await ref.whereField("courseID", in: enrolledCourses).getDocuments()
         var allEnrolledCourses: [Course] = []
 
         for document in querySnapshot.documents {
             let data = document.data()
+            let assignedEducatorID = data["assignedEducator"] as? String ?? ""
+
+            var firstName = ""
+            var lastName = ""
+
+            if !assignedEducatorID.isEmpty {
+                let educatorDoc = try await educatorRef.document(assignedEducatorID).getDocument()
+                if let educatorData = educatorDoc.data() {
+                    firstName = educatorData["FirstName"] as? String ?? ""
+                    lastName = educatorData["LastName"] as? String ?? ""
+//                    print("This condition exuecuted")
+                }
+            }
 
             let course = Course(
                 id: data["courseID"] as? String ?? "",
@@ -636,7 +677,7 @@ class FirebaseServices{
                 title: data["courseName"] as? String ?? "",
                 subtitle: "",
                 studentsEnrolled: 0, // Not present in your data
-                creator: data["assignedEducator"] as? String ?? "",
+                creator: assignedEducatorID,
                 lastUpdated: "",
                 language: "",
                 whatYoullLearn: [], // Not present in your data
@@ -644,7 +685,7 @@ class FirebaseServices{
                 courseIncludeIcons: [], // Not present in your data
                 description: data["courseDescription"] as? String ?? "",
                 instructorImageName: "",
-                instructorName: "",
+                instructorName: "\(firstName) \(lastName)",
                 instructorUniversity: "",
                 instructorRating: 0,
                 instructorStudents: 0,
@@ -657,6 +698,8 @@ class FirebaseServices{
 
         return allEnrolledCourses
     }
+
+
 
 
 

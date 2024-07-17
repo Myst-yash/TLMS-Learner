@@ -57,6 +57,7 @@ struct MyCourses: View {
                     do{
                         let courses = try await FirebaseServices.shared.fetchAllEnrolledCourse()
                         self.ongoingCourse = courses
+                        print(self.ongoingCourse)
                     }
                     catch{
                         print("Error fetching enrolled courses: \(error)")
@@ -115,7 +116,7 @@ struct ForYouCourseCard: View {
                     Text(course.title)
                         .font(.headline)
                         .foregroundColor(Color.black)
-                    Text("by batman") // to be updated
+                    Text("by \(course.instructorName)") // to be updated
                         .font(.subheadline)
                         .foregroundColor(.gray)
                     Text("76%")
