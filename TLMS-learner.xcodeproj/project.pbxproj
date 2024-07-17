@@ -10,31 +10,17 @@
 		0407AF682C4116D3006E3B73 /* Enrolled Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0407AF672C4116D3006E3B73 /* Enrolled Courses.swift */; };
 		04A3858A2C37B53300832DDC /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A385892C37B53300832DDC /* Poppins-Regular.ttf */; };
 		04A385952C37BFD600832DDC /* PasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3858F2C37BFD600832DDC /* PasswordField.swift */; };
-		04A385962C37BFD700832DDC /* PasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3858F2C37BFD600832DDC /* PasswordField.swift */; };
-		04A385972C37BFD700832DDC /* PasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3858F2C37BFD600832DDC /* PasswordField.swift */; };
 		04A385982C37BFD700832DDC /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A385902C37BFD600832DDC /* ImageView.swift */; };
-		04A385992C37BFD700832DDC /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A385902C37BFD600832DDC /* ImageView.swift */; };
-		04A3859A2C37BFD700832DDC /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A385902C37BFD600832DDC /* ImageView.swift */; };
 		04A3859B2C37BFD700832DDC /* TitleLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A385912C37BFD600832DDC /* TitleLable.swift */; };
-		04A3859C2C37BFD700832DDC /* TitleLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A385912C37BFD600832DDC /* TitleLable.swift */; };
-		04A3859D2C37BFD700832DDC /* TitleLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A385912C37BFD600832DDC /* TitleLable.swift */; };
 		04A3859E2C37BFD700832DDC /* TextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A385922C37BFD600832DDC /* TextLabel.swift */; };
-		04A3859F2C37BFD700832DDC /* TextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A385922C37BFD600832DDC /* TextLabel.swift */; };
-		04A385A02C37BFD700832DDC /* TextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A385922C37BFD600832DDC /* TextLabel.swift */; };
 		04A385A12C37BFD700832DDC /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A385932C37BFD600832DDC /* MainButton.swift */; };
-		04A385A22C37BFD700832DDC /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A385932C37BFD600832DDC /* MainButton.swift */; };
-		04A385A32C37BFD700832DDC /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A385932C37BFD600832DDC /* MainButton.swift */; };
 		04A385A42C37BFD700832DDC /* HeadingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A385942C37BFD600832DDC /* HeadingLabel.swift */; };
-		04A385A52C37BFD700832DDC /* HeadingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A385942C37BFD600832DDC /* HeadingLabel.swift */; };
-		04A385A62C37BFD700832DDC /* HeadingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A385942C37BFD600832DDC /* HeadingLabel.swift */; };
 		04A385A72C37C18800832DDC /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A385832C37B4DC00832DDC /* Poppins-Bold.ttf */; };
 		04A4B43C2C3FADF40019C447 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4B43B2C3FADF40019C447 /* SearchBar.swift */; };
 		525B65A52C41294C00DA881C /* StudentQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B65A42C41294B00DA881C /* StudentQuiz.swift */; };
 		525B65A82C44570800DA881C /* QuizResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B65A72C44570800DA881C /* QuizResult.swift */; };
 		52C21B182C3E5B4E00B8CCB9 /* CourseDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C21B0B2C3E5B4E00B8CCB9 /* CourseDetail.swift */; };
 		52C21B1B2C3E5B4E00B8CCB9 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C21B0C2C3E5B4E00B8CCB9 /* SectionView.swift */; };
-		52C21B1C2C3E5B4E00B8CCB9 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C21B0C2C3E5B4E00B8CCB9 /* SectionView.swift */; };
-		52C21B1D2C3E5B4E00B8CCB9 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C21B0C2C3E5B4E00B8CCB9 /* SectionView.swift */; };
 		7A85CA932C3FB79C008E9D7D /* MyEducators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A85CA922C3FB79C008E9D7D /* MyEducators.swift */; };
 		7A85CA952C40ED92008E9D7D /* EducatorsProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A85CA942C40ED92008E9D7D /* EducatorsProfile.swift */; };
 		7A85CA9B2C46303E008E9D7D /* likedCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A85CA9A2C46303D008E9D7D /* likedCourses.swift */; };
@@ -51,19 +37,11 @@
 		D1BFEE822C367620006492F2 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE812C367620006492F2 /* FirebaseFirestore */; };
 		D1BFEE842C367620006492F2 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE832C367620006492F2 /* FirebaseFirestoreSwift */; };
 		D1BFEE862C367620006492F2 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D1BFEE852C367620006492F2 /* FirebaseStorage */; };
-		D1C146132C39C34D00F6E43F /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2EB61C2C397D93007A56B4 /* CourseModel.swift */; };
-		D1C146142C39C34D00F6E43F /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2EB61C2C397D93007A56B4 /* CourseModel.swift */; };
 		D1EF3C032C3EA70000FFC2AC /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF3C022C3EA70000FFC2AC /* UserModel.swift */; };
 		D1EF76382C39420200C8B8A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */; };
-		D1EF76392C39420200C8B8A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */; };
-		D1EF763A2C39420200C8B8A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */; };
 		D1EF763C2C3969FF00C8B8A9 /* courseCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF763B2C3969FF00C8B8A9 /* courseCategories.swift */; };
 		D1EF76402C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF763F2C396ABB00C8B8A9 /* CourseCategoriesModel.swift */; };
-		D1EF76412C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF763F2C396ABB00C8B8A9 /* CourseCategoriesModel.swift */; };
-		D1EF76422C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF763F2C396ABB00C8B8A9 /* CourseCategoriesModel.swift */; };
 		D1EF76442C39B55600C8B8A9 /* MyCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF76432C39B55500C8B8A9 /* MyCourses.swift */; };
-		D1EF76452C39B55600C8B8A9 /* MyCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF76432C39B55500C8B8A9 /* MyCourses.swift */; };
-		D1EF76462C39B55600C8B8A9 /* MyCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF76432C39B55500C8B8A9 /* MyCourses.swift */; };
 		D1F8C0E12C35407C0060C30E /* TLMS_learnerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F8C0E02C35407C0060C30E /* TLMS_learnerApp.swift */; };
 		D1F8C0E32C35407C0060C30E /* learnerlogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F8C0E22C35407C0060C30E /* learnerlogin.swift */; };
 		D1F8C0E52C35407D0060C30E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1F8C0E42C35407D0060C30E /* Assets.xcassets */; };
@@ -74,23 +52,6 @@
 		EFD0919A2C3D34EC001C030F /* ForgetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD091992C3D34EC001C030F /* ForgetPassword.swift */; };
 		EFF683CD2C3AAC3C00162D7F /* Tabbarview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF683CC2C3AAC3C00162D7F /* Tabbarview.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D1F8C0EE2C35407D0060C30E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D1F8C0D52C35407C0060C30E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D1F8C0DC2C35407C0060C30E;
-			remoteInfo = "TLMS-learner";
-		};
-		D1F8C0F82C35407D0060C30E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D1F8C0D52C35407C0060C30E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D1F8C0DC2C35407C0060C30E;
-			remoteInfo = "TLMS-learner";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0407AF672C4116D3006E3B73 /* Enrolled Courses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enrolled Courses.swift"; sourceTree = "<group>"; };
@@ -129,8 +90,6 @@
 		D1F8C0E22C35407C0060C30E /* learnerlogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = learnerlogin.swift; sourceTree = "<group>"; };
 		D1F8C0E42C35407D0060C30E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1F8C0E72C35407D0060C30E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		D1F8C0ED2C35407D0060C30E /* TLMS-learnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TLMS-learnerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D1F8C0F72C35407D0060C30E /* TLMS-learnerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TLMS-learnerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1F8C10A2C3540D40060C30E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		EF2EB61C2C397D93007A56B4 /* CourseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseModel.swift; sourceTree = "<group>"; };
 		EF2EB61E2C397DC7007A56B4 /* LearnerHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnerHome.swift; sourceTree = "<group>"; };
@@ -150,20 +109,6 @@
 				D1BFEE862C367620006492F2 /* FirebaseStorage in Frameworks */,
 				D1BFEE7C2C367620006492F2 /* FirebaseAuthCombine-Community in Frameworks */,
 				D1BFEE842C367620006492F2 /* FirebaseFirestoreSwift in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D1F8C0EA2C35407D0060C30E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D1F8C0F42C35407D0060C30E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,8 +202,6 @@
 			isa = PBXGroup;
 			children = (
 				D1F8C0DD2C35407C0060C30E /* TLMS-learner.app */,
-				D1F8C0ED2C35407D0060C30E /* TLMS-learnerTests.xctest */,
-				D1F8C0F72C35407D0060C30E /* TLMS-learnerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -328,42 +271,6 @@
 			productReference = D1F8C0DD2C35407C0060C30E /* TLMS-learner.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D1F8C0EC2C35407D0060C30E /* TLMS-learnerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D1F8C1042C35407D0060C30E /* Build configuration list for PBXNativeTarget "TLMS-learnerTests" */;
-			buildPhases = (
-				D1F8C0E92C35407D0060C30E /* Sources */,
-				D1F8C0EA2C35407D0060C30E /* Frameworks */,
-				D1F8C0EB2C35407D0060C30E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D1F8C0EF2C35407D0060C30E /* PBXTargetDependency */,
-			);
-			name = "TLMS-learnerTests";
-			productName = "TLMS-learnerTests";
-			productReference = D1F8C0ED2C35407D0060C30E /* TLMS-learnerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		D1F8C0F62C35407D0060C30E /* TLMS-learnerUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D1F8C1072C35407D0060C30E /* Build configuration list for PBXNativeTarget "TLMS-learnerUITests" */;
-			buildPhases = (
-				D1F8C0F32C35407D0060C30E /* Sources */,
-				D1F8C0F42C35407D0060C30E /* Frameworks */,
-				D1F8C0F52C35407D0060C30E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D1F8C0F92C35407D0060C30E /* PBXTargetDependency */,
-			);
-			name = "TLMS-learnerUITests";
-			productName = "TLMS-learnerUITests";
-			productReference = D1F8C0F72C35407D0060C30E /* TLMS-learnerUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -376,14 +283,6 @@
 				TargetAttributes = {
 					D1F8C0DC2C35407C0060C30E = {
 						CreatedOnToolsVersion = 15.4;
-					};
-					D1F8C0EC2C35407D0060C30E = {
-						CreatedOnToolsVersion = 15.4;
-						TestTargetID = D1F8C0DC2C35407C0060C30E;
-					};
-					D1F8C0F62C35407D0060C30E = {
-						CreatedOnToolsVersion = 15.4;
-						TestTargetID = D1F8C0DC2C35407C0060C30E;
 					};
 				};
 			};
@@ -404,8 +303,6 @@
 			projectRoot = "";
 			targets = (
 				D1F8C0DC2C35407C0060C30E /* TLMS-learner */,
-				D1F8C0EC2C35407D0060C30E /* TLMS-learnerTests */,
-				D1F8C0F62C35407D0060C30E /* TLMS-learnerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -421,22 +318,6 @@
 				D1F8C0E52C35407D0060C30E /* Assets.xcassets in Resources */,
 				04A3858A2C37B53300832DDC /* Poppins-Regular.ttf in Resources */,
 				D1EF76382C39420200C8B8A9 /* GoogleService-Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D1F8C0EB2C35407D0060C30E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D1EF76392C39420200C8B8A9 /* GoogleService-Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D1F8C0F52C35407D0060C30E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D1EF763A2C39420200C8B8A9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,54 +362,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D1F8C0E92C35407D0060C30E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D1C146132C39C34D00F6E43F /* CourseModel.swift in Sources */,
-				04A3859F2C37BFD700832DDC /* TextLabel.swift in Sources */,
-				04A385992C37BFD700832DDC /* ImageView.swift in Sources */,
-				04A385A22C37BFD700832DDC /* MainButton.swift in Sources */,
-				04A3859C2C37BFD700832DDC /* TitleLable.swift in Sources */,
-				04A385962C37BFD700832DDC /* PasswordField.swift in Sources */,
-				04A385A52C37BFD700832DDC /* HeadingLabel.swift in Sources */,
-				52C21B1C2C3E5B4E00B8CCB9 /* SectionView.swift in Sources */,
-				D1EF76452C39B55600C8B8A9 /* MyCourses.swift in Sources */,
-				D1EF76412C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D1F8C0F32C35407D0060C30E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				04A3859D2C37BFD700832DDC /* TitleLable.swift in Sources */,
-				04A3859A2C37BFD700832DDC /* ImageView.swift in Sources */,
-				D1EF76462C39B55600C8B8A9 /* MyCourses.swift in Sources */,
-				04A385A32C37BFD700832DDC /* MainButton.swift in Sources */,
-				D1C146142C39C34D00F6E43F /* CourseModel.swift in Sources */,
-				04A385A02C37BFD700832DDC /* TextLabel.swift in Sources */,
-				D1EF76422C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */,
-				52C21B1D2C3E5B4E00B8CCB9 /* SectionView.swift in Sources */,
-				04A385A62C37BFD700832DDC /* HeadingLabel.swift in Sources */,
-				04A385972C37BFD700832DDC /* PasswordField.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D1F8C0EF2C35407D0060C30E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D1F8C0DC2C35407C0060C30E /* TLMS-learner */;
-			targetProxy = D1F8C0EE2C35407D0060C30E /* PBXContainerItemProxy */;
-		};
-		D1F8C0F92C35407D0060C30E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D1F8C0DC2C35407C0060C30E /* TLMS-learner */;
-			targetProxy = D1F8C0F82C35407D0060C30E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		D1F8C0FF2C35407D0060C30E /* Debug */ = {
@@ -712,82 +546,6 @@
 			};
 			name = Release;
 		};
-		D1F8C1052C35407D0060C30E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8SGTXTM2JK;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.TLMS-learnerTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TLMS-learner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TLMS-learner";
-			};
-			name = Debug;
-		};
-		D1F8C1062C35407D0060C30E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8SGTXTM2JK;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.TLMS-learnerTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TLMS-learner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TLMS-learner";
-			};
-			name = Release;
-		};
-		D1F8C1082C35407D0060C30E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8SGTXTM2JK;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.TLMS-learnerUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "TLMS-learner";
-			};
-			name = Debug;
-		};
-		D1F8C1092C35407D0060C30E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8SGTXTM2JK;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.TLMS-learnerUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "TLMS-learner";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -805,24 +563,6 @@
 			buildConfigurations = (
 				D1F8C1022C35407D0060C30E /* Debug */,
 				D1F8C1032C35407D0060C30E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D1F8C1042C35407D0060C30E /* Build configuration list for PBXNativeTarget "TLMS-learnerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D1F8C1052C35407D0060C30E /* Debug */,
-				D1F8C1062C35407D0060C30E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D1F8C1072C35407D0060C30E /* Build configuration list for PBXNativeTarget "TLMS-learnerUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D1F8C1082C35407D0060C30E /* Debug */,
-				D1F8C1092C35407D0060C30E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

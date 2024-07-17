@@ -80,16 +80,16 @@ struct ProfileHeader: View {
     @Binding var showSettings: Bool
 
     var body: some View {
-        HStack {
-            Text("Profile")
-                .font(.title)
-                .fontWeight(.bold)
-            Spacer()
-//            Button(action: { showSettings = true }) {
-//                Image(systemName: "gearshape")
-//                    .foregroundColor(.blue)
-//            }
-        }
+//        HStack {
+//            Text("Profile")
+//                .font(.title)
+//                .fontWeight(.bold)
+//            Spacer()
+////            Button(action: { showSettings = true }) {
+////                Image(systemName: "gearshape")
+////                    .foregroundColor(.blue)
+////            }
+//        }
 
         VStack(alignment: .leading) {
             Image(systemName: "person.circle.fill")
@@ -107,6 +107,8 @@ struct ProfileHeader: View {
                 .font(.caption)
                 .foregroundColor(.secondary).padding(.leading, 160)
         }
+        .navigationTitle("Profile")
+        .navigationBarTitleDisplayMode(.automatic)
     }
 }
 
