@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 class AuthValidation{
     static var shared = AuthValidation()
      func validateName(name: String) -> Bool {
@@ -28,5 +29,25 @@ class AuthValidation{
     
     func checkFullName(fName:String,lName:String)->Bool{
         return fName != lName
+    }
+}
+
+//chat 
+struct ChatRoomUser {
+    let uid: String
+    let name: String
+    let email: String?
+    let photoUrl: String?
+}
+final class AuthManager {
+    static let shared = AuthManager()
+    let auth = Auth.auth()
+    
+    
+    func getCurrentUser() -> ChatRoomUser? {
+        guard let user = auth.currentUser else {
+            return nil
+        }
+        return ChatRoomUser(uid: user.uid, name: user.displayName ?? "Unknown", email: user.email, photoUrl: user.photoURL?.absoluteString)
     }
 }
