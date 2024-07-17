@@ -19,14 +19,15 @@ struct LikedView: View {
                 }
                 
                 .listStyle(PlainListStyle())
+                .navigationBarTitle("Liked Courses", displayMode: .large)
             }
-            .navigationBarTitle("Liked Courses", displayMode: .large)
+            
             .onAppear {
                 Task {
                     do {
                         let courses = try await FirebaseServices.shared.fetchAllLikedCourses()
                         self.allLikedCourse = courses
-                        print(self.allLikedCourse)
+//                        print(self.allLikedCourse)
                     } catch {
                         // Handle the error appropriately
                         print("Error fetching liked courses: \(error)")

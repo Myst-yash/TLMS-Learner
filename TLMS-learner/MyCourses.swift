@@ -4,42 +4,8 @@ struct MyCourses: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var selectedSegment = 0
     let segments = ["Ongoing", "Completed"]
-    @State var ongoingCourse = [
-        HomeCourse(
-            id: UUID().uuidString,
-            assignedEducator: "John Doe",
-            courseName: "SwiftUI Basics",
-            courseImage: "swift",
-            releaseData: Date(),
-            target: "iOS Developers"
-        ),
-        HomeCourse(
-            id: UUID().uuidString,
-            assignedEducator: "Jane Smith",
-            courseName: "Advanced Swift",
-            courseImage: "swift",
-            releaseData: Date(),
-            target: "iOS Developers"
-        )
-    ]
-    @State var completedCourse = [
-        HomeCourse(
-            id: UUID().uuidString,
-            assignedEducator: "Alice Johnson",
-            courseName: "UI Design Principles",
-            courseImage: "swift",
-            releaseData: Date(),
-            target: "Designers"
-        ),
-        HomeCourse(
-            id: UUID().uuidString,
-            assignedEducator: "Bob Brown",
-            courseName: "Machine Learning",
-            courseImage: "swift",
-            releaseData: Date(),
-            target: "Data Scientists"
-        )
-    ]
+    @State var ongoingCourse = [Course]()
+    @State var completedCourse = [Course]()
     
     init() {
         //      Sets the background color of the Picker
@@ -70,12 +36,33 @@ struct MyCourses: View {
                         ForEach(selectedSegment == 0 ? ongoingCourse : completedCourse) { course in
                             ForYouCourseCard(course: course)
                         }
+                        if selectedSegment == 0 && ongoingCourse.isEmpty{
+                            Text("No Ongoing Courses")
+                                .padding(.top, 250)
+                        }
+                        
+                        else if selectedSegment != 0 && completedCourse.isEmpty{
+                            Text("No Completed Course")
+                                .padding(.top, 250)
+                        }
                     }
                     .padding(.top, 20)
                 }
-            }
+            }.padding(20)
+            
             .navigationTitle("My Courses")
             .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                Task{
+                    do{
+                        let courses = try await FirebaseServices.shared.fetchAllEnrolledCourse()
+                        self.ongoingCourse = courses
+                    }
+                    catch{
+                        print("Error fetching enrolled courses: \(error)")
+                    }
+                }
+            }
         }
     }
     
@@ -90,22 +77,45 @@ struct MyCourses: View {
 }
 
 struct ForYouCourseCard: View {
-    var course: HomeCourse
+    var course: Course
     
     var body: some View {
         Button(action: {}) {
             HStack {
-                Image(course.courseImage)
-                    .resizable()
-                    .frame(width: 149, height: 86)
-                    .cornerRadius(8)
-                    .padding(.leading, 6)
+                ZStack {
+                    Rectangle()
+                        .fill(Color.gray.opacity(0.1)) // Placeholder background
+                        .frame(width: 100, height: 60)
+                        .cornerRadius(10)
+                    
+                    AsyncImage(url: URL(string: course.imageName)) { phase in
+                        switch phase {
+                        case .empty:
+                            ProgressView()
+                                .frame(width: 100, height: 60) // Ensure ProgressView takes the same space
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .frame(width: 149, height: 86)
+                                .cornerRadius(8)
+                                .padding(.leading, 6)
+                        case .failure:
+                            Image(systemName: "photo")
+                                .resizable()
+                                    .frame(width: 149, height: 86)
+                                    .cornerRadius(8)
+                                    .padding(.leading, 6)
+                        @unknown default:
+                            EmptyView()
+                        }
+                    }
+                }
                 
                 VStack(alignment: .leading) {
-                    Text(course.courseName)
+                    Text(course.title)
                         .font(.headline)
                         .foregroundColor(Color.black)
-                    Text("by \(course.assignedEducator)")
+                    Text("by batman") // to be updated
                         .font(.subheadline)
                         .foregroundColor(.gray)
                     Text("76%")
@@ -116,7 +126,7 @@ struct ForYouCourseCard: View {
                 }
                 Spacer()
             }
-            .frame(width: 359, height: 100)
+            .frame(width: .infinity, height: 100)
             .background(Color("color 3"))
             .cornerRadius(10)
             .overlay(

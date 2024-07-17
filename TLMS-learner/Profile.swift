@@ -254,11 +254,6 @@ struct FavoritesView: View {
     var body: some View {
         Text("You have not enrolled in any course")
             .font(.largeTitle)
-            .onAppear(perform: {
-                FirebaseServices.shared.fetchEnrolledCourses { fetchedCourses in
-                    print(fetchedCourses)
-                }
-            })
     }
 }
 

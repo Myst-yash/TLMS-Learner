@@ -471,109 +471,6 @@ class FirebaseServices{
     }
     
     
-    func fetchEnrolledCourses(completion: @escaping ([Course]) -> Void) {
-        guard let currentUser = Auth.auth().currentUser else {
-            print("Email not found")
-            return
-        }
-        let db = Firestore.firestore()
-
-        let learnersCollection = db.collection("Learners")
-        let coursesCollection = db.collection("Courses")
-
-        learnersCollection.whereField("Email", isEqualTo: currentUser.email!).getDocuments { (querySnapshot, error) in
-            if let error = error {
-                print("Error fetching learner: \(error.localizedDescription)")
-                completion([])
-                return
-            }
-
-            guard let documents = querySnapshot?.documents, !documents.isEmpty else {
-                print("No learner found with this email")
-                completion([]) // No learner found with the given email
-                return
-            }
-
-            let learner = documents.compactMap { document -> User? in
-                let data = document.data()
-                let enrolledCourseIds = data["enrolledCourses"] as? [String] ?? []
-
-                return User(
-                    id: data["id"] as? String ?? "",
-                    email: data["Email"] as? String ?? "",
-                    firstName: data["firstName"] as? String ?? "",
-                    lastName: data["lastName"] as? String ?? "",
-                    completedCourses: data["completedCourses"] as? [String] ?? [],
-                    enrolledCourses: enrolledCourseIds,
-                    goal: data["goal"] as? String ?? "",
-                    joinedDate: data["joinedDate"] as? String ?? "",
-                    likedCourses: data["likedCourses"] as? [String] ?? []
-                )
-            }.first
-
-            guard let enrolledCourseIDs = learner?.enrolledCourses, !enrolledCourseIDs.isEmpty else {
-                print("No enrolled courses")
-                completion([]) // No enrolled courses
-                return
-            }
-
-//            print("Enrolled Courses IDs: \(enrolledCourseIDs)")
-
-            var enrolledCourses: [Course] = []
-
-            let group = DispatchGroup()
-
-            for courseID in enrolledCourseIDs {
-                group.enter()
-                coursesCollection.whereField("courseID", isEqualTo: courseID).getDocuments { (querySnapshot, error) in
-                    defer { group.leave() }
-
-                    if let error = error {
-                        print("Error fetching enrolled course: \(error.localizedDescription)")
-                        return
-                    }
-
-                    guard let documents = querySnapshot?.documents, !documents.isEmpty else {
-                        print("No data for course ID: \(courseID)") // Debug print
-                        return
-                    }
-
-                    for document in documents {
-                        let data = document.data()
-                        let course = Course(
-                            id: data["courseID"] as? String ?? "",
-                            imageName: data["courseImageURL"] as? String ?? "",
-                            title: data["courseName"] as? String ?? "",
-                            subtitle: "",
-                            studentsEnrolled: 0, // Not present in your data
-                            creator: data["assignedEducator"] as? String ?? "",
-                            lastUpdated: "",
-                            language: "",
-                            whatYoullLearn: [], // Not present in your data
-                            courseIncludes: [], // Not present in your data
-                            courseIncludeIcons: [], // Not present in your data
-                            description: data["courseDescription"] as? String ?? "",
-                            instructorImageName: "",
-                            instructorName: "",
-                            instructorUniversity: "",
-                            instructorRating: 0,
-                            instructorStudents: 0,
-                            instructorBio: "",
-                            progress: nil
-                        )
-                        enrolledCourses.append(course)
-//                        print("Course appended: \(course.title)") // Debug print
-                    }
-                }
-            }
-
-            group.notify(queue: .main) {
-//                print("All courses fetched, total: \(enrolledCourses.count)") // Debug print
-                completion(enrolledCourses)
-            }
-        }
-    }
-    
     func fetchEnrolledCourseIds(completion: @escaping ([String]) -> Void) {
         guard let currentUser = Auth.auth().currentUser else {
             print("Email not found")
@@ -717,6 +614,48 @@ class FirebaseServices{
         }
 
         return allLikedCourses
+    }
+    
+    func fetchAllEnrolledCourse() async throws -> [Course]{
+        let db = Firestore.firestore()
+        let ref = db.collection("Courses")
+        let enrolledCourses = CentralState.shared.enrolledCourse
+        
+        guard !enrolledCourses.isEmpty else{
+            return []
+        }
+        let querySnapshot = try await ref.whereField("courseID", in: enrolledCourses).getDocuments()
+        var allEnrolledCourses: [Course] = []
+
+        for document in querySnapshot.documents {
+            let data = document.data()
+
+            let course = Course(
+                id: data["courseID"] as? String ?? "",
+                imageName: data["courseImageURL"] as? String ?? "",
+                title: data["courseName"] as? String ?? "",
+                subtitle: "",
+                studentsEnrolled: 0, // Not present in your data
+                creator: data["assignedEducator"] as? String ?? "",
+                lastUpdated: "",
+                language: "",
+                whatYoullLearn: [], // Not present in your data
+                courseIncludes: [], // Not present in your data
+                courseIncludeIcons: [], // Not present in your data
+                description: data["courseDescription"] as? String ?? "",
+                instructorImageName: "",
+                instructorName: "",
+                instructorUniversity: "",
+                instructorRating: 0,
+                instructorStudents: 0,
+                instructorBio: "",
+                progress: nil
+            )
+
+            allEnrolledCourses.append(course)
+        }
+
+        return allEnrolledCourses
     }
 
 
