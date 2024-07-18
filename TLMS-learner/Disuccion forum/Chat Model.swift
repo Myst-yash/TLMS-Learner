@@ -1,10 +1,3 @@
-//
-//  Chat Model.swift
-//  TLMS-learner
-//
-//  Created by Mac on 17/07/24.
-//
-
 import Foundation
 import SwiftUI
 

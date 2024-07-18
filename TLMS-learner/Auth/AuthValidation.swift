@@ -31,18 +31,16 @@ class AuthValidation{
         return fName != lName
     }
 }
-
-//chat 
 struct ChatRoomUser {
     let uid: String
     let name: String
     let email: String?
     let photoUrl: String?
 }
+
 final class AuthManager {
     static let shared = AuthManager()
     let auth = Auth.auth()
-    
     
     func getCurrentUser() -> ChatRoomUser? {
         guard let user = auth.currentUser else {
