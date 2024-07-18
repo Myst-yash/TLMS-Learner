@@ -357,50 +357,78 @@ class FirebaseServices{
     func fetchCourseDetailsWithId(courseID: String, completion: @escaping (Course?) -> Void) {
         let db = Firestore.firestore()
         let ref = db.collection("Courses")
-        
+        let educatorRef = db.collection("Educators")
+
         ref.whereField("courseID", isEqualTo: courseID).getDocuments { snapshot, error in
-            if error != nil {
+            if let error = error {
+                print("Error fetching course details: \(error)")
                 completion(nil)
                 return
             }
-            
+
             guard let documents = snapshot?.documents, !documents.isEmpty else {
                 completion(nil) // No course found with the given ID
                 return
             }
-            
+
             let document = documents.first!
             let data = document.data()
-            
-            let course = Course(
-                id: data["courseID"] as? String ?? "",
-                imageName: data["courseImageURL"] as? String ?? "",
-                title: data["courseName"] as? String ?? "",
-                subtitle: "",
-                studentsEnrolled: 0, // Not present in your data
-                creator: data["assignedEducator"] as? String ?? "",
-                lastUpdated: "",
-                language: "",
-                whatYoullLearn: [], // Not present in your data
-                courseIncludes: [], // Not present in your data
-                courseIncludeIcons: [], // Not present in your data
-                description: data["courseDescription"] as? String ?? "",
-                instructorImageName: "",
-                instructorName: "",
-                instructorUniversity: "",
-                instructorRating: 0,
-                instructorStudents: 0,
-                instructorBio: "",
-                progress: nil
-            )
-            
-            completion(course)
+            let educatorID = data["assignedEducator"] as? String ?? ""
+
+            var firstName = ""
+            var lastName = ""
+            var image = ""
+            var about = ""
+            var numberOfModules = 0
+
+            let fetchEducatorGroup = DispatchGroup()
+
+            if !educatorID.isEmpty {
+                fetchEducatorGroup.enter()
+                educatorRef.document(educatorID).getDocument { educatorDoc, error in
+                    if let error = error {
+                        print("Error fetching educator details: \(error)")
+                    } else if let educatorData = educatorDoc?.data() {
+                        firstName = educatorData["FirstName"] as? String ?? ""
+                        lastName = educatorData["LastName"] as? String ?? ""
+                        image = educatorData["profileImageURL"] as? String ?? ""
+                        about = educatorData["about"] as? String ?? ""
+                    }
+                    fetchEducatorGroup.leave()
+                }
+            }
+            self.fetchModules(courseID: courseID) { num in
+                numberOfModules = num
+            }
+
+            fetchEducatorGroup.notify(queue: .main) {
+                let releaseTimestamp = data["releaseDate"] as? Timestamp
+                let releaseDate = releaseTimestamp?.dateValue()
+
+                let course = Course(
+                    id: data["courseID"] as? String ?? "",
+                    imageName: data["courseImageURL"] as? String ?? "",
+                    title: data["courseName"] as? String ?? "",
+                    studentsEnrolled: data["numberOfStudentsEnrolled"] as? Int ?? 0,
+                    creator: educatorID,
+                    description: data["courseDescription"] as? String ?? "",
+                    instructorImageName: image, 
+                    instructorName: "\(firstName) \(lastName)",
+                    instructorBio: about,
+                    progress: nil,// Adjust if you have this data
+                    numberOfModules: numberOfModules
+                )
+
+                completion(course)
+            }
         }
     }
+
     
     func enrollStudent(courseId:String, completion: @escaping(Bool) -> Void){
         let db = Firestore.firestore()
         let learnerCollection = db.collection("Learners")
+        let courseCollection = db.collection("Courses")
         guard let currentUser = Auth.auth().currentUser else{
             print("email not found")
             return
@@ -433,11 +461,40 @@ class FirebaseServices{
                     completion(false)
                 } else {
                     print("Document successfully updated")
-                    completion(true)
                 }
             }
             
         }
+        courseCollection.whereField("courseID", isEqualTo: courseId).getDocuments { QuerySnapshot, err in
+            if err != nil{
+                print("Error fetching courses")
+                completion(false)
+                return
+            }
+            
+            guard let documents = QuerySnapshot?.documents, documents.count == 1 else{
+                print("Document with the specified documentID not found or multiple documents found")
+                completion(false)
+                return
+            }
+            let document = documents[0]
+            let documentID = document.documentID
+            
+            let data = document.data()
+            var numberOfStudentsEnrolled = data["numberOfStudentsEnrolled"] as? Int ?? 0
+            numberOfStudentsEnrolled += 1
+            
+            courseCollection.document(documentID).updateData(["numberOfStudentsEnrolled":numberOfStudentsEnrolled]){ err in
+                if err != nil{
+                    print("error updating numberOfStudentsEnrolled ")
+                    completion(false)
+                }
+                else{
+                    print("Documents successfully updated")
+                }
+            }
+        }
+        completion(true)
     }
     
     func likeAndUnlikeCourse(completion: @escaping(Bool) -> Void){
@@ -618,20 +675,12 @@ class FirebaseServices{
                 id: data["courseID"] as? String ?? "",
                 imageName: data["courseImageURL"] as? String ?? "",
                 title: data["courseName"] as? String ?? "",
-                subtitle: "",
                 studentsEnrolled: 0, // Not present in your data
                 creator: assignedEducatorID,
-                lastUpdated: "",
-                language: "",
                 whatYoullLearn: [], // Not present in your data
-                courseIncludes: [], // Not present in your data
-                courseIncludeIcons: [], // Not present in your data
                 description: data["courseDescription"] as? String ?? "",
                 instructorImageName: "",
                 instructorName: "\(firstName) \(lastName)",
-                instructorUniversity: "",
-                instructorRating: 0,
-                instructorStudents: 0,
                 instructorBio: "",
                 progress: nil
             )
@@ -675,20 +724,12 @@ class FirebaseServices{
                 id: data["courseID"] as? String ?? "",
                 imageName: data["courseImageURL"] as? String ?? "",
                 title: data["courseName"] as? String ?? "",
-                subtitle: "",
                 studentsEnrolled: 0, // Not present in your data
                 creator: assignedEducatorID,
-                lastUpdated: "",
-                language: "",
                 whatYoullLearn: [], // Not present in your data
-                courseIncludes: [], // Not present in your data
-                courseIncludeIcons: [], // Not present in your data
                 description: data["courseDescription"] as? String ?? "",
                 instructorImageName: "",
                 instructorName: "\(firstName) \(lastName)",
-                instructorUniversity: "",
-                instructorRating: 0,
-                instructorStudents: 0,
                 instructorBio: "",
                 progress: nil
             )
@@ -697,6 +738,46 @@ class FirebaseServices{
         }
 
         return allEnrolledCourses
+    }
+    
+    
+    func fetchModules(courseID: String, completion: @escaping (Int) -> Void) {
+        let db = Firestore.firestore()
+        let ref = db.collection("Courses").document(courseID).collection("Modules")
+
+        ref.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error fetching the modules: \(error)")
+                completion(0)
+                return
+            }
+            
+            guard let documents = querySnapshot?.documents else {
+                print("Documents couldn't be fetched.")
+                completion(0)
+                return
+            }
+            
+            let modules: [Module] = documents.map { doc in
+                let data = doc.data()
+                let title = data["title"] as? String ?? "Untitled"
+                let notesFileName = data["notesFileName"] as? String
+                let notesUploadProgress = data["notesUploadProgress"] as? Double ?? 0.0
+                let videoFileName = data["videoFileName"] as? String
+                let videoUploadProgress = data["videoUploadProgress"] as? Double ?? 0.0
+                
+                return Module(
+                    title: title,
+                    notesFileName: notesFileName,
+                    notesUploadProgress: notesUploadProgress,
+                    videoFileName: videoFileName,
+                    videoUploadProgress: videoUploadProgress
+                )
+            }
+            
+            print("Fetched Modules: ", modules)
+            completion(modules.count)
+        }
     }
 
 

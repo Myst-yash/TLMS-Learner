@@ -4,40 +4,25 @@ struct CourseDetails: View {
 
     let courseId:String
 
-    @State var course: Course =  Course(
-        imageName: "nodejsCourse",
-        title: "Node Js from Scratch",
-        subtitle: "Master Node.js basics, build APIs, work with databases, and deploy apps. Ideal for beginners in backend development.",
-        studentsEnrolled: 3027,
-        creator: "Vasooli Bhai",
-        lastUpdated: "24/06/2024",
-        language: "English",
-        whatYoullLearn: [
-            "Set up a Node.js development environment.",
-            "Build and deploy RESTful APIs.",
-            "Manage data with databases.",
-            "Implement and use Node.js modules."
-        ],
-        courseIncludes: [
-            "3.5 total hours on-demand video",
-            "Assignments and quizzes",
-            "Lifetime access",
-            "Certificate of completion"
-        ],
-        courseIncludeIcons: [
-            "play.rectangle.fill",
-            "doc.text.fill",
-            "infinity",
-            "rosette"
-        ],
-        description: "Kickstart your backend development journey with our Node.js from Scratch course. Learn to build and deploy efficient, scalable applications, create RESTful APIs, and manage databases.",
-        instructorImageName: "VasooliBhai",
-        instructorName: "Vasooli Bhai",
-        instructorUniversity: "University of Golmaal",
-        instructorRating: 4,
-        instructorStudents: 1823,
-        instructorBio: "Meet Vasooli Bhai, the most charming debt collector in the universe! Known for his unique mix of muscle and mayhem, Vasooli Bhai's life motto is 'Money talks, but my fists do the negotiating.' With his hilarious attempts to get his dues and his over-the-top tough guy persona, he's the lovable goon."
-    )
+    @State var course: Course = Course(
+            id: UUID().uuidString,
+            imageName: "nodejsCourse",
+            title: "Node Js from Scratch",
+            studentsEnrolled: 3027,
+            creator: "Vasooli Bhai",
+            whatYoullLearn: [
+                "Set up a Node.js development environment.",
+                "Build and deploy RESTful APIs.",
+                "Manage data with databases.",
+                "Implement and use Node.js modules."
+            ],
+            description: "Kickstart your backend development journey with our Node.js from Scratch course. Learn to build and deploy efficient, scalable applications, create RESTful APIs, and manage databases.",
+            instructorImageName: "VasooliBhai",
+            instructorName: "Vasooli Bhai",
+            instructorBio: "Meet Vasooli Bhai, the most charming debt collector in the universe! Known for his unique mix of muscle and mayhem, Vasooli Bhai's life motto is 'Money talks, but my fists do the negotiating.' With his hilarious attempts to get his dues and his over-the-top tough guy persona, he's the lovable goon.",
+            progress: nil,
+            numberOfModules: 4
+        )
     @State private var isEnrolled: Bool = false
     @State private var isLiked: Bool = false
     @State private var showAlert = false
@@ -45,6 +30,19 @@ struct CourseDetails: View {
     @State private var showFullSubtitle: Bool = false
     @State private var showFullDescription: Bool = false
     @State private var showFullInstructorBio: Bool = false
+//    @State var numOfModules:int
+    let courseIncludes = [
+            "3.5 total hours on-demand video",
+            "Assignments and quizzes",
+            "Lifetime access",
+            "Certificate of completion"
+    ]
+    let courseIncludeIcons = [
+        "play.rectangle.fill",
+        "doc.text.fill",
+        "infinity",
+        "rosette"
+    ]
 
     var body: some View {
         ScrollView {
@@ -86,23 +84,23 @@ struct CourseDetails: View {
 
                 // Subtitle and enroll button
                 VStack(alignment: .leading, spacing: 10) {
-                    Text(course.subtitle)
+                    Text(course.description)
                         .font(.custom("Poppins-Regular", size: 16))
                         .foregroundColor(.gray)
                         .padding(.horizontal, 20)
                         .lineLimit(showFullSubtitle ? nil : 3)
                         .fixedSize(horizontal: false, vertical: true) // Ensure text wraps correctly
 
-                    if shouldShowShowMoreButton(text: course.subtitle, maxLines: 3) {
-                        Button(action: {
-                            showFullSubtitle.toggle()
-                        }) {
-                            Text(showFullSubtitle ? "Show less" : "Show more")
-                                .font(.custom("Poppins-Regular", size: 16))
-                                .foregroundColor(Color("color 2")) // Use "color 2" here
-                        }
-                        .padding(.horizontal, 20)
-                    }
+//                    if shouldShowShowMoreButton(text: course.subtitle, maxLines: 3) {
+//                        Button(action: {
+//                            showFullSubtitle.toggle()
+//                        }) {
+//                            Text(showFullSubtitle ? "Show less" : "Show more")
+//                                .font(.custom("Poppins-Regular", size: 16))
+//                                .foregroundColor(Color("color 2")) // Use "color 2" here
+//                        }
+//                        .padding(.horizontal, 20)
+//                    }
                 }
 
                 Spacer(minLength: 15)
@@ -121,7 +119,7 @@ struct CourseDetails: View {
                         .font(.custom("Poppins-Medium", size: 16))
                         .foregroundColor(.black)
                     +
-                    Text(course.creator)
+                    Text(course.instructorName)
                         .font(.custom("Poppins-Medium", size: 16))
                         .foregroundColor(Color("color 2"))
                 }.accessibilityElement(children: .ignore).accessibilityLabel("This Course is created by \(course.creator)")
@@ -129,23 +127,12 @@ struct CourseDetails: View {
 
                 Spacer(minLength: 5)
 
-                // Last updated
-                HStack {
-                    Image(systemName: "exclamationmark.circle")
-                        .foregroundColor(.gray)
-                    Text("Last Updated \(course.lastUpdated)")
-                        .font(.custom("Poppins-Regular", size: 12))
-                        .foregroundColor(.gray)
-                }
-                .padding(.horizontal, 20)
-
-                Spacer(minLength: 5)
 
                 // Language
                 HStack {
                     Image(systemName: "globe")
                         .foregroundColor(.gray)
-                    Text(course.language)
+                    Text("English")
                         .font(.custom("Poppins-Regular", size: 12))
                         .foregroundColor(.gray)
                 }
@@ -238,38 +225,15 @@ struct CourseDetails: View {
 
                 Spacer(minLength: 20)
 
-                // What you'll learn section with checkmark icon
-                SectionView(title: "What you'll learn", items: course.whatYoullLearn, iconNames: Array(repeating: "checkmark", count: course.whatYoullLearn.count))
-                    .padding(.horizontal, 20)
-                
-                Spacer(minLength: 15)
 
                 // This course includes section with different icons fetched from course model
-                SectionView(title: "This course includes", items: course.courseIncludes, iconNames: course.courseIncludeIcons)
+                SectionView(title: "This course includes", items: courseIncludes, iconNames: courseIncludeIcons)
                     .padding(.horizontal, 20)
                 
                 Spacer(minLength: 15)
                 
                 // Description section (without icon)
-                VStack(alignment: .leading) {
-                    SectionView(title: "Description", items: [course.description], iconNames: [nil])
-                        .padding(.horizontal, 20)
-                        .lineLimit(showFullDescription ? nil : 3)
-                    
-                    if shouldShowShowMoreButton(text: course.description, maxLines: 3) {
-                        Button(action: {
-                            showFullDescription.toggle()
-                        }) {
-                            Text(showFullDescription ? "Show less" : "Show more")
-                                .font(.custom("Poppins-Regular", size: 16))
-                                .foregroundColor(Color("color 2")) // Use "color 2" here
-                        }
-                        .padding(.horizontal, 20)
-                    }
-                }
-
-                Spacer(minLength: 15)
-
+                
                 // Instructor
                 Text("Instructor")
                     .font(.custom("Poppins-Bold", size: 20))
@@ -279,37 +243,32 @@ struct CourseDetails: View {
 
                 // Instructor details
                 HStack {
-                    Image(course.instructorImageName)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 60, height: 60)
-                        .clipShape(Circle())
+                    AsyncImage(url: URL(string: course.imageName)) { phase in
+                        switch phase {
+                        case .empty:
+                            ProgressView()
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 60, height: 60)
+                                .clipShape(Circle())
 
+                        case .failure:
+                            Image(systemName: "photo")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 60, height: 60)
+                                .clipShape(Circle())
+                        @unknown default:
+                            EmptyView()
+                        }
+                    }
+                        
                     VStack(alignment: .leading) {
                         Text(course.instructorName)
                             .font(.custom("Poppins-Bold", size: 16))
-                        Text(course.instructorUniversity)
-                            .font(.custom("Poppins-Regular", size: 14))
-                            .foregroundColor(.gray)
-
-                        HStack {
-                            HStack(spacing: 2) {
-                                ForEach(0..<course.instructorRating, id: \.self) { _ in
-                                    Image(systemName: "star.fill")
-                                        .foregroundColor(Color("color 2"))
-                                }
-                                ForEach(course.instructorRating..<5, id: \.self) { _ in
-                                    Image(systemName: "star")
-                                        .foregroundColor(Color("color 2"))
-                                }
-                            }
-                            Text("\(course.instructorStudents) students")
-                                .font(.custom("Poppins-Regular", size: 14))
-                                .foregroundColor(.gray)
-                                .padding(.leading, 4)
-                        }
                     }
-                    .padding(.leading)
                 }
                 .padding(.horizontal, 20)
 
@@ -341,9 +300,7 @@ struct CourseDetails: View {
         .navigationBarTitle("Course Details", displayMode: .inline)
         .onAppear(perform: {
             FirebaseServices.shared.fetchCourseDetailsWithId(courseID: courseId) { fetchedCourse in
-                self.course.imageName = fetchedCourse?.imageName ?? course.imageName
-                self.course.title = fetchedCourse?.title ?? course.title
-                self.course.description = fetchedCourse?.description ?? course.description
+                self.course = fetchedCourse ?? course
             }
             
             self.isEnrolled = CentralState.shared.checkIfEnrolled(id: courseId)
@@ -382,37 +339,22 @@ struct CourseDetails_Previews: PreviewProvider {
 }
 
 // Sample Course Data
-let sampleCourse = Course(
-    imageName: "nodejsCourse",
-    title: "Node Js from Scratch",
-    subtitle: "Master Node.js basics, build APIs, work with databases, and deploy apps. Ideal for beginners in backend development.",
-    studentsEnrolled: 3027,
-    creator: "Vasooli Bhai",
-    lastUpdated: "24/06/2024",
-    language: "English",
-    whatYoullLearn: [
-        "Set up a Node.js development environment.",
-        "Build and deploy RESTful APIs.",
-        "Manage data with databases.",
-        "Implement and use Node.js modules."
-    ],
-    courseIncludes: [
-        "3.5 total hours on-demand video",
-        "Assignments and quizzes",
-        "Lifetime access",
-        "Certificate of completion"
-    ],
-    courseIncludeIcons: [
-        "play.rectangle.fill",
-        "doc.text.fill",
-        "infinity",
-        "rosette"
-    ],
-    description: "Kickstart your backend development journey with our Node.js from Scratch course. Learn to build and deploy efficient, scalable applications, create RESTful APIs, and manage databases.",
-    instructorImageName: "VasooliBhai",
-    instructorName: "Vasooli Bhai",
-    instructorUniversity: "University of Golmaal",
-    instructorRating: 4,
-    instructorStudents: 1823,
-    instructorBio: "Meet Vasooli Bhai, the most charming debt collector in the universe! Known for his unique mix of muscle and mayhem, Vasooli Bhai's life motto is 'Money talks, but my fists do the negotiating.' With his hilarious attempts to get his dues and his over-the-top tough guy persona, he's the lovable goon."
-)
+var course: Course = Course(
+        id: UUID().uuidString,
+        imageName: "nodejsCourse",
+        title: "Node Js from Scratch",
+        studentsEnrolled: 3027,
+        creator: "Vasooli Bhai",
+        whatYoullLearn: [
+            "Set up a Node.js development environment.",
+            "Build and deploy RESTful APIs.",
+            "Manage data with databases.",
+            "Implement and use Node.js modules."
+        ],
+        description: "Kickstart your backend development journey with our Node.js from Scratch course. Learn to build and deploy efficient, scalable applications, create RESTful APIs, and manage databases.",
+        instructorImageName: "VasooliBhai",
+        instructorName: "Vasooli Bhai",
+        instructorBio: "Meet Vasooli Bhai, the most charming debt collector in the universe! Known for his unique mix of muscle and mayhem, Vasooli Bhai's life motto is 'Money talks, but my fists do the negotiating.' With his hilarious attempts to get his dues and his over-the-top tough guy persona, he's the lovable goon.",
+        progress: nil,
+        numberOfModules: 4
+    )

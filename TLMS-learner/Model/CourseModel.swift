@@ -4,22 +4,15 @@ struct Course: Identifiable, Decodable {
     var id : String = ""
     var imageName: String = ""
     var title: String = ""
-    var subtitle: String = ""
     var studentsEnrolled: Int = 0
     var creator: String = ""
-    var lastUpdated: String = ""
-    var language: String = ""
     var whatYoullLearn: [String] = []
-    var courseIncludes: [String] = []
-    var courseIncludeIcons: [String] = []
     var description: String = ""
     var instructorImageName: String = ""
     var instructorName: String = ""
-    var instructorUniversity: String = ""
-    var instructorRating: Int = 0
-    var instructorStudents: Int = 0
     var instructorBio: String = ""
     var progress: Double? = nil
+    var numberOfModules = 0
 }
 
 
@@ -30,6 +23,15 @@ struct HomeCourse:Identifiable{
     var courseImage:String
     var releaseData:Date
     var target:String
+}
+
+struct Module: Identifiable {
+    let id = UUID()
+    var title: String
+    var notesFileName: String?
+    var notesUploadProgress: Double
+    var videoFileName: String?
+    var videoUploadProgress: Double
 }
 
 var popularCourses = [
