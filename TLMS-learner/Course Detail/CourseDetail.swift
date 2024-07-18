@@ -108,7 +108,7 @@ struct CourseDetails: View {
                 Spacer(minLength: 15)
 
                 // Students enrolled
-                Text("\(course.studentsEnrolled) students enrolled")
+                Text("\(course.studentsEnrolled) students enrolled").accessibilityElement(children: .ignore).accessibilityLabel("\(course.studentsEnrolled) students have enrolled in this course")
                     .font(.custom("Poppins-Bold", size: 20))
                     .foregroundColor(Color("color 2"))
                     .padding(.horizontal, 20)
@@ -124,7 +124,7 @@ struct CourseDetails: View {
                     Text(course.creator)
                         .font(.custom("Poppins-Medium", size: 16))
                         .foregroundColor(Color("color 2"))
-                }
+                }.accessibilityElement(children: .ignore).accessibilityLabel("This Course is created by \(course.creator)")
                 .padding(.horizontal, 20)
 
                 Spacer(minLength: 5)
@@ -165,6 +165,7 @@ struct CourseDetails: View {
                                 isEnrolled = true
                                 showAlert = true
                             }
+            
                             else{
                                 print("not enrolled")
                                 isEnrolled = false
@@ -175,6 +176,7 @@ struct CourseDetails: View {
                         navigateToNextView = true
                     }
                 }
+                    .accessibilityHint("Click on this button to enroll ")
                 .padding(.horizontal, 20)
                 
 //                .shadow(color: isEnrolled ? Color.gray.opacity(0.6) : Color.clear, radius: 10, x: 0, y: 10)
@@ -184,7 +186,8 @@ struct CourseDetails: View {
                                 Alert(
                                     title: Text("Congratulations!"),
                                     message: Text("You have successfully enrolled in this course."),
-                                    primaryButton: .default(Text("Start This Course")) {
+                                    primaryButton: .default(Text("Start This Course"))
+                                         {
                                         navigateToNextView = true
                                         // Action for starting the course
                                         print("Start This Course button tapped")
@@ -192,7 +195,8 @@ struct CourseDetails: View {
                                     },
                                     secondaryButton: .cancel()
                                 )
-                            }
+                        
+                }
                 NavigationLink(destination: NodeJsCourseView(courseName: course.title, courseImage: course.imageName), isActive: $navigateToNextView) {
                                     EmptyView()
                                 }

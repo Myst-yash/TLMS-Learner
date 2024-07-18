@@ -17,20 +17,22 @@ struct ProfileViews: View {
 
                         VStack(alignment: .leading, spacing: 10) {
                             NavigationLink(destination: EducatorView()) {
-                                ListItemView(systemName: "person", text: "Your Educators", color: .black)
-                            }
+                                ListItemView(systemName: "person", text: "Your Educators", color: .black).accessibilityLabel("Your Educators")
+                                    .accessibilityHint("You can see the list of your educators by clicking this")
+                            }.accessibilityLabel("Your Educators")
+                                .accessibilityHint("You can see the list of your educators here")
                             Divider()
                             NavigationLink(destination: LikedView()) {
                                 ListItemView(systemName: "heart", text: "Your Wishlist", color: .black)
-                            }
+                            }.accessibilityHint("You can see your liked courses here")
                             Divider()
                             NavigationLink(destination: Certificate()) {
                                 ListItemView(systemName: "doc", text: "Your Certificates", color: .black)
-                            }
+                            }.accessibilityHint("You can see your earned certificates here")
                             Divider()
                             NavigationLink(destination: ChangePassword()) {
                                 ListItemView(systemName: "lock", text: "Change Password", color: .black)
-                            }
+                            }.accessibilityHint("You can change your password here")
                             Divider()
                             Button(action: {
                                 signOut()
@@ -111,6 +113,8 @@ struct ProfileHeader: View {
                         .frame(width: 60, height: 60)
                         .foregroundColor(Color("color 2"))
                         .padding(.top)
+                        .accessibilityLabel("Profile Picture")
+                        .accessibilityHint("You can click on it to change your profile picture")
                 }
             }
             .sheet(isPresented: $showImagePicker) {
@@ -151,12 +155,12 @@ struct DashboardView: View {
              Spacer()
                     VStack(alignment: .leading) {
                         
-                            Text("Enrolled Courses")
+                        Text("Enrolled Courses").accessibilityLabel("You have enrolled in \(enrolledCourses) courses")
                             
                             Text("\(enrolledCourses)")
                                 .fontWeight(.bold)
                         
-                            Text("Completed Courses")
+                            Text("Completed Courses").accessibilityLabel("You have completed \(enrolledCourses) courses")
                             
                             Text("\(completedCourses)")
                                 .fontWeight(.bold)

@@ -94,16 +94,20 @@ struct NodeJsCourseView: View {
     struct ResourcesView: View {
         var body: some View {
             VStack(alignment: .leading, spacing: 10) {
-                ResourceItem(title: "Notes", icon: "doc.text")
+                ResourceItem(title: "Notes", icon: "doc.text").accessibilityElement(children: .ignore)
+                    .accessibilityLabel("Notes").accessibilityHint("click here to download notes of this course")
                 Divider()
                 NavigationLink(destination: QuizView()) {
-                    ResourceItem(title: "Quiz", icon: "questionmark.circle").foregroundColor(.black)
+                    ResourceItem(title: "Quiz", icon: "questionmark.circle").foregroundColor(.black).accessibilityElement(children: .ignore)
+                        .accessibilityLabel("Quiz").accessibilityHint("click here to give the quiz")
                 }
                 Divider()
-                ResourceItem(title: "Certificate", icon: "rosette")
+                ResourceItem(title: "Certificate", icon: "rosette").accessibilityElement(children: .ignore)
+                    .accessibilityLabel("Certificate").accessibilityHint("click here to download the certificate")
                 Divider()
                 NavigationLink(destination: Chatview()){
-                    ResourceItem(title: "Discuss", icon: "message").foregroundColor(.black)}
+                    ResourceItem(title: "Discuss", icon: "message").foregroundColor(.black).accessibilityElement(children: .ignore)
+                    .accessibilityLabel("Discuss Forum").accessibilityHint("click here to disscuss anything about this course with your peers")}
                 Divider()
             }
             .padding()

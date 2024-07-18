@@ -9,10 +9,7 @@
 		<string>Poppins-SemiBold.ttf</string>
 		<string>Poppins-Regular.ttf</string>
 	</array>
-    <key>UIFileSharingEnabled</key>
-    <true/>
-    <key>LSSupportsOpeningDocumentsInPlace</key>
-    <true/>
-
+	<key>UIFileSharingEnabled</key>
+	<true/>
 </dict>
 </plist>

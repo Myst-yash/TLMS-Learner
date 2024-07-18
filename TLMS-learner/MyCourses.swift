@@ -35,15 +35,18 @@ struct MyCourses: View {
                     VStack {
                         ForEach(selectedSegment == 0 ? ongoingCourse : completedCourse) { course in
                             ForYouCourseCard(course: course)
+                                
                         }
                         if selectedSegment == 0 && ongoingCourse.isEmpty{
                             Text("No Ongoing Courses")
-                                .padding(.top, 250)
+                                .padding(.top, 250).accessibilityLabel("There are no ongoing courses at this moment.")
+                                
+                            
                         }
                         
                         else if selectedSegment != 0 && completedCourse.isEmpty{
                             Text("No Completed Course")
-                                .padding(.top, 250)
+                                .padding(.top, 250).accessibilityLabel("You have not completed any courses yet.")
                         }
                     }
                     .padding(.top, 20)

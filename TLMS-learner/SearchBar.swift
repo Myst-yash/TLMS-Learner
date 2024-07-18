@@ -27,7 +27,7 @@ struct SearchBar: View {
     var body: some View {
         VStack {
             ZStack {
-                TextField("Search Courses", text: $searchText)
+                TextField("Search Courses", text: $searchText).accessibilityElement(children: .ignore).accessibilityLabel("Search bar").accessibilityHint("You can search any course you want from here")
                     .padding(.vertical, 7)
                     .padding(.horizontal, 30)
                     .background(Color(.white))
@@ -116,7 +116,6 @@ struct SearchBar: View {
         }
     }
 }
-
 #Preview{
     SearchBar(courses: [])
 }

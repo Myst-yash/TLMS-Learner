@@ -82,7 +82,7 @@ struct ResultView: View {
                             Circle()
                                 .fill(circleColor)
                                 .frame(width: 100, height: 100)
-                            Text("\(obtainedPercentage)")
+                            Text("\(obtainedPercentage)").accessibilityLabel("Your Score is \(obtainedPercentage)")
                                 .font(.custom("Poppins-Bold", size: 32))
                                 .foregroundColor(.white)
                         }
@@ -117,7 +117,7 @@ struct ResultView: View {
                                         .font(.custom("Poppins-Medium", size: 16))
                                         .foregroundColor(.gray)
                                 }
-                                .frame(maxWidth: .infinity)
+                                .frame(maxWidth: .infinity).accessibilityElement(children: .ignore).accessibilityLabel("Passing grade is \(passingGrade)")
                                 
                                 Rectangle()
                                     .fill(Color(red: 0.4, green: 0.4, blue: 0.4).opacity(0.3))
@@ -133,7 +133,7 @@ struct ResultView: View {
                                         .font(.custom("Poppins-Medium", size: 16))
                                         .foregroundColor(.gray)
                                 }
-                                .frame(maxWidth: .infinity)
+                                .frame(maxWidth: .infinity).accessibilityElement(children: .ignore).accessibilityLabel("You gave \(correctAnswers) correct answers")
                                 
                                 Rectangle()
                                     .fill(Color(red: 0.4, green: 0.4, blue: 0.4).opacity(0.3))
@@ -149,7 +149,7 @@ struct ResultView: View {
                                         .font(.custom("Poppins-Medium", size: 16))
                                         .foregroundColor(.gray)
                                 }
-                                .frame(maxWidth: .infinity)
+                                .frame(maxWidth: .infinity).accessibilityElement(children: .ignore).accessibilityLabel("You gave \(wrongAnswers) wrong answers")
                             }
                             .padding()
                         )
