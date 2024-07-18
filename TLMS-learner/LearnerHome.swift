@@ -103,7 +103,7 @@ struct HomeView: View {
                                 .font(.title2).bold()
                                 .accessibilityLabel("For You")
                             Spacer()
-                            NavigationLink(destination: MyCourses()) {
+                            NavigationLink(destination: ForYouCoursesView()) {
                                 Text("See All")
                                     .font(.subheadline)
                                     .foregroundColor(.blue)
@@ -131,13 +131,12 @@ struct HomeView: View {
                                 .font(.title2).bold()
                                 .accessibilityLabel("Upcoming Courses")
                             Spacer()
-                            Button(action: {
-                                // Action for "See All"
-                            }) {
+                            NavigationLink(destination: AllUpcomingCoursesView()) {
                                 Text("See All")
                                     .font(.subheadline)
                                     .foregroundColor(.blue)
                                     .accessibilityLabel("See All Upcoming Courses")
+                            
                             }
                         }
                         .padding(.horizontal, 20).padding(.top, 10)
