@@ -124,7 +124,7 @@ struct ProfileHeader: View {
         
         .navigationTitle("Profile")
         .navigationBarTitleDisplayMode(.automatic)
-        }.padding(.leading, 120)
+        }.padding(.leading, 115)
             
     }
 }
