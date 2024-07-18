@@ -6,7 +6,7 @@ struct ProfileViews: View {
     @State private var showSettings = false
     @State private var isSignedOut = false
     @State private var profileImage: UIImage? = nil
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -14,7 +14,7 @@ struct ProfileViews: View {
                     VStack(alignment: .leading, spacing: 20) {
                         ProfileHeader(user: user, showSettings: $showSettings, profileImage: $profileImage)
                         DashboardView(enrolledCourses: user.enrolledCourses.count, completedCourses: user.completedCourses.count)
-
+                        
                         VStack(alignment: .leading, spacing: 10) {
                             NavigationLink(destination: EducatorView()) {
                                 ListItemView(systemName: "person", text: "Your Educators", color: .black).accessibilityLabel("Your Educators")
@@ -66,6 +66,7 @@ struct ProfileViews: View {
         }
     }
 
+
     func signOut() {
         do {
             try Auth.auth().signOut()
@@ -83,7 +84,7 @@ struct ProfileHeader: View {
     @Binding var profileImage: UIImage?
     @State private var showEditProfile = false
     @State private var showImagePicker = false
-
+    
     var body: some View {
 //        HStack {
 //            Text("Profile")

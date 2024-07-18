@@ -65,6 +65,7 @@ struct NodeJsCourseView: View {
                 }
             }
         }
+        .toolbar(.hidden, for: .tabBar)
     }
     
     struct LecturesView: View {

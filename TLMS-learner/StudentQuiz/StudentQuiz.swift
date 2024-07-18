@@ -7,7 +7,8 @@ struct QuizView: View {
     
     @State private var questions: [Question] = QuizData.dummyData.questions // State for quiz questions
     @State private var showAlert = false // State to track the presentation of the alert
-
+    @Environment(\.presentationMode) var presentationMode // Environment variable to manage view presentation
+    
     private var numberOfQuestions: Int {
         questions.count
     }
@@ -76,12 +77,7 @@ struct QuizView: View {
                 title: Text("End Quiz"),
                 message: Text("Are you sure you want to end the quiz? Your progress will be lost."),
                 primaryButton: .destructive(Text("End")) {
-                    if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-                        if let window = scene.windows.first {
-                            window.rootViewController = UIHostingController(rootView: NodeJsCourseView(courseName: "Node js from Scratch", courseImage: "https://example.com/course-image.jpg"))
-                            window.makeKeyAndVisible()
-                        }
-                    }
+                    presentationMode.wrappedValue.dismiss()
                 },
                 secondaryButton: .cancel(Text("Continue"))
             )
@@ -249,7 +245,6 @@ struct NavigationButton: View {
         }
     }
 }
-
 // Model for a quiz question
 struct Question: Identifiable {
     let id: Int // Question ID
@@ -346,3 +341,4 @@ struct QuizView_Previews: PreviewProvider {
         QuizView() // Preview for QuizView
     }
 }
+

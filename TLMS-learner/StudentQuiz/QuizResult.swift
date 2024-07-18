@@ -1,37 +1,5 @@
 import SwiftUI
 
-struct QuestionDetailView: View {
-    let question: Question
-
-    var body: some View {
-        VStack(alignment: .leading) {
-            // Display the question number
-            Text("Question \(question.id)")
-                .font(.custom("Poppins-Bold", size: 20))
-                .padding(.bottom, 10)
-            // Display the question text
-            Text(question.text)
-                .font(.custom("Poppins-Regular", size: 16))
-                .padding(.bottom, 20)
-
-            // Display answer choices with selection indication
-            ForEach(question.choices, id: \.self) { choice in
-                HStack {
-                    // Display a checkmark for selected answer, circle otherwise
-                    Image(systemName: question.selectedAnswer == choice ? "checkmark.circle.fill" : "circle")
-                        .foregroundColor(question.selectedAnswer == choice ? .green : .primary)
-                    Text(choice)
-                        .font(.custom("Poppins-Regular", size: 14))
-                    Spacer()
-                }
-                .padding(.vertical, 5)
-            }
-            Spacer()
-        }
-        .padding()
-    }
-}
-
 struct ResultView: View {
     let score: Int
     let courseName: String
@@ -39,6 +7,7 @@ struct ResultView: View {
     
     // State to track the presentation of the alert
     @State private var showAlert = false
+    @Environment(\.presentationMode) var presentationMode
     
     var passingGrade: String {
         let totalQuestions = questions.count
@@ -171,25 +140,21 @@ struct ResultView: View {
                             .padding(.horizontal)
 
                         ForEach(questions) { question in
-                            NavigationLink(destination: QuestionDetailView(question: question)) {
-                                HStack {
-                                    VStack(alignment: .leading, spacing: 5) {
-                                        // Display question number
-                                        Text("Question \(question.id)")
-                                            .font(.custom("Poppins-Bold", size: 14))
-                                            .foregroundColor(.black)
-                                        // Display correctness status
-                                        Text(isAnswerCorrect(for: question) ? "Correct Answer" : "Wrong Answer")
-                                            .font(.custom("Poppins-Regular", size: 14))
-                                            .foregroundColor(isAnswerCorrect(for: question) ? Color(red: 0.56, green: 0.81, blue: 0.37) : Color(red: 0.81, green: 0.37, blue: 0.37))
-                                    }
-                                    Spacer()
-                                    Image(systemName: "chevron.right")
-                                        .foregroundColor(.gray)
+                            HStack {
+                                VStack(alignment: .leading, spacing: 5) {
+                                    // Display question number
+                                    Text("Question \(question.id)")
+                                        .font(.custom("Poppins-Bold", size: 14))
+                                        .foregroundColor(.black)
+                                    // Display correctness status
+                                    Text(isAnswerCorrect(for: question) ? "Correct Answer" : "Wrong Answer")
+                                        .font(.custom("Poppins-Regular", size: 14))
+                                        .foregroundColor(isAnswerCorrect(for: question) ? Color(red: 0.56, green: 0.81, blue: 0.37) : Color(red: 0.81, green: 0.37, blue: 0.37))
                                 }
-                                .padding(.horizontal, 20)
-                                .background(Color.white) // Transparent background
+                                Spacer()
                             }
+                            .padding(.horizontal, 20)
+                            .background(Color.white) // Transparent background
                             Rectangle()
                                 .fill(Color(red: 0.4, green: 0.4, blue: 0.4).opacity(0.3))
                                 .frame(width: 350, height: 1)
@@ -202,16 +167,8 @@ struct ResultView: View {
         }
         
         .navigationBarBackButtonHidden(true)
-        .toolbar(.visible, for: .tabBar)
+        .toolbar(.hidden, for: .tabBar)
         .toolbar {
-            ToolbarItem {
-                Button(action: {
-                    // Handle share action if needed
-                }) {
-                    Image(systemName: "square.and.arrow.up")
-                        .foregroundColor(.blue)
-                }
-            }
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: {
                     showAlert = true
@@ -225,12 +182,7 @@ struct ResultView: View {
                 title: Text("Leave Page"),
                 message: Text("Are you sure you really want to leave?"),
                 primaryButton: .destructive(Text("Leave")) {
-                    if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-                        if let window = scene.windows.first {
-                            window.rootViewController = UIHostingController(rootView: NodeJsCourseView(courseName: "Node js from Scratch", courseImage: "https://example.com/course-image.jpg"))
-                            window.makeKeyAndVisible()
-                        }
-                    }
+                    presentationMode.wrappedValue.dismiss() // Dismiss the current view
                 },
                 secondaryButton: .cancel()
             )
