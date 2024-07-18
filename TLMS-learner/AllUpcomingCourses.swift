@@ -11,31 +11,15 @@ import Foundation
 import SwiftUI
 
 struct AllUpcomingCoursesView: View {
-    @State var allLikedCourse = [Course]()
+    @State var course = [HomeCourse]()
     var body: some View {
             VStack {
-                List(allLikedCourse) { course in
-                    NavigationLink(destination: CourseDetails(courseId: course.id)) {
-                        likedCourseRow(imageURL: course.imageName, courseName: course.title,educatorName: course.instructorName)
-                    }
+                List(course) { course in
+                    likedCourseRow(imageURL: course.courseImage, courseName: course.courseName,educatorName: course.assignedEducator)
                 }
                 
                 .listStyle(PlainListStyle())
                 .navigationBarTitle("Upcoming Courses", displayMode: .large)
-            }
-            
-            .onAppear {
-                Task {
-                    do {
-                        let courses = try await FirebaseServices.shared.fetchAllLikedCourses()
-                        self.allLikedCourse = courses
-//                        print(self.allLikedCourse)
-                    } catch {
-                        // Handle the error appropriately
-                        print("Error fetching liked courses: \(error)")
-                        // Optionally show an alert or handle error in UI
-                    }
-                }
             }
 
     }

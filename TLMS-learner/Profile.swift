@@ -86,16 +86,6 @@ struct ProfileHeader: View {
     @State private var showImagePicker = false
     
     var body: some View {
-//        HStack {
-//            Text("Profile")
-//                .font(.title)
-//                .fontWeight(.bold)
-//            Spacer()
-////            Button(action: { showSettings = true }) {
-////                Image(systemName: "gearshape")
-////                    .foregroundColor(.blue)
-////            }
-//        }
         VStack{
             Button(action: {
                 showEditProfile = true
