@@ -14,6 +14,7 @@ struct NodeJsCourseView: View {
     
     var courseName:String
     var courseImage:String
+    var educatorName:String
     var body: some View {
         NavigationView{
             VStack {
@@ -41,7 +42,7 @@ struct NodeJsCourseView: View {
                         .font(.custom("Poppins-Bold", size: 20))
                         .padding(.leading,20)
                     
-                    Text("Created by Vasooli Bhai")
+                    Text("Created by \(educatorName)")
                         .font(.subheadline)
                         .foregroundColor(.gray)
                         .padding(.leading,20)
@@ -166,6 +167,6 @@ struct NodeJsCourseView: View {
 struct NodeJsCourseView_Previews: PreviewProvider {
     static var previews: some View {
         // for proper preview provide some image url from remote
-        NodeJsCourseView(courseName: "test", courseImage: "")
+        NodeJsCourseView(courseName: "test", courseImage: "",educatorName: "terster")
     }
 }

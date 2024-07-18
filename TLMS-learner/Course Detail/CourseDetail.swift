@@ -184,7 +184,7 @@ struct CourseDetails: View {
                                 )
                         
                 }
-                NavigationLink(destination: NodeJsCourseView(courseName: course.title, courseImage: course.imageName), isActive: $navigateToNextView) {
+                NavigationLink(destination: NodeJsCourseView(courseName: course.title, courseImage: course.imageName,educatorName: course.instructorName), isActive: $navigateToNextView) {
                                     EmptyView()
                                 }
 
