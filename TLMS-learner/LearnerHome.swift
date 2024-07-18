@@ -19,6 +19,7 @@ struct HomeView: View {
     @State var upcomingCourse:[HomeCourse] = []
     @State var forYouCourse:[HomeCourse] = []
     @State var allCourses:[HomeCourse] = []
+    @State var yourCourses:[HomeCourse] = []
     
     var body: some View {
         NavigationStack {
@@ -62,34 +63,34 @@ struct HomeView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         HStack {
-                            Text("Popular Courses")
+                            Text("Your Courses")
                                 .font(.title2).bold()
                                 .accessibilityLabel("Popular Courses")
                             Spacer()
-                            Button(action: {
-                                // Action for "See All"
-                            }) {
-                                Text("See All")
-                                    .font(.subheadline)
-                                    .foregroundColor(.blue)
-                                    .accessibilityLabel("See All Popular Courses")
-                            }
+//                            Button(action: {
+//                                // Action for "See All"
+//                            }) {
+//                                Text("See All")
+//                                    .font(.subheadline)
+//                                    .foregroundColor(.blue)
+//                                    .accessibilityLabel("See All Popular Courses")
+//                            }
                         }
                         .padding(.horizontal, 20).padding(.top, 10)
                         
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 15) {
-                                ForEach(0..<5) { index in
+                                ForEach(yourCourses, id: \.id) { course in
                                     Button(action: {
-                                        selectedCourse = index
+//                                        selectedCourse = course
                                         // Add your action here
                                         print("PopularCoursesCard tapped")
                                     }) {
-                                        PopularCoursesCard()
-                                            
-                                            
-                                    }.buttonStyle(PlainButtonStyle()).accessibilityLabel("Popular Course \(index + 1)")
-                                        .accessibilityHint("You can click on it to enroll in this course")
+                                        PopularCoursesCard(image: course.courseImage, title: course.courseName, educatorName: course.assignedEducator)
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                    .accessibilityLabel("Popular Course \(course.courseName)")
+                                    .accessibilityHint("You can click on it to enroll in this course")
                                 }
                             }
                             .padding(.leading, 20)
@@ -103,7 +104,7 @@ struct HomeView: View {
                                 .font(.title2).bold()
                                 .accessibilityLabel("For You")
                             Spacer()
-                            NavigationLink(destination: MyCourses()) {
+                            NavigationLink(destination: ForYouCoursesView(course: forYouCourse)) {
                                 Text("See All")
                                     .font(.subheadline)
                                     .foregroundColor(.blue)
@@ -131,13 +132,12 @@ struct HomeView: View {
                                 .font(.title2).bold()
                                 .accessibilityLabel("Upcoming Courses")
                             Spacer()
-                            Button(action: {
-                                // Action for "See All"
-                            }) {
+                            NavigationLink(destination: AllUpcomingCoursesView(course: upcomingCourse)) {
                                 Text("See All")
                                     .font(.subheadline)
                                     .foregroundColor(.blue)
                                     .accessibilityLabel("See All Upcoming Courses")
+                            
                             }
                         }
                         .padding(.horizontal, 20).padding(.top, 10)
@@ -270,6 +270,10 @@ struct HomeView: View {
                             self.forYouCourse = fetchedCourses
                         }
                         
+                        self.yourCourses = fetchedCourses.filter({ course in
+                            return CentralState.shared.checkIfEnrolled(id: course.id)
+                        })
+                        
                         self.allCourses = fetchedCourses
                     } catch {
                         // Handle the error appropriately
@@ -340,16 +344,34 @@ struct ContinueWatchingCard: View {
 }
 
 struct PopularCoursesCard: View {
+    var image:String
+    var title:String
+    var educatorName:String
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             ZStack {
                 VStack {
-                    Image("swift")
-                        .resizable()
-                        .frame(width: 356, height: 160)
-                        .accessibilityLabel("Swift Course Image")
-                    
-                    Text("All about Swift")
+                    AsyncImage(url: URL(string: image)) { phase in
+                            switch phase {
+                            case .empty:
+                                ProgressView()
+                                    .frame(width: 356, height: 160) // Ensure ProgressView takes the same space
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .frame(width: 356, height: 160)
+                                    .accessibilityLabel("Swift Course Image")
+                            case .failure:
+                                Image(systemName: "photo")
+                                    .resizable()
+                                    .frame(width: 356, height: 160)
+                                    .accessibilityLabel("Swift Course Image")
+                            @unknown default:
+                                EmptyView()
+                            }
+                        
+                    }
+                    Text(title)
                         .font(.title3)
                         .bold()
                         .padding(.leading, -155)
@@ -358,13 +380,14 @@ struct PopularCoursesCard: View {
                         .accessibilityLabel("Course Title")
                         .accessibilityValue("All about Swift")
                     
-                    Text("by batman")
+                    Text(educatorName)
                         .padding(.leading, -154)
                         .font(.subheadline)
                         .foregroundColor(.gray)
                         .accessibilityLabel("Instructor Name")
                         .accessibilityValue("Batman")
                 }
+
             }
         }
         .accessibilityElement(children: .combine)

@@ -1,0 +1,6 @@
+<svg width="41" height="48" viewBox="0 0 41 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M20.5 24H29C35.6274 24 41 29.3726 41 36V36C41 42.6274 35.6274 48 29 48H20.5V24Z" fill="#6C5DD4"/>
+<rect y="24" width="20.5" height="24" fill="#E8D5FF"/>
+<rect width="20.5" height="24" transform="matrix(-1 0 0 1 41 0)" fill="#E8D5FF"/>
+<path d="M20.5 0H12C5.37258 0 -1.19209e-07 5.37258 -1.19209e-07 12V12C-1.19209e-07 18.6274 5.37258 24 12 24H20.5V0Z" fill="#6C5DD4"/>
+</svg>

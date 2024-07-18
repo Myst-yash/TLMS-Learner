@@ -265,7 +265,7 @@ class FirebaseServices{
                 let educatorDoc = try await educatorRef.document(educatorID).getDocument()
                 if let educatorData = educatorDoc.data() {
                     let firstName = educatorData["FirstName"] as? String ?? ""
-                    let lastName = educatorData["LastName"] as? String ?? ""
+                    _ = educatorData["LastName"] as? String ?? ""
                     assignedEducator = "\(firstName)"
                 }
             }
@@ -403,7 +403,7 @@ class FirebaseServices{
 
             fetchEducatorGroup.notify(queue: .main) {
                 let releaseTimestamp = data["releaseDate"] as? Timestamp
-                let releaseDate = releaseTimestamp?.dateValue()
+                _ = releaseTimestamp?.dateValue()
 
                 let course = Course(
                     id: data["courseID"] as? String ?? "",

@@ -30,6 +30,8 @@
 		7A85CA932C3FB79C008E9D7D /* MyEducators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A85CA922C3FB79C008E9D7D /* MyEducators.swift */; };
 		7A85CA952C40ED92008E9D7D /* EducatorsProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A85CA942C40ED92008E9D7D /* EducatorsProfile.swift */; };
 		7A85CA9B2C46303E008E9D7D /* likedCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A85CA9A2C46303D008E9D7D /* likedCourses.swift */; };
+		7A85CA9D2C499B6D008E9D7D /* ForYouCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A85CA9C2C499B6D008E9D7D /* ForYouCourses.swift */; };
+		7A85CAA12C499D48008E9D7D /* AllUpcomingCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A85CAA02C499D48008E9D7D /* AllUpcomingCourses.swift */; };
 		7ACDE3872C370B0600AFAAE7 /* createAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACDE3862C370B0600AFAAE7 /* createAccount.swift */; };
 		7ACDE42E2C3BD82F00AFAAE7 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACDE42D2C3BD82E00AFAAE7 /* Profile.swift */; };
 		BBDB9B892C47F2C600F846FB /* Change Password.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBDB9B882C47F2C600F846FB /* Change Password.swift */; };
@@ -86,6 +88,8 @@
 		7A85CA922C3FB79C008E9D7D /* MyEducators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEducators.swift; sourceTree = "<group>"; };
 		7A85CA942C40ED92008E9D7D /* EducatorsProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducatorsProfile.swift; sourceTree = "<group>"; };
 		7A85CA9A2C46303D008E9D7D /* likedCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = likedCourses.swift; sourceTree = "<group>"; };
+		7A85CA9C2C499B6D008E9D7D /* ForYouCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForYouCourses.swift; sourceTree = "<group>"; };
+		7A85CAA02C499D48008E9D7D /* AllUpcomingCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUpcomingCourses.swift; sourceTree = "<group>"; };
 		7ACDE3862C370B0600AFAAE7 /* createAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createAccount.swift; sourceTree = "<group>"; };
 		7ACDE42D2C3BD82E00AFAAE7 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		BBDB9B882C47F2C600F846FB /* Change Password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Change Password.swift"; sourceTree = "<group>"; };
@@ -238,25 +242,27 @@
 				D1EF3BCB2C3E836C00FFC2AC /* Utility */,
 				D1C146122C39C31F00F6E43F /* Model */,
 				D1C146112C39C1A400F6E43F /* Auth */,
-				D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */,
 				04A3858E2C37BFC000832DDC /* Elements */,
-				04A3858B2C37B6B100832DDC /* Info.plist */,
 				04A385822C37B4C700832DDC /* Fonts */,
 				52C21B0D2C3E5B4E00B8CCB9 /* Course Detail */,
-				D1F8C0E02C35407C0060C30E /* TLMS_learnerApp.swift */,
-				EF2EB61E2C397DC7007A56B4 /* LearnerHome.swift */,
-				04A4B43B2C3FADF40019C447 /* SearchBar.swift */,
-				EFF683CC2C3AAC3C00162D7F /* Tabbarview.swift */,
-				D1EF763B2C3969FF00C8B8A9 /* courseCategories.swift */,
 				0491A2BB2C47790A001162E3 /* Disuccion forum */,
 				525B65A62C41295E00DA881C /* StudentQuiz */,
+				EF2EB61E2C397DC7007A56B4 /* LearnerHome.swift */,
+				04A4B43B2C3FADF40019C447 /* SearchBar.swift */,
+				D1F8C0E02C35407C0060C30E /* TLMS_learnerApp.swift */,
+				EFF683CC2C3AAC3C00162D7F /* Tabbarview.swift */,
+				D1EF763B2C3969FF00C8B8A9 /* courseCategories.swift */,
 				D1EF76432C39B55500C8B8A9 /* MyCourses.swift */,
+				7A85CA9C2C499B6D008E9D7D /* ForYouCourses.swift */,
+				7A85CAA02C499D48008E9D7D /* AllUpcomingCourses.swift */,
 				7A85CA922C3FB79C008E9D7D /* MyEducators.swift */,
 				7A85CA9A2C46303D008E9D7D /* likedCourses.swift */,
 				7A85CA942C40ED92008E9D7D /* EducatorsProfile.swift */,
 				7ACDE42D2C3BD82E00AFAAE7 /* Profile.swift */,
 				BBDB9B882C47F2C600F846FB /* Change Password.swift */,
 				D1F8C0E42C35407D0060C30E /* Assets.xcassets */,
+				04A3858B2C37B6B100832DDC /* Info.plist */,
+				D1EF76372C39420200C8B8A9 /* GoogleService-Info.plist */,
 				D1F8C0E62C35407D0060C30E /* Preview Content */,
 			);
 			path = "TLMS-learner";
@@ -380,6 +386,7 @@
 				D1EF3C032C3EA70000FFC2AC /* UserModel.swift in Sources */,
 				D1EF76442C39B55600C8B8A9 /* MyCourses.swift in Sources */,
 				D1EF76402C396ABB00C8B8A9 /* CourseCategoriesModel.swift in Sources */,
+				7A85CA9D2C499B6D008E9D7D /* ForYouCourses.swift in Sources */,
 				525B65A82C44570800DA881C /* QuizResult.swift in Sources */,
 				7A85CA932C3FB79C008E9D7D /* MyEducators.swift in Sources */,
 				04A385A12C37BFD700832DDC /* MainButton.swift in Sources */,
@@ -390,6 +397,7 @@
 				04A4B43C2C3FADF40019C447 /* SearchBar.swift in Sources */,
 				04A3859B2C37BFD700832DDC /* TitleLable.swift in Sources */,
 				0407AF682C4116D3006E3B73 /* Enrolled Courses.swift in Sources */,
+				7A85CAA12C499D48008E9D7D /* AllUpcomingCourses.swift in Sources */,
 				D1EF763C2C3969FF00C8B8A9 /* courseCategories.swift in Sources */,
 				04A3859E2C37BFD700832DDC /* TextLabel.swift in Sources */,
 				04A385A42C37BFD700832DDC /* HeadingLabel.swift in Sources */,
