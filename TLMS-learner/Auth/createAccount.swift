@@ -31,7 +31,7 @@ struct AccountView: View {
                         .minimumScaleFactor(0.8)
                         .padding(.leading, 20)
                     
-                    PNGImageView(imageName: "laptop", width: 150, height: 150)
+                    PNGImageView(imageName: "logo", width: 100, height: 150)
                     
                     VStack(spacing: 15) {
                         HStack{

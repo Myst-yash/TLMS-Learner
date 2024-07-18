@@ -25,7 +25,7 @@ struct ContentView: View {
                     TitleLabel(text: "Welcome To \n Svadhyay")
                         .padding(.top,50)
 
-                    PNGImageView(imageName: "laptop", width: 150, height: 150)
+                    PNGImageView(imageName: "logo", width: 100, height: 150)
                     // Login Form
                     VStack(spacing: 10) {
                         CustomTextField(placeholder: "Email", text: $email)
@@ -149,6 +149,9 @@ struct ContentView: View {
             ContentView()
         }
     }
+}
+#Preview {
+    ContentView()
 }
 
 
