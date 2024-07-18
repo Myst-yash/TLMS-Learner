@@ -93,7 +93,7 @@ struct ProfileHeader: View {
 ////                    .foregroundColor(.blue)
 ////            }
 //        }
-
+        VStack{
             Button(action: {
                 showEditProfile = true
                 showImagePicker = true
@@ -126,9 +126,11 @@ struct ProfileHeader: View {
             Text("Student")
                 .font(.caption)
                 .foregroundColor(.secondary)
-        }
+        
         .navigationTitle("Profile")
         .navigationBarTitleDisplayMode(.automatic)
+        }.padding(.leading, 120)
+            
     }
 }
 
