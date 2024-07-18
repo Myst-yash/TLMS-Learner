@@ -184,9 +184,6 @@ struct CourseDetails: View {
                                 )
                         
                 }
-                NavigationLink(destination: NodeJsCourseView(courseName: course.title, courseImage: course.imageName,educatorName: course.instructorName), isActive: $navigateToNextView) {
-                                    EmptyView()
-                                }
 
                 // Add to Likes button
                 Button(action: {
@@ -297,6 +294,9 @@ struct CourseDetails: View {
             .navigationBarTitleDisplayMode(.inline)
             .padding()
         }
+        .navigationDestination(isPresented: $navigateToNextView) {
+                        NodeJsCourseView(courseName: course.title, courseImage: course.imageName, educatorName: course.instructorName)
+                    }
         .navigationBarTitle("Course Details", displayMode: .inline)
         .onAppear(perform: {
             FirebaseServices.shared.fetchCourseDetailsWithId(courseID: courseId) { fetchedCourse in

@@ -46,15 +46,10 @@ struct QuizView: View {
                 )
                 .frame(height: 100)
                 .padding(.bottom, 0)
-                .background(
-                    NavigationLink(destination: ResultView(
-                        score: calculateScore(),
-                        courseName: QuizData.dummyData.courseName,
-                        questions: questions
-                    ), isActive: $quizSubmitted) {
-                        EmptyView()
-                    }
-                    .hidden()
+            }
+            .navigationDestination(isPresented: $quizSubmitted) {
+                ResultView(
+                    score: calculateScore(), courseName: QuizData.dummyData.courseName, questions: questions
                 )
             }
         }
@@ -97,14 +92,27 @@ struct TimerView: View {
     @Binding var remainingTime: Int
     let onTimerEnd: () -> Void
 
+    @State private var showAlert = false
+
     var body: some View {
         HStack {
             Image(systemName: "clock")
-            Text("\(remainingTime / 60) mins \(remainingTime % 60) secs remaining")
-                .font(.custom("Poppins-Medium", size: 12))
+                      .resizable()
+                      .frame(width: 16, height: 16)
+                      .foregroundColor(remainingTime < 30 && (remainingTime % 2 == 0) ? Color(red: 0.81, green: 0.37, blue: 0.37) : .black)
+                  Text("\(remainingTime / 60) mins \(remainingTime % 60) secs remaining")
+                      .font(.custom("Poppins-Medium", size: 14))
+                      .foregroundColor(remainingTime < 30 && (remainingTime % 2 == 0) ? .red : .black)
         }
         .onAppear {
             startTimer()
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Time's Up!"),
+                message: Text("The quiz time is over. Submitting your quiz now."),
+                dismissButton: .default(Text("OK"), action: onTimerEnd)
+            )
         }
     }
 
@@ -114,7 +122,7 @@ struct TimerView: View {
                 remainingTime -= 1
             } else {
                 timer.invalidate()
-                onTimerEnd()
+                showAlert = true
             }
         }
     }
