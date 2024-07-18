@@ -38,7 +38,7 @@ struct HomeView: View {
                             Image(systemName: "magnifyingglass")
                             .foregroundColor(.black)}
                             .background(
-                            NavigationLink(destination: SearchBar(), isActive: $isSearchActive) {
+                                NavigationLink(destination: SearchBar(courses:allCourses), isActive: $isSearchActive) {
                               
                             })}
                             .background(Color.white)

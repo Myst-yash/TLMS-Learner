@@ -103,7 +103,8 @@ struct NodeJsCourseView: View {
                 Divider()
                 ResourceItem(title: "Certificate", icon: "rosette")
                 Divider()
-                ResourceItem(title: "Discuss", icon: "message")
+                NavigationLink(destination: Chatview()){
+                    ResourceItem(title: "Discuss", icon: "message").foregroundColor(.black)}
                 Divider()
             }
             .padding()

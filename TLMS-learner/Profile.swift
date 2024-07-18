@@ -5,20 +5,17 @@ struct ProfileViews: View {
     @State private var user: User = User(id: "", email: "", firstName: "", lastName: "", completedCourses: [""], enrolledCourses: [""], goal: "", joinedDate: "", likedCourses: [""])
     @State private var showSettings = false
     @State private var isSignedOut = false
+    @State private var profileImage: UIImage? = nil
 
     var body: some View {
         NavigationView {
             VStack {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 20) {
-                        ProfileHeader(user: user, showSettings: $showSettings)
+                        ProfileHeader(user: user, showSettings: $showSettings, profileImage: $profileImage)
                         DashboardView(enrolledCourses: user.enrolledCourses.count, completedCourses: user.completedCourses.count)
 
                         VStack(alignment: .leading, spacing: 10) {
-//                            NavigationLink(destination: FavoritesView()) {
-//                                ListItemView(systemName: "book", text: "Your Courses", color: .black)
-//                            }
-//                            Divider()
                             NavigationLink(destination: EducatorView()) {
                                 ListItemView(systemName: "person", text: "Your Educators", color: .black)
                             }
@@ -29,6 +26,10 @@ struct ProfileViews: View {
                             Divider()
                             NavigationLink(destination: Certificate()) {
                                 ListItemView(systemName: "doc", text: "Your Certificates", color: .black)
+                            }
+                            Divider()
+                            NavigationLink(destination: ChangePassword()) {
+                                ListItemView(systemName: "lock", text: "Change Password", color: .black)
                             }
                             Divider()
                             Button(action: {
@@ -56,8 +57,6 @@ struct ProfileViews: View {
                 .sheet(isPresented: $showSettings) {
                     // Add settings view content here
                 }
-
-                // Full screen cover for login screen
                 .fullScreenCover(isPresented: $isSignedOut) {
                     ContentView()
                 }
@@ -75,40 +74,66 @@ struct ProfileViews: View {
     }
 }
 
+
 struct ProfileHeader: View {
     let user: User
     @Binding var showSettings: Bool
+    @Binding var profileImage: UIImage?
+    @State private var showEditProfile = false
+    @State private var showImagePicker = false
 
     var body: some View {
-        HStack {
-            Text("Profile")
-                .font(.title)
-                .fontWeight(.bold)
-            Spacer()
-//            Button(action: { showSettings = true }) {
-//                Image(systemName: "gearshape")
-//                    .foregroundColor(.blue)
-//            }
-        }
-
-        VStack(alignment: .leading) {
-            Image(systemName: "person.circle.fill")
-                .resizable()
-                .frame(width: 60, height: 60)
-                .foregroundColor(Color("color 2")).padding(.leading, 150)
+//        HStack {
+//            Text("Profile")
+//                .font(.title)
+//                .fontWeight(.bold)
+//            Spacer()
+////            Button(action: { showSettings = true }) {
+////                Image(systemName: "gearshape")
+////                    .foregroundColor(.blue)
+////            }
+//        }
+        VStack{
+            Button(action: {
+                showEditProfile = true
+                showImagePicker = true
+            }) {
+                if let profileImage = profileImage {
+                    Image(uiImage: profileImage)
+                        .resizable()
+                        .frame(width: 80, height: 80)
+                        .clipShape(Circle())
+                        .overlay(Circle().stroke(Color.gray, lineWidth: 2))
+                        .padding(.top)
+                } else {
+                    Image(systemName: "person.circle.fill")
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .foregroundColor(Color("color 2"))
+                        .padding(.top)
+                }
+            }
+            .sheet(isPresented: $showImagePicker) {
+                ImagePicker(image: $profileImage)
+            }
 
             Text("\(user.firstName) \(user.lastName)")
                 .font(.title2)
-                .fontWeight(.semibold).padding(.leading, 130)
+                .fontWeight(.semibold)
             Text("Joined \(user.joinedDate)")
                 .font(.subheadline)
-                .foregroundColor(.secondary).padding(.leading, 110)
+                .foregroundColor(.secondary)
             Text("Student")
                 .font(.caption)
-                .foregroundColor(.secondary).padding(.leading, 160)
-        }
+                .foregroundColor(.secondary)
+        
+        .navigationTitle("Profile")
+        .navigationBarTitleDisplayMode(.automatic)
+        }.padding(.leading, 120)
+            
     }
 }
+
 
 struct DashboardView: View {
     let enrolledCourses: Int
@@ -207,6 +232,41 @@ struct LikedCoursesView: View {
     }
 }
 
+struct ImagePicker: UIViewControllerRepresentable {
+    @Binding var image: UIImage?
+
+    func makeUIViewController(context: Context) -> UIImagePickerController {
+        let picker = UIImagePickerController()
+        picker.delegate = context.coordinator
+        return picker
+    }
+
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+
+    class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+        let parent: ImagePicker
+
+        init(_ parent: ImagePicker) {
+            self.parent = parent
+        }
+
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+            if let uiImage = info[.originalImage] as? UIImage {
+                parent.image = uiImage
+            }
+
+            picker.dismiss(animated: true)
+        }
+
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            picker.dismiss(animated: true)
+        }
+    }
+}
 
 
 struct Courses: Identifiable {
