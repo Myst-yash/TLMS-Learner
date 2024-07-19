@@ -12,15 +12,13 @@ struct NodeJsCourseView: View {
     
     @State private var selectedSegment = 0
     
-    var courseName:String
-    var courseImage:String
-    var educatorName:String
+    var course : Course
     var body: some View {
         NavigationView{
             VStack {
                 // Header Image and Title
                 VStack(alignment: .leading){
-                    AsyncImage(url: URL(string: courseImage)) { phase in
+                    AsyncImage(url: URL(string: course.imageName)) { phase in
                         switch phase {
                         case .empty:
                             ProgressView()
@@ -38,11 +36,11 @@ struct NodeJsCourseView: View {
                     }
                         
                     
-                    Text(courseName)
+                    Text(course.title)
                         .font(.custom("Poppins-Bold", size: 20))
                         .padding(.leading,20)
                     
-                    Text("Created by \(educatorName)")
+                    Text("Created by \(course.instructorName)")
                         .font(.subheadline)
                         .foregroundColor(.gray)
                         .padding(.leading,20)
@@ -59,7 +57,7 @@ struct NodeJsCourseView: View {
                 // ScrollView Content
                 ScrollView {
                     if selectedSegment == 0 {
-                        LecturesView()
+                        LecturesView(course: course)
                     } else {
                         ResourcesView()
                     }
@@ -70,23 +68,37 @@ struct NodeJsCourseView: View {
     }
     
     struct LecturesView: View {
+        
+        @State var course : Course
+        @State var modules: [Module] = []
+        
         var body: some View {
             VStack(alignment: .leading, spacing: 10) {
-                SectionsView(title: "Section 1 - Introduction", items: [
-                    ("Introduction to the course", "10 mins")
-                ], iconNames: ["play.circle"])
-                Divider()
-                SectionsView(title: "Section 2 - Basics of Node Js", items: [
-                    ("Basics of Node Js", "10 mins"),
-                    ("Fundamentals", "10 mins"),
-                    ("Assignment", "10 mins")
-                ], iconNames: ["play.circle", "play.circle", "exclamationmark.circle"])
-                Divider()
-                
-                SectionsView(title: "Section 3 - APIs", items: [
-                    ("API Basics", "10 mins"),
-                    ("Building APIs", "10 mins")
-                ], iconNames: ["play.circle", "play.circle"])
+                ForEach(modules, id: \.id) { module in
+                    SectionsView(title: module.title, items: [(module.videoFileName, module.notesFileName)], iconNames: ["play.circle", "play.circle"])
+//                    LectureCardView(module: module)
+                    Divider()
+                }
+            }
+            .onAppear() {
+                allModules()
+            }
+            .padding()
+        }
+        
+        func allModules() {
+            FirebaseServices.shared.fetchModules(course: course) { modules in
+                self.modules = modules
+                print("Self Modules : ",self.modules)
+            }
+        }
+    }
+    
+    struct LectureCardView : View {
+        var module : Module
+        var body: some View {
+            VStack(alignment: .leading, spacing: 10) {
+                SectionsView(title: module.title, items: [(module.videoFileName, module.notesFileName)], iconNames: ["play.circle", "play.circle"])
                 Divider()
             }
             .padding()
@@ -120,7 +132,7 @@ struct NodeJsCourseView: View {
     
     struct SectionsView: View {
         let title: String
-        let items: [(String, String)]
+        let items: [(String?, String?)]
         let iconNames: [String]
         
         var body: some View {
@@ -131,11 +143,11 @@ struct NodeJsCourseView: View {
                 ForEach(0..<items.count, id: \.self) { index in
                     VStack(alignment: .leading) {
                         HStack {
-                            Text(items[index].0)
+                            Text(items[index].0!)
                             Spacer()
                             Image(systemName: iconNames[index])
                         }
-                        Text(items[index].1)
+                        Text(items[index].1!)
                             .font(.subheadline)
                             .foregroundColor(.gray)
                     }
@@ -167,6 +179,6 @@ struct NodeJsCourseView: View {
 struct NodeJsCourseView_Previews: PreviewProvider {
     static var previews: some View {
         // for proper preview provide some image url from remote
-        NodeJsCourseView(courseName: "test", courseImage: "",educatorName: "terster")
+        NodeJsCourseView(course: Course())
     }
 }
