@@ -240,7 +240,7 @@ struct CourseDetails: View {
 
                 // Instructor details
                 HStack {
-                    AsyncImage(url: URL(string: course.imageName)) { phase in
+                    AsyncImage(url: URL(string: course.instructorImageName)) { phase in
                         switch phase {
                         case .empty:
                             ProgressView()
