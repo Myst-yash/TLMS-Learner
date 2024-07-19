@@ -37,6 +37,45 @@ class FirebaseServices{
     }
     
     
+    func fetchModules(course: Course, completion: @escaping ([Module]) -> Void) {
+            let db = Firestore.firestore()
+        let ref = db.collection("Courses").document(course.title).collection("Modules")
+            
+            ref.getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    print("Error fetching the modules: \(error)")
+                    completion([])
+                    return
+                }
+                
+                guard let documents = querySnapshot?.documents else {
+                    print("Documents couldn't be fetched.")
+                    completion([])
+                    return
+                }
+                
+                let modules: [Module] = documents.map { doc in
+                    let data = doc.data()
+                    let title = data["title"] as? String ?? "Untitled"
+                    let notesFileName = data["notesFileName"] as? String
+                    let notesUploadProgress = data["notesUploadProgress"] as? Double ?? 0.0
+                    let videoFileName = data["videoFileName"] as? String
+                    let videoUploadProgress = data["videoUploadProgress"] as? Double ?? 0.0
+                    
+                    return Module(
+                        title: title,
+                        notesFileName: notesFileName,
+                        notesUploadProgress: notesUploadProgress,
+                        videoFileName: videoFileName,
+                        videoUploadProgress: videoUploadProgress
+                    )
+                }
+                
+                print("Fetched Modules: ", modules)
+                completion(modules)
+            }
+        }
+    
     func fetchProfileDetails(completion: @escaping (User?) -> Void){
         
         guard let currentUser = Auth.auth().currentUser else{
