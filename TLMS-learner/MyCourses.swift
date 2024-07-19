@@ -122,10 +122,10 @@ struct ForYouCourseCard: View {
                     Text("by \(course.instructorName)") // to be updated
                         .font(.subheadline)
                         .foregroundColor(.gray)
-                    Text("76%")
+                    Text("0%")
                         .font(.caption)
                         .bold()
-                    ProgressBar(value: 0.8)
+                    ProgressBar(value: 0)
                         .frame(height: 5)
                 }
                 Spacer()

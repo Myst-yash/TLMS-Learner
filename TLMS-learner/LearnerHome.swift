@@ -361,6 +361,7 @@ struct PopularCoursesCard: View {
                                     .resizable()
                                     .frame(width: 356, height: 160)
                                     .accessibilityLabel("Swift Course Image")
+                                    .cornerRadius(12)
                             case .failure:
                                 Image(systemName: "photo")
                                     .resizable()
