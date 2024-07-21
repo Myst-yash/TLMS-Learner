@@ -271,7 +271,7 @@ struct QuizData {
     // Dummy data for preview and testing
     static let dummyData = QuizData(
         time: 30, // 20 minutes in seconds
-        courseName: "Node js from Scratch", // Course name
+        courseName: "GitHub masterclass", // Course name
         questions: [
             Question(id: 1, text: "What is Node.js?", choices: [
                 "A front-end JavaScript framework.",

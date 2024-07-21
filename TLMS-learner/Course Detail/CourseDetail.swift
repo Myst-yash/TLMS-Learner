@@ -295,7 +295,7 @@ struct CourseDetails: View {
             .padding()
         }
         .navigationDestination(isPresented: $navigateToNextView) {
-                        NodeJsCourseView(course: course)
+            NodeJsCourseView(courseName: course.title, courseImage: course.imageName)
                     }
         .navigationBarTitle("Course Details", displayMode: .inline)
         .onAppear(perform: {

@@ -1,49 +1,44 @@
-//
-//  Enrolled Courses.swift
-//  TLMS-learner
-//
-//  Created by Mac on 12/07/24.
-//
-
 import Foundation
 import SwiftUI
+import AVKit
 
 struct NodeJsCourseView: View {
     
     @State private var selectedSegment = 0
+    @State private var selectedVideo: Video?
     
-    var course : Course
+    var courseName: String
+    var courseImage: String
+    
     var body: some View {
-        NavigationView{
+        NavigationView {
             VStack {
                 // Header Image and Title
-                VStack(alignment: .leading){
-                    AsyncImage(url: URL(string: course.imageName)) { phase in
+                VStack(alignment: .leading) {
+                    AsyncImage(url: URL(string: courseImage)) { phase in
                         switch phase {
                         case .empty:
                             ProgressView()
                         case .success(let image):
                             image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .padding(.horizontal,10)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .padding(.horizontal, 10)
                         case .failure:
                             ProgressView()
-                            
                         @unknown default:
                             EmptyView()
                         }
                     }
-                        
                     
-                    Text(course.title)
+                    Text(courseName)
                         .font(.custom("Poppins-Bold", size: 20))
-                        .padding(.leading,20)
+                        .padding(.leading, 20)
                     
-                    Text("Created by \(course.instructorName)")
+                    Text("Created by Sir ")
                         .font(.subheadline)
                         .foregroundColor(.gray)
-                        .padding(.leading,20)
+                        .padding(.leading, 20)
                 }
                 
                 // Segmented Control
@@ -57,48 +52,43 @@ struct NodeJsCourseView: View {
                 // ScrollView Content
                 ScrollView {
                     if selectedSegment == 0 {
-                        LecturesView(course: course)
+                        LecturesView(selectedVideo: $selectedVideo)
                     } else {
                         ResourcesView()
                     }
                 }
             }
+            .navigationBarTitle(courseName, displayMode: .inline)
+            .sheet(item: $selectedVideo) { video in
+                VideoPlayer(player: AVPlayer(url: video.url))
+                    .frame(height: 300)
+                    .cornerRadius(10)
+                    .shadow(radius: 5)
+                    .padding()
+            }
         }
-        .toolbar(.hidden, for: .tabBar)
     }
     
     struct LecturesView: View {
-        
-        @State var course : Course
-        @State var modules: [Module] = []
+        @Binding var selectedVideo: Video?
         
         var body: some View {
             VStack(alignment: .leading, spacing: 10) {
-                ForEach(modules, id: \.id) { module in
-                    SectionsView(title: module.title, items: [(module.videoFileName, module.notesFileName)], iconNames: ["play.circle", "play.circle"])
-//                    LectureCardView(module: module)
-                    Divider()
-                }
-            }
-            .onAppear() {
-                allModules()
-            }
-            .padding()
-        }
-        
-        func allModules() {
-            FirebaseServices.shared.fetchModules(course: course) { modules in
-                self.modules = modules
-                print("Self Modules : ",self.modules)
-            }
-        }
-    }
-    
-    struct LectureCardView : View {
-        var module : Module
-        var body: some View {
-            VStack(alignment: .leading, spacing: 10) {
-                SectionsView(title: module.title, items: [(module.videoFileName, module.notesFileName)], iconNames: ["play.circle", "play.circle"])
+                SectionsView(title: "Section 1 - Introduction", items: [
+                    ("Introduction to the course", "10 mins", "interiAR.mp4")
+                ], iconNames: ["play.circle"], selectedVideo: $selectedVideo)
+                Divider()
+                SectionsView(title: "Section 2 - Basics of Git", items: [
+                    ("Basics of Git", "10 mins", "interiAR_Garden.mp4"),
+                    ("Fundamentals", "10 mins", "interiAR.mp4"),
+                    ("Assignment", "10 mins", "RPReplay_Final1718084690.mov")
+                ], iconNames: ["play.circle", "play.circle", "exclamationmark.circle"], selectedVideo: $selectedVideo)
+                Divider()
+                
+                SectionsView(title: "Section 3 - APIs", items: [
+                    ("API Basics", "10 mins", "master.mp4"),
+                    ("Building APIs", "10 mins", "interiAR_Garden.mp4")
+                ], iconNames: ["play.circle", "play.circle"], selectedVideo: $selectedVideo)
                 Divider()
             }
             .padding()
@@ -108,32 +98,29 @@ struct NodeJsCourseView: View {
     struct ResourcesView: View {
         var body: some View {
             VStack(alignment: .leading, spacing: 10) {
-                ResourceItem(title: "Notes", icon: "doc.text").accessibilityElement(children: .ignore)
-                    .accessibilityLabel("Notes").accessibilityHint("click here to download notes of this course")
+                ResourceItem(title: "Notes", icon: "doc.text")
                 Divider()
                 NavigationLink(destination: QuizView()) {
-                    ResourceItem(title: "Quiz", icon: "questionmark.circle").foregroundColor(.black).accessibilityElement(children: .ignore)
-                        .accessibilityLabel("Quiz").accessibilityHint("click here to give the quiz")
+                    ResourceItem(title: "Quiz", icon: "questionmark.circle").foregroundColor(.black)
                 }
                 Divider()
-                ResourceItem(title: "Certificate", icon: "rosette").accessibilityElement(children: .ignore)
-                    .accessibilityLabel("Certificate").accessibilityHint("click here to download the certificate")
+                ResourceItem(title: "Certificate", icon: "rosette")
                 Divider()
-                NavigationLink(destination: Chatview()){
-                    ResourceItem(title: "Discuss", icon: "message").foregroundColor(.black).accessibilityElement(children: .ignore)
-                    .accessibilityLabel("Discuss Forum").accessibilityHint("click here to disscuss anything about this course with your peers")}
+                NavigationLink(destination: Chatview()) {
+                    ResourceItem(title: "Discuss", icon: "message").foregroundColor(.black)
+                }
+                
                 Divider()
             }
             .padding()
         }
     }
     
-    
-    
     struct SectionsView: View {
         let title: String
-        let items: [(String?, String?)]
+        let items: [(String, String, String)]
         let iconNames: [String]
+        @Binding var selectedVideo: Video?
         
         var body: some View {
             VStack(alignment: .leading, spacing: 5) {
@@ -143,11 +130,19 @@ struct NodeJsCourseView: View {
                 ForEach(0..<items.count, id: \.self) { index in
                     VStack(alignment: .leading) {
                         HStack {
-                            Text(items[index].0!)
-                            Spacer()
-                            Image(systemName: iconNames[index])
+                            Button(action: {
+                                let baseURL = URL(string: "http://172.20.5.118/videos/")!
+                                let url = baseURL.appendingPathComponent(items[index].2)
+                                selectedVideo = Video(name: items[index].0, url: url)
+                            }) {
+                                HStack {
+                                    Text(items[index].0)
+                                    Spacer()
+                                    Image(systemName: iconNames[index])
+                                }
+                            }
                         }
-                        Text(items[index].1!)
+                        Text(items[index].1)
                             .font(.subheadline)
                             .foregroundColor(.gray)
                     }
@@ -176,9 +171,18 @@ struct NodeJsCourseView: View {
         }
     }
 }
+
 struct NodeJsCourseView_Previews: PreviewProvider {
     static var previews: some View {
         // for proper preview provide some image url from remote
-        NodeJsCourseView(course: Course())
+        NodeJsCourseView(courseName: "test", courseImage: "")
     }
 }
+
+struct Video: Identifiable {
+    var id: String { name }
+    let name: String
+    let url: URL
+}
+
+
